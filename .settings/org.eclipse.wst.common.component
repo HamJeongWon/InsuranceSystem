@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="InsuranceSystem">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Control"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Model"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/DAO"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/View"/>
+        <property name="context-root" value="InsuranceSystem"/>
+        <property name="java-output-path" value="/InsuranceSystem/build/classes"/>
+    </wb-module>
+</project-modules>
