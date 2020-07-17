@@ -22,6 +22,7 @@ public class InsuranceSystem {
 		ContractManagement contractManagement = new ContractManagement();	
 		InsuranceSubscription insuranceSubscription = new InsuranceSubscription();
 		InsuranceTreatment insuranceTreatment = new InsuranceTreatment();
+		
 		insuranceDAO insuranceDAO = new insuranceDAO();
 		subscriptionDAO subscriptionDAO = new subscriptionDAO();
 		contractDAO contractDAO = new contractDAO();

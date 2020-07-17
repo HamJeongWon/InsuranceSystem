@@ -1,11 +1,5 @@
-/Acceptance/
-/Accident/
-/Contract/
-/ContractManagement/
-/Customer/
-/Insurance/
-/InsuranceSubscription/
-/InsuranceSystem/
-/InsuranceTreatment/
-/DAO/
 /servlet/
+/InsuranceSubscription/
+/Insurance/
+/DAO/
+/InsuranceSystem/
