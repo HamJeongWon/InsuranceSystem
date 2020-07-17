@@ -10,12 +10,16 @@
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 
-  	<h2 align = "center"> 게 시 판 </h2>
-  	<br> <br>
+  <h2> 게 시 판 </h2>
+  <br> <br>
  
 <jsp:include page="/incl/InsuranceDesign.jsp" />
 
-	
+
+     <center>
+        	<input type="submit" value="등록하기" >
+        	<input type="reset" value="다시쓰기" >
+      </center>
 
 <jsp:include page="/incl/Footer.jsp" />
 

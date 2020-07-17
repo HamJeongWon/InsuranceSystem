@@ -22,12 +22,13 @@ public abstract class DAO {
 
 	public Connection getConnection() {
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/insuranceDB_test?serverTimezone=UTC&useSSL=false","root","seokwoojeong");
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+			this.connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/insuranceDB_test?serverTimezone=UTC&useSSL=false","root","21058");
+			System.out.println("1234");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return connect;
+		return this.connect;
 	}
 
 	public void closeConnection(Connection connect) {
@@ -43,8 +44,10 @@ public abstract class DAO {
 		int MaxID = 0;
 		this.sql = "select Max(" + columnName + ") as " + columnName + " from " + entityName;
 		try {
-			this.connect = getConnection();
-			this.statement = this.connect.prepareStatement(this.sql);
+			connect = getConnection();
+			System.out.println(connect);
+			System.out.println(this.sql);
+			this.statement = connect.prepareStatement(this.sql);
 			this.resultSet = this.statement.executeQuery();
 			this.resultSet.next();
 			MaxID = this.resultSet.getInt(columnName);
@@ -52,7 +55,7 @@ public abstract class DAO {
 			e.printStackTrace();
 			throw new RuntimeException("InsuranceDAO.SelectMaxInsuranceID : " + e.getMessage());
 		} finally {
-			closeConnection(this.connect);
+			closeConnection(connect);
 		}
 		return MaxID;
 	}

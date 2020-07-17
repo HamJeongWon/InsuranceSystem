@@ -8,9 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import DAO.insuranceDAO;
 import Insurance.Insurance;
+import Insurance.Insurance.InsuranceType;
 
 /**
  * Servlet implementation class InsuranceDesgin
@@ -41,7 +41,7 @@ public class InsuranceDesgin extends HttpServlet {
 		
 		Insurance insurance = new Insurance();
 		insuranceDAO insuranceDao = new insuranceDAO();
-		
+		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = response.getWriter();
         
@@ -56,6 +56,8 @@ public class InsuranceDesgin extends HttpServlet {
         int insuranceFee = Integer.parseInt(request.getParameter("insuranceFee"));
         insurance.setInsuranceFee(insuranceFee);
         
+        insurance.setInsuranceType(InsuranceType.Fire);
+        
         String insuranceManual = request.getParameter("insuranceManual");
         insurance.setInsuranceManual(insuranceManual);
         
@@ -63,20 +65,8 @@ public class InsuranceDesgin extends HttpServlet {
         insurance.setInsuranceSalesManual(insuranceSalesManual);
         	
 		insuranceDao.InsertInsurance(insurance);
-		
-        out.println("<html>");
-        out.println("<head><title> 결과 </title></head>");
-        out.println("<body><center>");
-        out.println("<h2> 결과 </h2>");
-        out.println("<HR>");
-        out.println("보험 ID : " + insuranceID);
-        out.println("보험명 : " + insuranceName);
-        out.println("보험료 : " + insuranceFee);
-        out.println("보험설명서 : " + insuranceManual);
-        out.println("판매설명서 : " + insuranceSalesManual);
-        out.println("</body></html>");
         
-//        response.sendRedirect("main.jsp");
+        response.sendRedirect("main.jsp");
 				
 	}
 }
