@@ -1,7 +1,6 @@
-package servlet;
+package InsuranceDesign;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.insuranceDAO;
-import Insurance.Insurance;
+import Insurance.FireInsurance;
 import Insurance.Insurance.InsuranceType;
 
 /**
  * Servlet implementation class InsuranceDesgin
  */
-@WebServlet("/InsuranceDesgin")
-public class InsuranceDesgin extends HttpServlet {
+@WebServlet("/FInsuranceDesgin")
+public class FInsuranceDesgin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsuranceDesgin() {
+    public FInsuranceDesgin() {
         super();
     }
 
@@ -39,11 +38,10 @@ public class InsuranceDesgin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Insurance insurance = new Insurance();
+		FireInsurance insurance = new FireInsurance();
 		insuranceDAO insuranceDao = new insuranceDAO();
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");
-        PrintWriter out = response.getWriter();
         
 		int insuranceID = insuranceDao.SelectMaxID("insuranceID", "Insurance");
 		if (insuranceID == 0) { insuranceID = 1000; }
