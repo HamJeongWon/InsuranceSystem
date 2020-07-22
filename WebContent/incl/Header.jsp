@@ -53,7 +53,7 @@
 								<li><a href="">계약서작성하기</a></li>
 							</ul></li>
 
-						<li class="has-children"><a href="" class="nav-link">보험처리하기</a>
+						<li class="has-children"><a href="InsuranceTreatment.jsp" class="nav-link">보험처리하기</a>
 							<ul class="dropdown">
 								<li><a href="">사고내용작성하기</a></li>
 								<li><a href="">결정보험금 산출하기</a></li>

@@ -9,6 +9,10 @@
 <body>
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
+
+
+
+
 <jsp:include page="/incl/Footer.jsp" />
 
 </body>
