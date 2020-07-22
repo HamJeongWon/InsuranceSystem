@@ -1,6 +1,6 @@
 package Insurance;
 
-public abstract class Insurance {
+public class Insurance {
 	public enum InsuranceType{Fire, Car, ActualCost};
 	private int insuranceFee;
 	private int insuranceID;

@@ -4,16 +4,16 @@
 	<classpathentry kind="src" path="Model"/>
 	<classpathentry kind="src" path="DAO"/>
 	<classpathentry kind="src" path="View"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_74/jre/lib/mysql-connector-java-8.0.20.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/el-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/jsp-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

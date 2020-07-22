@@ -15,19 +15,21 @@
 					</a>
 				</h1>
 			</div>
+			
+			
 			<div class="col-12 col-md-10 d-none d-xl-block">
 				<nav class="site-navigation position-relative text-right"
 					role="navigation">
-
-					<ul
-						class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-						<li class="has-children"><a href="" class="nav-link">상품
-								설계하기</a>
+					
+					<ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+						<li class="has-children"><a href="" class="nav-link">상품설계하기</a>
 							<ul class="dropdown">
-								<li><a href="">화재보험</a></li>
-								<li><a href="">자동차보험</a></li>
-								<li><a href="">실비보험</a></li>
-							</ul></li>
+								<li><a href = "FInsuranceDesign.jsp"> 화재보험 </a></li>
+								<li><a href = "">자동차보험</a></li>
+								<li><a href = "">실비보험</a></li>
+							</ul>
+	
+						</li>
 
 						<li class="has-children"><a href="" class="nav-link">인수정책수립하기</a>
 							<ul class="dropdown">

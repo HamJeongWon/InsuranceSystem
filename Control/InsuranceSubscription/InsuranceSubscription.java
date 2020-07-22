@@ -683,10 +683,10 @@ public class InsuranceSubscription {
 
 		scanner.nextLine();
 
-		System.out.println("5.보험설명서 내용을 입력하십시오.");
+		System.out.println("4.보험설명서 내용을 입력하십시오.");
 		insurance.setInsuranceManual(scanner.nextLine());
 
-		System.out.println("7.판매메뉴얼 내용을 입력하십시오.");
+		System.out.println("5.판매메뉴얼 내용을 입력하십시오.");
 		insurance.setInsuranceSalesManual(scanner.nextLine());
 		return insurance;
 
