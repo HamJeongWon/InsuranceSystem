@@ -22,8 +22,10 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 col-lg-4">
-					<a href="AccidentReception.jsp" class="media-1" data-fancybox="gallery">
-						<img src="images/img_1.jpg" alt="Image" class="img-fluid">
+
+					<a href="AccidentReception.jsp" class="media-1"
+						data-fancybox="gallery"> <img src="images/img_1.jpg"
+						alt="Image" class="img-fluid">
 						<div class="media-1-content">
 							<h2>사고내용작성하기</h2>
 							<span class="category">Web Application</span>

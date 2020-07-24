@@ -11,9 +11,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/mysql-connector-java-8.0.20.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/el-api.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_241/jre/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/el-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SAMSUNG/OneDrive - 명지대학교/바탕 화면/전공/3학년 여름방학/servlet-api/mysql-connector-java-8.0.20.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
