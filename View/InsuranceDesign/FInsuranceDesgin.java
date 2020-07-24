@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.insuranceDAO;
+import Insurance.DamageInformation;
 import Insurance.FireInsurance;
 import Insurance.Insurance.InsuranceType;
 
@@ -43,6 +44,8 @@ public class FInsuranceDesgin extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");
         
+        // 보험 기본 정보를 DB에 저장
+        
 		int insuranceID = insuranceDao.SelectMaxID("insuranceID", "Insurance");
 		if (insuranceID == 0) { insuranceID = 1000; }
 		insuranceID = insuranceID + 1;
@@ -54,6 +57,7 @@ public class FInsuranceDesgin extends HttpServlet {
         int insuranceFee = Integer.parseInt(request.getParameter("insuranceFee"));
         insurance.setInsuranceFee(insuranceFee);
         
+        
         insurance.setInsuranceType(InsuranceType.Fire);
         
         String insuranceManual = request.getParameter("insuranceManual");
@@ -61,9 +65,45 @@ public class FInsuranceDesgin extends HttpServlet {
         
         String insuranceSalesManual = request.getParameter("insuranceSalesManual");
         insurance.setInsuranceSalesManual(insuranceSalesManual);
+        
+        
+        // 화재 보험 상세 정보를 DB에 저장
+        
+        DamageInformation directDamage, fireDamage, refugeDamage;
+        
+        directDamage = new DamageInformation();
+        
+        int directGuaranteedAmount = Integer.parseInt(request.getParameter("directGuaranteedAmount"));
+        directDamage.setDamageGuaranteedAmount(directGuaranteedAmount);
+        
+        String directGuaranteedContent = request.getParameter("directGuaranteedContent");
+        directDamage.setDamageGuaranteedContent(directGuaranteedContent);
+        
+        insurance.setDirectDamage(directDamage);
+        
+        fireDamage = new DamageInformation();
+        
+        int fireGuaranteedAmount = Integer.parseInt(request.getParameter("fireGuaranteedAmount"));
+        fireDamage.setDamageGuaranteedAmount(fireGuaranteedAmount);
+        
+        String fireGuaranteedContent = request.getParameter("fireGuaranteedContent");
+        fireDamage.setDamageGuaranteedContent(fireGuaranteedContent);
+        
+        insurance.setFireDamage(fireDamage);
+        
+        refugeDamage = new DamageInformation();
+        
+        int refugeGuaranteedAmount = Integer.parseInt(request.getParameter("refugeGuaranteedAmount"));
+        refugeDamage.setDamageGuaranteedAmount(refugeGuaranteedAmount);
+        
+        String refugeGuaranteedContent = request.getParameter("refugeGuaranteedContent");
+        refugeDamage.setDamageGuaranteedContent(refugeGuaranteedContent);
+        
+        insurance.setRefugeDamage(refugeDamage);
         	
 		insuranceDao.InsertInsurance(insurance);
-        
+		insuranceDao.InsertFireInsurance(insurance);
+		
         response.sendRedirect("main.jsp");	
 	}
 }

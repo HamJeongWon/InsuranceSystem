@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title> 화재보험 설계 </title>
+<link rel="stylesheet" href="css/radioButton.css">
+<title> 실비보험 설계 </title>
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
@@ -16,12 +17,13 @@
       
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="text-black h1 site-section-heading">화재보험 설계</h2>
-            <p class="lead">화재 보험의 기본정보와 상세정보를 입력</p>
+            <h2 class="text-black h1 site-section-heading">실비보험 설계</h2>
+            <p class="lead">실비보험의 기본정보와 상세정보를 입력</p>
           </div>
         </div>
-
-            <form action= ./FInsuranceDesgin method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+        
+         <div>
+            <form action= ./AInsuranceDesgin method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 기본 정보 </h2> 
 
@@ -58,53 +60,36 @@
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 상세 정보 </h2> 
               
-              <p class="lead" align = "center" >직접 손해</p>
+              <p class="lead" align = "center" >상해 입원</p>            
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="directGuaranteedAmount">직접 손해 보장액</label> 
-                  <input type="text" name="directGuaranteedAmount" class="form-control">
+                  <label class="text-black" for="hospitalizationFee"> 상해 입원 지급 금액 </label> 
+                  <input type="text" name="hospitalizationFee" class="form-control">
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="directGuaranteedContent">직접 손해 보장 내용</label> 
-                  <textarea name="directGuaranteedContent" id="directGuaranteedContent" cols="30" rows="7" class="form-control" placeholder="직접손해에 대한 보장 내용을 작성하여 주십시오."></textarea>
+                  <label class="text-black" for="hospitalizationReason"> 상해 입원 지급 사유 </label> 
+                  <textarea name="hospitalizationReason" id="hospitalizationReason" cols="30" rows="7" class="form-control" placeholder="상해 입원에 대한 지급 사유를 작성하십시오."></textarea>
                 </div>
               </div>
               
               <br>
-              <p class="lead" align = "center" >소방 손해</p>
+              <p class="lead" align = "center" >상해 통원</p>            
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="fireGuaranteedAmount"> 소방 손해 보장액</label> 
-                  <input type="text" name="fireGuaranteedAmount" class="form-control">
+                  <label class="text-black" for="outpatientFee"> 상해 통원 지급 금액 </label> 
+                  <input type="text" name="outpatientFee" class="form-control">
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="fireGuaranteedContent"> 소방 손해 보장 내용</label> 
-                  <textarea name="fireGuaranteedContent" id="fireGuaranteedContent" cols="30" rows="7" class="form-control" placeholder="소방손해에 대한 보장 내용을 작성하여 주십시오."></textarea>
-                </div>
-              </div>
-              
-             <br>
-             <p class="lead" align = "center" >피난 손해</p>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="refugeGuaranteedAmount">피난 손해 보장액</label> 
-                  <input type="text" name="refugeGuaranteedAmount" class="form-control">
-                </div>
-              </div>
-              
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="refugeGuaranteedContent">피난 손해 보장 내용</label> 
-                  <textarea name="refugeGuaranteedContent" id="refugeGuaranteedContent" cols="30" rows="7" class="form-control" placeholder="피난손해에 대한 보장 내용을 작성하여 주십시오."></textarea>
+                  <label class="text-black" for="outpatientReason"> 상해 통원 지급 사유 </label> 
+                  <textarea name="outpatientReason" id="outpatientReason" cols="30" rows="7" class="form-control" placeholder="상해 통원에 대한 지급 사유를 작성하십시오."></textarea>
                 </div>
               </div>
               
@@ -118,8 +103,9 @@
                 </div>
               </div>
 
-            </form>   
-          </div>
+            </form>
+           </div>   
+         </div>
     </section>
 
     <a href="main.jsp" class="bg-primary py-5 d-block">

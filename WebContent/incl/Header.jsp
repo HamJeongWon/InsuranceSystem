@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
 <header
 	class="site-navbar py-4 bg-white js-sticky-header site-navbar-target"
 	role="banner">
@@ -10,7 +13,7 @@
 
 			<div class="col-11 col-xl-2">
 				<h1 class="mb-0 site-logo">
-					<a href="main.html" class="text-black h2 mb-0">보험회사<span
+					<a href="main.jsp" class="text-black h2 mb-0">보험회사<span
 						class="text-primary">.</span>
 					</a>
 				</h1>
@@ -22,11 +25,11 @@
 					role="navigation">
 					
 					<ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-						<li class="has-children"><a href="" class="nav-link">상품설계하기</a>
+						<li class="has-children"><a href="InsuranceDesign.jsp" class="nav-link">상품설계하기</a>
 							<ul class="dropdown">
 								<li><a href = "FInsuranceDesign.jsp"> 화재보험 </a></li>
-								<li><a href = "">자동차보험</a></li>
-								<li><a href = "">실비보험</a></li>
+								<li><a href = "CInsuranceDesign.jsp">자동차보험</a></li>
+								<li><a href = "AInsuranceDesign.jsp">실비보험</a></li>
 							</ul>
 	
 						</li>

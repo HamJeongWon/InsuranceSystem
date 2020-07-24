@@ -59,7 +59,6 @@ public class InsuranceSystem {
 			switch(menuNum) {
 			case 1: 
 				System.out.println("******상품 설계******");
-				insuranceSubscription.CreateInsuranceContent(scanner);
 				break;
 			case 2: 
 				System.out.println("******인수 정책 수립******");
