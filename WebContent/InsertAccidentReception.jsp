@@ -21,12 +21,11 @@
 					<h2 class="text-black h1 site-section-heading">사고 내용 입력</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-7 mb-5">
+	
 
 
 					<form action=./AccidentReception?action=insertAccidentReception
-						class="p-5 bg-white" method="post">
+						class="p-5 bg-white" method="post" style = "margin:auto; max-width: 700px;">
 
 						<input type="hidden" name="index" value=<%=index %>>
 						<h2 class="h4 text-black mb-5">사고 내용을 입력하세요</h2>
@@ -37,6 +36,7 @@
 									type="date" id="accidentDate" class="form-control"
 									name="accidentDate">
 							</div>
+							
 							<div class="col-md-6">
 								<label class="text-black" for="accidentTime">사고시간</label> <input
 									type="time" id="accidentTime" class="form-control"
@@ -85,24 +85,9 @@
 
 					</form>
 				</div>
-				 <div class="col-md-5">
-            
-            <div class="p-4 mb-3 bg-white">
-              <p class="mb-0 font-weight-bold">Address</p>
-              <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+			
 
-              <p class="mb-0 font-weight-bold">Phone</p>
-              <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
-
-              <p class="mb-0 font-weight-bold">Email Address</p>
-              <p class="mb-0"><a href="#">youremail@domain.com</a></p>
-
-            </div>
-            
-          </div>
-
-			</div>
-		</div>
+			
 	</section>
 
 	</form>

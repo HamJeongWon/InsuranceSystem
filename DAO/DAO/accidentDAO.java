@@ -8,6 +8,26 @@ import java.util.Vector;
 import Accident.Accident;
 
 public class accidentDAO extends DAO{
+	
+	public Vector<Integer> showAllAccidentIDFromWeb() {
+		 this.sql = "select accidentID from accident where payInsurancePremium = false ";
+		 Vector<Integer> accidentIDVector = new Vector<Integer>();
+		 try {
+			 this.connect = getConnection();
+			 this.statement = this.connect.prepareStatement(sql);
+			 this.resultSet = this.statement.executeQuery();
+			 while (this.resultSet.next()) {
+				 accidentIDVector.add(this.resultSet.getInt("accidentID"));
+			 }
+
+			
+		 } catch (SQLException e) {
+			throw new RuntimeException("InsuranceDAO.showAllInsuranceID :" + e.getMessage());
+		} finally {
+			closeConnection(this.connect);
+		}
+		 return accidentIDVector;
+	}
 
 	
 	public int showAllAccidentID() {

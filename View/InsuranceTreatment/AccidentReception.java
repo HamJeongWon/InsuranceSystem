@@ -53,7 +53,7 @@ public class AccidentReception extends HttpServlet {
 		String action = request.getParameter("action");
 		String url = null;
 		
-		System.out.println(action);
+		//System.out.println(action);
 		
 		if(action.equals("showID")) {
 			request.setAttribute("IDVector", subscriptionDAO.showSubscriptionCustomer());
@@ -93,8 +93,8 @@ public class AccidentReception extends HttpServlet {
 			
 			//만약 request.get파라미터가 하나라도 null값일 경우 에러처리 해야함...에러처리는 좀 나중에
 			
-			//일단 db에 dirty data가 쌓이지 않도록 막아놓음
-			//this.accidentDAO.insertAccident(accident);
+			
+			this.accidentDAO.insertAccident(accident);
 			request.setAttribute("accident", accident);
 			url = "/ResultAccidentReception.jsp";
 			
