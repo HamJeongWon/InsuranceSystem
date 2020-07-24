@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<link rel="stylesheet" href="css/radioButton.css">
 <title> 자동차보험 설계 </title>
 <jsp:include page="/incl/staticHeader.jsp" />
 </head>
