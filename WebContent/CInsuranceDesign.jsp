@@ -5,9 +5,9 @@
 <head>
 <meta charset="EUC-KR">
 <title> 자동차보험 설계 </title>
-<jsp:include page="/incl/staticHeader.jsp" />
 </head>
 <body> 
+<jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 <section class="site-section bg-light" id="contact-section">
 
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-            <form action= ./CInsuranceDesgin method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./InsuranceDesgin?action=car method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 기본 정보 </h2> 
 

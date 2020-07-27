@@ -21,7 +21,7 @@
           </div>
         </div>
 
-            <form action= ./FInsuranceDesgin method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./InsuranceDesgin?action=fire method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 기본 정보 </h2> 
 

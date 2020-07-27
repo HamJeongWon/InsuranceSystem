@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="Accident.Accident"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
 				<div class="col-md-7 mb-5">
 
 
-					<form action="main.jsp" class="p-5 bg-white">
+					<form action="main.jsp" class="p-5 bg-white"> 
 
 
 						<h2 class="h4 text-black mb-5">사고 내용을 입력 결과</h2>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-8 text-center">
-            <h2 class="text-black h1 site-section-heading text-center">º¸ÇèÈ¸»ç</h2>
+            <h2 class="text-black h1 site-section-heading text-center">ë³´í—˜íšŒì‚¬</h2>
             <p class="lead">made by Kyung-Hyun Kim, seok-woo Jeong, jeong-won Ham </p>
           </div>
         </div>
@@ -25,7 +25,7 @@
             <a href="" class="media-1" data-fancybox="gallery">
               <img src="images/img_1.jpg" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>»óÇ°¼³°èÇÏ±â</h2>
+                <h2>ìƒí’ˆì„¤ê³„í•˜ê¸°</h2>
                 <span class="category">Web Application</span>
               </div>
             </a>
@@ -34,7 +34,7 @@
             <a href="" class="media-1" data-fancybox="gallery">
               <img src="images/img_2.jpg" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>ÀÎ¼öÁ¤Ã¥¼ö¸³ÇÏ±â</h2>
+                <h2>ì¸ìˆ˜ì •ì±…ìˆ˜ë¦½í•˜ê¸°</h2>
                 <span class="category">Branding</span>
               </div>
             </a>
@@ -43,7 +43,7 @@
             <a href="" class="media-1" data-fancybox="gallery">
               <img src="images/img_3.jpg" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>¿µ¾÷È°µ¿</h2>
+                <h2>ì˜ì—…í™œë™</h2>
                 <span class="category">Website</span>
               </div>
             </a>
@@ -53,7 +53,7 @@
             <a href="" class="media-1" data-fancybox="gallery">
               <img src="images/img_4.jpg" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>ÀÎ¼ö½É»çÇÏ±â</h2>
+                <h2>ì¸ìˆ˜ì‹¬ì‚¬í•˜ê¸°</h2>
                 <span class="category">Web Application</span>
               </div>
             </a>
@@ -62,7 +62,7 @@
             <a href="" class="media-1" data-fancybox="gallery">
               <img src="images/img_5.jpg" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>°è¾à°ü¸®ÇÏ±â</h2>
+                <h2>ê³„ì•½ê´€ë¦¬í•˜ê¸°</h2>
                 <span class="category">Branding</span>
               </div>
             </a>
@@ -71,7 +71,7 @@
             <a href="InsuranceTreatment.jsp" class="media-1" data-fancybox="gallery">
               <img src="images/img_6.jpg" alt="Image" class="img-fluid">
               <div class="media-1-content">
-                <h2>º¸ÇèÃ³¸®ÇÏ±â</h2>
+                <h2>ë³´í—˜ì²˜ë¦¬í•˜ê¸°</h2>
                 <span class="category">Website</span>
               </div>
             </a>
