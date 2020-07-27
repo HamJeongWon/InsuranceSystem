@@ -187,6 +187,10 @@ public class InsuranceDesgin extends HttpServlet {
       
     		insuranceDao.InsertInsurance(insurance);
     		insuranceDao.InsertCarInsurance((CarInsurance) insurance);
+    		
+			request.setAttribute("CInsurance", insurance);
+			url = "/ResultCInsuranceDesign.jsp";
+			
         	break;
         	
         case "actualCost" :  // 실비 보험 상세 정보를 DB에 저장
@@ -208,6 +212,9 @@ public class InsuranceDesgin extends HttpServlet {
       
     		insuranceDao.InsertInsurance(insurance);
     		insuranceDao.InsertActualCostInsurance((ActualCostInsurance) insurance);
+    		
+			request.setAttribute("AInsurance", insurance);
+			url = "/ResultAInsuranceDesign.jsp";
         	break;
         	
         default :

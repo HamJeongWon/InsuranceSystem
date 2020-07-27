@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% request.setCharacterEncoding("EUC-KR");  %>
-<%@ page import="Insurance.FireInsurance"%>
+<%@ page import="Insurance.CarInsurance"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
-<%FireInsurance insurance = (FireInsurance)request.getAttribute("FInsurance"); %>
+<%CarInsurance insurance = (CarInsurance)request.getAttribute("CInsurance"); %>
 
 <section class="site-section bg-light" id="contact-section">
 
@@ -19,8 +19,8 @@
       
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="text-black h1 site-section-heading">화재보험 설계완료!</h2>
-            <p class="lead">설계한 화재보험의 정보입니다.</p>
+            <h2 class="text-black h1 site-section-heading">자동차보험 설계완료!</h2>
+            <p class="lead">설계한 자동차보험의 정보입니다.</p>
           </div>
         </div>
 
@@ -60,7 +60,6 @@
                 <div class="col-md-12">
                   <label class="text-black" for="insuranceSalesManual">판매 메뉴얼</label> 
                   <p class="text-primary"><%= insurance.getInsuranceSalesManual() %><p>
-
                 </div>
               </div>
 
@@ -69,55 +68,77 @@
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 상세 정보 </h2> 
               
-              <p class="lead" align = "center" >직접 손해</p>
+ 				<p class="lead" align = "center" >대물 배상</p>
+              
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="insuranceSalesManual">구분</label>   
+					<p class="text-primary"><%= insurance.getGoodsIndemnification().getSeparation() %><p>		  
+                </div>
+              </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="directGuaranteedAmount">직접 손해 보장액</label> 
-                  <p class="text-primary"><%= insurance.getDirectDamage().getDamageGuaranteedAmount() %><p>
+                  <label class="text-black" for="goodsGuaranteeLimit"> 대물 배상 지급 한도 </label> 
+					<p class="text-primary"><%= insurance.getGoodsIndemnification().getProvisionLimit() %><p>	
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="directGuaranteedContent">직접 손해 보장 내용</label> 
-                  <p class="text-primary"><%= insurance.getDirectDamage().getDamageGuaranteedContent() %><p>
-                </div>
+                  <label class="text-black" for="goodsGuaranteeContent"> 대물 배상 보장 내용 </label> 
+                  	<p class="text-primary"><%= insurance.getGoodsIndemnification().getGuaranteeContent() %><p>	
+  				</div>
               </div>
               
               <br>
-              <p class="lead" align = "center" >소방 손해</p>
+              <p class="lead" align = "center" >대인 배상</p>
+
+              <div class="row form-group">
+                <div class="col-md-12">  
+                  <label class="text-black" for="insuranceSalesManual">구분</label>                  
+					<p class="text-primary"><%= insurance.getPersonalIndemnification().getSeparation() %><p>				  
+                </div>
+              </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="fireGuaranteedAmount"> 소방 손해 보장액</label> 
-                  <p class="text-primary"><%= insurance.getFireDamage().getDamageGuaranteedAmount() %><p>
+                  <label class="text-black" for="personalProvisionLimit"> 대인 배상 지급 한도 </label> 
+					<p class="text-primary"><%= insurance.getPersonalIndemnification().getProvisionLimit() %><p>	
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="fireGuaranteedContent"> 소방 손해 보장 내용</label> 
-                  <p class="text-primary"><%= insurance.getFireDamage().getDamageGuaranteedContent() %><p>
+                  <label class="text-black" for="personalGuaranteeContent"> 대인 배상 보장 내용 </label> 
+                  	<p class="text-primary"><%= insurance.getPersonalIndemnification().getGuaranteeContent() %><p>	
                 </div>
               </div>
               
              <br>
-             <p class="lead" align = "center" >피난 손해</p>
-
+             <p class="lead" align = "center" >자기 차량 손해</p>
+             
               <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="refugeGuaranteedAmount">피난 손해 보장액</label> 
-                  <p class="text-primary"><%= insurance.getRefugeDamage().getDamageGuaranteedAmount() %><p>             
+                <div class="col-md-12">  
+                  <label class="text-black" for="insuranceSalesManual">구분</label>   
+				  <p class="text-primary"><%= insurance.getSelfVehicleDamage().getSeparation() %><p>			  
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="refugeGuaranteedContent">피난 손해 보장 내용</label> 
-                  <p class="text-primary"><%= insurance.getRefugeDamage().getDamageGuaranteedContent() %><p>
-               	</div>
+                  <label class="text-black" for="SubscriptionFeeForInjury"> 자기 차량 손해 부상 가입금액 </label> 
+				  <p class="text-primary"><%= insurance.getSelfVehicleDamage().getSubscriptionFeeForInjury() %><p>		
+                </div>
               </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="SubscriptionFeeForAccidentalInjuries"> 자기 차량 손해 사고 후유장해의 가입금액 </label> 
+				  <p class="text-primary"><%= insurance.getSelfVehicleDamage().getSubscriptionFeeForAccidentalInjuries() %><p>	
+                </div>
+              </div>
+              
             </div>   
           </div>
     </section>
