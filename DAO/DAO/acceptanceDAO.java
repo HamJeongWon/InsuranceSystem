@@ -30,7 +30,7 @@ public class acceptanceDAO extends DAO{
 	public Vector<AcceptanceGuide> searchAcceptanceForInsurance(String insuranceType) {
 		AcceptanceGuide acceptanceGuide;
 		Vector<AcceptanceGuide> acceptances = new Vector<AcceptanceGuide>();
-		this.sql = "select acceptance.acceptanceid, acceptance.riskEvaluation, acceptance.scamcase from insurance, acceptance where insurance.insuranceid = acceptance.insuranceid AND insurance.insuranceType = ?";
+		this.sql = "select acceptance.acceptanceid, acceptance.riskEvaluation, acceptance.scamcase, insurance.insuranceid from insurance, acceptance where insurance.insuranceid = acceptance.insuranceid AND insurance.insuranceType = ?";
 		try {
 			this.connect = getConnection();
 			this.statement = this.connect.prepareStatement(sql);
@@ -41,6 +41,7 @@ public class acceptanceDAO extends DAO{
 				acceptanceGuide.setAcceptanceID(this.resultSet.getInt("acceptance.acceptanceid"));
 				acceptanceGuide.setRiskEvaluation(AcceptanceGuide.RiskEvaluation.valueOf(this.resultSet.getString("riskEvaluation")));
 				acceptanceGuide.setScamCase(this.resultSet.getString("acceptance.scamcase"));
+				acceptanceGuide.setInsuranceID(this.resultSet.getInt("insurance.insuranceid"));
 				acceptances.add(acceptanceGuide);
 			}
 		} catch (Exception e) {

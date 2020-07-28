@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title> 자동차보험 설계 </title>
+<link rel="stylesheet" href="css/radioButton.css">
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
