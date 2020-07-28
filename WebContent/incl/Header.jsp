@@ -34,11 +34,10 @@
 	
 						</li>
 
-						<li class="has-children"><a href="" class="nav-link">인수정책수립하기</a>
+						<li class="has-children"><a href="AcceptanceGuide.jsp" class="nav-link">인수정책수립하기</a>
 							<ul class="dropdown">
-								<li><a href="">화재보험</a></li>
-								<li><a href="">자동차보험</a></li>
-								<li><a href="">실비보험</a></li>
+								<li><a href="ResultAcceptanceGuide">인수지침서 보기</a></li>
+								<li><a href="AcceptanceGuideDesign.jsp">인수지침서 설계</a></li>
 							</ul></li>
 
 						<li class="has-children"><a href="" class="nav-link">영업활동</a>

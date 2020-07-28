@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link
-	href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900"
-	rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
 <link rel="stylesheet" href="fonts/icomoon/style.css">
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -22,4 +21,6 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet" href="css/radioButton.css">
+<%-- <link rel="stylesheet" href="css/radioButton.css"> --%>
+
+
