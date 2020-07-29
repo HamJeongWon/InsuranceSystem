@@ -1,6 +1,8 @@
 package AcceptanceGuide;
 
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,21 +12,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.insuranceDAO;
+import Acceptance.AcceptanceGuide;
+import Acceptance.AcceptanceGuide.RiskEvaluation;
+import DAO.acceptanceDAO;
 import Insurance.Insurance;
 
 
 /**
  * Servlet implementation class InsuranceDesgin
  */
-@WebServlet("/SearchNullAcceptanceGuide")
-public class SearchNullAcceptanceGuide extends HttpServlet {
+@WebServlet("/AcceptanceGuideDesign")
+public class AcceptanceGuideDesign extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchNullAcceptanceGuide() {
+    public AcceptanceGuideDesign() {
         super();
     }
 
@@ -43,13 +47,27 @@ public class SearchNullAcceptanceGuide extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");
-        insuranceDAO insuranceDAO = new insuranceDAO();
         
         String url = null;
-	
-		request.setAttribute("nullAcceptanceInsuranceID", insuranceDAO.SearchNullAcceptanceInsuranceID());
-	
-		url = "/AcceptanceGuideList.jsp";
+        
+        acceptanceDAO acceptanceDAO = new acceptanceDAO();
+        AcceptanceGuide acceptanceGuide = new AcceptanceGuide();
+        
+        int acceptanceID = acceptanceDAO.SelectMaxID("acceptanceID", "Acceptance");
+		if (acceptanceID == 0) { acceptanceID = 5000; }
+		acceptanceID = acceptanceID + 1;
+		acceptanceGuide.setAcceptanceID(acceptanceID);
+		
+		acceptanceGuide.setScamCase(request.getParameter("ScamCase"));
+		
+		acceptanceGuide.setRiskEvaluation(AcceptanceGuide.RiskEvaluation.valueOf(request.getParameter("RiskEvaluation")));
+		
+		acceptanceGuide.setInsuranceID(Integer.parseInt(request.getParameter("InsuranceID")));
+		
+		acceptanceDAO.InsertAcceptanceGuide(acceptanceGuide);
+		
+		request.setAttribute("AcceptanceGuide", acceptanceGuide);
+		url = "/ResultAcceptanceGuide.jsp";
 
         ServletContext context = getServletContext();
 		RequestDispatcher disp = context.getRequestDispatcher(url);

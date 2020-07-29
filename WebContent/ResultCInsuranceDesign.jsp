@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% request.setCharacterEncoding("EUC-KR");  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="Insurance.CarInsurance"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title> È­Àçº¸Çè ¼³°è°á°ú </title>
+<meta charset="UTF-8">
+<title> í™”ìž¬ë³´í—˜ ì„¤ê³„ê²°ê³¼ </title>
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
@@ -19,46 +17,46 @@
       
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="text-black h1 site-section-heading">ÀÚµ¿Â÷º¸Çè ¼³°è¿Ï·á!</h2>
-            <p class="lead">¼³°èÇÑ ÀÚµ¿Â÷º¸ÇèÀÇ Á¤º¸ÀÔ´Ï´Ù.</p>
+            <h2 class="text-black h1 site-section-heading">ìžë™ì°¨ë³´í—˜ ì„¤ê³„ì™„ë£Œ!</h2>
+            <p class="lead">ì„¤ê³„í•œ ìžë™ì°¨ë³´í—˜ì˜ ì •ë³´ìž…ë‹ˆë‹¤.</p>
           </div>
         </div>
 
             <div class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
               
-              <h2 class="h4 text-black mb-5" align = "center"> º¸Çè ±âº» Á¤º¸ </h2> 
+              <h2 class="h4 text-black mb-5" align = "center"> ë³´í—˜ ê¸°ë³¸ ì •ë³´ </h2> 
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="insuranceID"> º¸Çè ID </label>
+                  <label class="text-black" for="insuranceID"> ë³´í—˜ ID </label>
                   <p class="text-primary"><%= insurance.getInsuranceID() %><p>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="insuranceName"> º¸Çè ÀÌ¸§ </label> 
+                  <label class="text-black" for="insuranceName"> ë³´í—˜ ì´ë¦„ </label> 
                    <p class="text-primary"><%= insurance.getInsuranceName() %><p>
                 </div>
               </div>
 
               <div class="row form-group">          
                 <div class="col-md-12">
-                  <label class="text-black" for="insuranceFee">º¸Çè·á</label> 
+                  <label class="text-black" for="insuranceFee">ë³´í—˜ë£Œ</label> 
                    <p class="text-primary"><%= insurance.getInsuranceFee() %><p>
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="insuranceManual">º¸Çè ¼³¸í¼­</label> 
+                  <label class="text-black" for="insuranceManual">ë³´í—˜ ì„¤ëª…ì„œ</label> 
                   <p class="text-primary"><%= insurance.getInsuranceManual() %><p>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="insuranceSalesManual">ÆÇ¸Å ¸Þ´º¾ó</label> 
+                  <label class="text-black" for="insuranceSalesManual">íŒë§¤ ë©”ë‰´ì–¼</label> 
                   <p class="text-primary"><%= insurance.getInsuranceSalesManual() %><p>
                 </div>
               </div>
@@ -66,75 +64,75 @@
               <br>
               <br>
               
-              <h2 class="h4 text-black mb-5" align = "center"> º¸Çè »ó¼¼ Á¤º¸ </h2> 
+              <h2 class="h4 text-black mb-5" align = "center"> ë³´í—˜ ìƒì„¸ ì •ë³´ </h2> 
               
- 				<p class="lead" align = "center" >´ë¹° ¹è»ó</p>
+ 				<p class="lead" align = "center" >ëŒ€ë¬¼ ë°°ìƒ</p>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="insuranceSalesManual">±¸ºÐ</label>   
+                  <label class="text-black" for="insuranceSalesManual">êµ¬ë¶„</label>   
 					<p class="text-primary"><%= insurance.getGoodsIndemnification().getSeparation() %><p>		  
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="goodsGuaranteeLimit"> ´ë¹° ¹è»ó Áö±Þ ÇÑµµ </label> 
+                  <label class="text-black" for="goodsGuaranteeLimit"> ëŒ€ë¬¼ ë°°ìƒ ì§€ê¸‰ í•œë„ </label> 
 					<p class="text-primary"><%= insurance.getGoodsIndemnification().getProvisionLimit() %><p>	
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="goodsGuaranteeContent"> ´ë¹° ¹è»ó º¸Àå ³»¿ë </label> 
+                  <label class="text-black" for="goodsGuaranteeContent"> ëŒ€ë¬¼ ë°°ìƒ ë³´ìž¥ ë‚´ìš© </label> 
                   	<p class="text-primary"><%= insurance.getGoodsIndemnification().getGuaranteeContent() %><p>	
   				</div>
               </div>
               
               <br>
-              <p class="lead" align = "center" >´ëÀÎ ¹è»ó</p>
+              <p class="lead" align = "center" >ëŒ€ì¸ ë°°ìƒ</p>
 
               <div class="row form-group">
                 <div class="col-md-12">  
-                  <label class="text-black" for="insuranceSalesManual">±¸ºÐ</label>                  
+                  <label class="text-black" for="insuranceSalesManual">êµ¬ë¶„</label>                  
 					<p class="text-primary"><%= insurance.getPersonalIndemnification().getSeparation() %><p>				  
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="personalProvisionLimit"> ´ëÀÎ ¹è»ó Áö±Þ ÇÑµµ </label> 
+                  <label class="text-black" for="personalProvisionLimit"> ëŒ€ì¸ ë°°ìƒ ì§€ê¸‰ í•œë„ </label> 
 					<p class="text-primary"><%= insurance.getPersonalIndemnification().getProvisionLimit() %><p>	
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="personalGuaranteeContent"> ´ëÀÎ ¹è»ó º¸Àå ³»¿ë </label> 
+                  <label class="text-black" for="personalGuaranteeContent"> ëŒ€ì¸ ë°°ìƒ ë³´ìž¥ ë‚´ìš© </label> 
                   	<p class="text-primary"><%= insurance.getPersonalIndemnification().getGuaranteeContent() %><p>	
                 </div>
               </div>
               
              <br>
-             <p class="lead" align = "center" >ÀÚ±â Â÷·® ¼ÕÇØ</p>
+             <p class="lead" align = "center" >ìžê¸° ì°¨ëŸ‰ ì†í•´</p>
              
               <div class="row form-group">
                 <div class="col-md-12">  
-                  <label class="text-black" for="insuranceSalesManual">±¸ºÐ</label>   
+                  <label class="text-black" for="insuranceSalesManual">êµ¬ë¶„</label>   
 				  <p class="text-primary"><%= insurance.getSelfVehicleDamage().getSeparation() %><p>			  
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="SubscriptionFeeForInjury"> ÀÚ±â Â÷·® ¼ÕÇØ ºÎ»ó °¡ÀÔ±Ý¾× </label> 
+                  <label class="text-black" for="SubscriptionFeeForInjury"> ìžê¸° ì°¨ëŸ‰ ì†í•´ ë¶€ìƒ ê°€ìž…ê¸ˆì•¡ </label> 
 				  <p class="text-primary"><%= insurance.getSelfVehicleDamage().getSubscriptionFeeForInjury() %><p>		
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="SubscriptionFeeForAccidentalInjuries"> ÀÚ±â Â÷·® ¼ÕÇØ »ç°í ÈÄÀ¯ÀåÇØÀÇ °¡ÀÔ±Ý¾× </label> 
+                  <label class="text-black" for="SubscriptionFeeForAccidentalInjuries"> ìžê¸° ì°¨ëŸ‰ ì†í•´ ì‚¬ê³  í›„ìœ ìž¥í•´ì˜ ê°€ìž…ê¸ˆì•¡ </label> 
 				  <p class="text-primary"><%= insurance.getSelfVehicleDamage().getSubscriptionFeeForAccidentalInjuries() %><p>	
                 </div>
               </div>
@@ -147,7 +145,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md10">
-          <h2 class="text-white">¸ÞÀÎÀ¸·Î µ¹¾Æ°¡±â</h2>
+          <h2 class="text-white">ë©”ì¸ìœ¼ë¡œ ëŒì•„ê°€ê¸°</h2>
           </div>
         </div>
       </div>  

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8");  %>
 <%@ page import="java.util.*"%>
 <%@ page import="Acceptance.AcceptanceGuide"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title> 화재보험 설계 </title>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
@@ -36,7 +35,7 @@
 		            <h2 class="text-black h1 site-section-heading">인수지침서 보기</h2>
 		            <p class="lead">각 보험의 인수지침서를 확인할 수 있다.</p>
 		            	<form action=./ShowAcceptanceGuide method="post">
-							<input type="submit" value="리스트 불러오기">
+							<input type="submit" value="리스트 불러오기" class="btn btn-primary btn-md text-white">
 						</form>
 		          </div>
 		        </div>

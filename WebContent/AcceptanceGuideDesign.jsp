@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8");  %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title> 인수지침서 설계 </title>
 </head>
 <body> 
@@ -17,12 +16,12 @@
         <div class="row mb-5">
           <div class="col-12 text-center">
             <h2 class="text-black h1 site-section-heading">인수지침서 설계</h2>
-            <p class="lead">해당 보험의 위험평가와 사기사례를 입력하여 인수지침서를 설계할 수 있다. // <%= request.getAttribute("InsrunaceID") %></p>
+            <p class="lead">해당 보험의 위험평가와 사기사례를 입력하여 인수지침서를 설계할 수 있다.</p>
           </div>
         </div>
         
          <div>
-            <form action= ./AcceptanceGuideDesign method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./AcceptanceGuideDesign?InsuranceID=<%= request.getParameter("action") %> method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
               
             <h2 class="h4 text-black mb-5" align = "center"> 인수지침서 정보 </h2> 
               

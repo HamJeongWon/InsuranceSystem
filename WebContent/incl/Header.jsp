@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
