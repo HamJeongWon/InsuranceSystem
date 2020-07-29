@@ -43,8 +43,8 @@
 				<div class="row form-group">
 					<div class="col-md-12">
 						<label class="text-black" for="insurancePremium">최종 금액을 작성하여 주십시오.</label>
-						<textarea name="insurancePremium" id="insurancePremium" cols="30"
-							rows="7" class="form-control" placeholder="최대 보장액은 <%=maxInsurancePremium%>입니다."></textarea>
+						<input type=number name="insurancePremium" id="insurancePremium" max=<%=maxInsurancePremium%> min=10000
+						 class="form-control" placeholder="최대 보장액은 <%=maxInsurancePremium%>입니다."></textarea>
 					</div>
 				</div>
 				<div class="row form-group">
@@ -55,15 +55,17 @@
 					</div>
 				</div>
 
-		
+			
 
 
 				<div class="row form-group">
 							<div class="col-md-12">
 						
 						<input type="hidden" name="accidentID" value= <%=accident.getAccidentID() %>>
+						
 								<input type="submit" value="등록하기"
 									class="btn btn-primary btn-md text-white" style="float: left;">
+							
 									
 									<input type="reset" value="다시쓰기"
 									class="btn btn-primary btn-md text-white" style="float: right;">

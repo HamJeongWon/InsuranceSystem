@@ -55,12 +55,12 @@
 				<div class="row form-group">
 					<div class="col-md-12">
 						<form action="main.jsp">
-							<input type="submit" value="메인화면으로"
+							<input type="submit" value="확인"
 								class="btn btn-primary btn-md text-white" style="float: left;">
 						</form>
 
 						<form
-							action=./CalculateAccidentFund?action=????
+							action=./PaymentAccidentFund?action=insertPaymentAccidentFund
 							method="post">
 							<input type="hidden" name="accidentID"
 								value=<%=accident.getAccidentID() %>> <input

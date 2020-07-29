@@ -4,11 +4,6 @@
 <%@ page import="java.io.*"%>
 <%@ page import="java.sql.*"%>
 
-<!-- exception 처리
-1. 조회눌러야 db에서 id가져오는데 바로 보여주고 싶음
-2. 사고처리가능한 고객이 존재하지 않을 경우 예외처리 해주어야 함
- -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +13,15 @@
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
-
+<section class="site-section bg-light" id="contact-section">
+	<div class="container">
 	
-	<form action=./AccidentReception?action=showID method="post">
-		<input type="submit" value="조회">
-	</form>
+	<div class="row mb-5">
+				<div class="col-12 text-center">
+
+					<h2 class="text-black h1 site-section-heading">사고 내용 작성하기</h2>
+					<br>
+					<br>
 
 	<table border="1" width="500" height="100" align="center">
 		<tr align="center">
@@ -54,8 +53,9 @@
 				<form action="InsertAccidentReception.jsp" method="post">
 					<input type="hidden" name="num" value=<%=no + 1%>> <input
 						type="submit" value="조회">
+						</form>
 			</td>
-			</form>
+			
 			<%
 				}
 					}
@@ -65,7 +65,11 @@
 
 		</tr>
 	</table>
-
+	</div>
+	</div>
+	
+</div>
+</section>
 
 
 	<jsp:include page="/incl/Footer.jsp" />

@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import Accident.Accident;
 import DAO.accidentDAO;
 import DAO.insuranceDAO;
-import DAO.subscriptionDAO;
 
 /**
- * Servlet implementation class CalculateAccidentFund
+ * Servlet implementation class FundAccidentFund
  */
-@WebServlet("/CalculateAccidentFund")
-public class CalculateAccidentFund extends HttpServlet {
+@WebServlet("/PaymentAccidentFund")
+public class PaymentAccidentFund extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private accidentDAO accidentDAO;
 	private insuranceDAO insuranceDAO;
@@ -27,17 +26,17 @@ public class CalculateAccidentFund extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CalculateAccidentFund() {
+    public PaymentAccidentFund() {
         super();
         // TODO Auto-generated constructor stub
     }
     
     @Override
-	public void init(ServletConfig config) throws ServletException {
-		super.init();
-		this.insuranceDAO = new insuranceDAO();
-		this.accidentDAO = new accidentDAO();
-	}
+ 	public void init(ServletConfig config) throws ServletException {
+ 		super.init();
+ 		this.insuranceDAO = new insuranceDAO();
+ 		this.accidentDAO = new accidentDAO();
+ 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,34 +58,24 @@ public class CalculateAccidentFund extends HttpServlet {
 		System.out.println(action);
 		
 		if(action.equals("showAccidentID")) {
-			request.setAttribute("accidentIDVector", accidentDAO.showAllAccidentIDFromCalculateAccidentFund());
-			url = "/CalculateAccidentFund.jsp";
+			request.setAttribute("accidentIDVector", accidentDAO.showAllAccidentIDFromPaymentAccidentFund());
+			url = "/PaymentAccidentFund.jsp";
 		}
 		else if(action.equals("showAccidentInformation")) {
 			int accidentID = Integer.parseInt(request.getParameter("accidentID"));
 			Accident accident = this.accidentDAO.findAccident(accidentID);
-			if(accident.getInsurancePremium() != 0 && accident.getInsurancePremiumCause() != null) {
-				//이미 보험금이 산출되었을 경우
-				url = "/error.jsp";
-			}else {
-				request.setAttribute("maxInsurancePremium",this.insuranceDAO.getInsuranceFee(accident.getInsuranceID()));
-				request.setAttribute("accident", accident);
-				url = "/InsertCalculateAccidentFund.jsp";
-			}
+
+			request.setAttribute("accident", accident);
+			url = "/ResultPaymentAccidentFund.jsp";
+
 		}
-		else if(action.equals("insertCalculateAccidentFund")) {
+		else if(action.equals("insertPaymentAccidentFund")) {
 			int accidentID = Integer.parseInt(request.getParameter("accidentID"));
 			Accident accident = this.accidentDAO.findAccident(accidentID);
-			
-			int insurancePremium = Integer.parseInt(request.getParameter("insurancePremium"));
-			accident.setInsurancePremium(insurancePremium);
-			
-			String insurancePremiumCause = request.getParameter("insurancePremiumCause");
-			accident.setInsurancePremiumCause(insurancePremiumCause);
-			
-			this.accidentDAO.insertInsurancePayment(accident, accidentID);
-			request.setAttribute("accident", accident);
-			url = "ResultCalculateAccidentFund.jsp";
+
+			accident.setPayInsurancePremium(true);
+			this.accidentDAO.updatePayInsurancePremium(accident);
+			url = "main.jsp";
 		}
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);
