@@ -19,14 +19,14 @@ import Insurance.Insurance;
 /**
  * Servlet implementation class InsuranceDesgin
  */
-@WebServlet("/ResultAcceptanceGuide")
-public class ResultAcceptanceGuide extends HttpServlet {
+@WebServlet("/ShowAcceptanceGuide")
+public class ShowAcceptanceGuide extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResultAcceptanceGuide() {
+    public ShowAcceptanceGuide() {
         super();
     }
 

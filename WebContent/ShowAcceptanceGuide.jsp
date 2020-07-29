@@ -35,8 +35,8 @@
 		          <div class="col-12 text-center">
 		            <h2 class="text-black h1 site-section-heading">인수지침서 보기</h2>
 		            <p class="lead">각 보험의 인수지침서를 확인할 수 있다.</p>
-		            	<form action=./ResultAcceptanceGuide method="post">
-							<input type="submit" value="조회">
+		            	<form action=./ShowAcceptanceGuide method="post">
+							<input type="submit" value="리스트 불러오기">
 						</form>
 		          </div>
 		        </div>
@@ -116,7 +116,7 @@
 				                </div>
 				              </div>
 			                </div>
-			            <% }};%>
+			            <% }} %>
 						</section>
 						<section id="section-shape-3">
 						<% if(actualCostGuides != null){

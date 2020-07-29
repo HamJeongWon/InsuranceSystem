@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import Acceptance.AcceptanceGuide;
 import Insurance.ActualCostInsurance;
 import Insurance.CarInsurance;
 import Insurance.FireInsurance;
@@ -119,6 +120,31 @@ public class insuranceDAO extends DAO {
 		}
 	}
 	
+	public Vector<Insurance> SearchNullAcceptanceInsuranceID() {
+		this.sql = "select Insurance.InsuranceID, insuranceName, insuranceType from Insurance LEFT JOIN Acceptance ON Insurance.insuranceID = Acceptance.insuranceID where Acceptance.Acceptanceid is null";
+		Insurance insurance;
+		Vector<Insurance> insurances = new Vector<Insurance>();
+		try {
+			this.connect = getConnection();
+			this.statement = this.connect.prepareStatement(sql);
+			this.resultSet = this.statement.executeQuery();
+			while (this.resultSet.next()) {
+				insurance = new Insurance();
+				insurance.setInsuranceID(this.resultSet.getInt("insuranceID"));
+				insurance.setInsuranceName(this.resultSet.getString("insuranceName"));
+				insurance.setInsuranceType(Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType")));	
+				insurances.add(insurance);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("InsuranceDAO.showBeforeAcceptanceInsuranceID :" + e.getMessage());
+		} finally {
+			closeConnection(this.connect);
+		}
+		return insurances;
+	}
+	
+	
+	
 	public void showAllInsuranceID() {
 		this.sql = "select Insurance.InsuranceID, insuranceType from Insurance, Acceptance where Insurance.insuranceID = Acceptance.insuranceID";
 		Vector<Integer> fireVector = new Vector<Integer>();
@@ -135,8 +161,7 @@ public class insuranceDAO extends DAO {
 				} else if (Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType"))
 						.equals(Insurance.InsuranceType.Car)) {
 					carVector.add(this.resultSet.getInt("insuranceID"));
-				} else if (Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType"))
-						.equals(Insurance.InsuranceType.ActualCost)) {
+				} else if (Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType")).equals(Insurance.InsuranceType.ActualCost)) {
 					actualCostVector.add(this.resultSet.getInt("insuranceID"));
 				}
 			}
