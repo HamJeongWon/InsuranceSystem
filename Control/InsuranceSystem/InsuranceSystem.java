@@ -62,20 +62,6 @@ public class InsuranceSystem {
 				break;
 			case 2: 
 				System.out.println("******인수 정책 수립******");
-				insuranceSubscription.ViewAcceptanceGuide(scanner);
-				System.out.println("인수 지침 등록 화면으로 넘어가시겠습니까? Y 또는 N을 입력하여 주십시오.");
-				while(true) {
-					String YorN = scanner.next();
-					if(YorN.equals("y") || YorN.equals("Y")) {
-						insuranceSubscription.CreateAcceptanceGuide(scanner);
-						break;
-					} else if (YorN.equals("n") || YorN.equals("N")){
-						break;
-					} else {
-						System.out.println("인수 지침 등록 화면으로 넘어가시겠습니까? Y 또는 N을 입력하여 주십시오.");
-					}
-				}
-				break;
 			case 5:
 				//예외_ System.out.println("메뉴 선택 화면이 로딩에 실패하였습니다. 다시 시도하여 주십시오");
 				System.out.println("계약관리하기");

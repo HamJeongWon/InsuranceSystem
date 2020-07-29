@@ -112,7 +112,9 @@
 							      	<%= insurnace.getInsuranceName() %>
 							      </div>
 							      <div class="col col-3" >
-							      	<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
+							      	<form action = "AcceptanceGuideDesign.jsp?action=<%= insurnace.getInsuranceID() %>" method = "post"> 
+							      		<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
+							      	</form>
 							      </div>
 							    </li>
 								<%}}}%>
@@ -138,7 +140,9 @@
 							      	<%= insurnace.getInsuranceName() %>
 							      </div>
 							      <div class="col col-3" >
-							      	<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
+							      	<form action = "AcceptanceGuideDesign.jsp?action=<%= insurnace.getInsuranceID() %>" method = "post"> 
+							      		<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
+							      	</form>
 							      </div>
 							    </li>
 								<%}}}%>
