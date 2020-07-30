@@ -165,7 +165,6 @@
         </div>
       </div>  
     </a>
-    
 		<jsp:include page="/incl/Footer.jsp" />
 	</body>
 </html>
