@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ page import="Accident.Accident"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    <%@ page import="Accident.Accident"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.sql.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>ResultAccidentReception</title>
+<title>ResultCalculateAccidentFund</title>
 </head>
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
@@ -24,7 +28,6 @@
 
 
 
-
 			<div class="p-5 bg-white" style="margin: auto; max-width: 700px;">
 
 
@@ -32,19 +35,37 @@
 
 				<jsp:include page="/incl/showAccidentBasicInformation.jsp" />
 
+				<div class="row form-group">
+					<div class="col-md-12">
+						<label class="text-black" for="insurancePremium">보장액:</label>
+						${accident.insurancePremium}
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-12">
+						<label class="text-black" for="insurancePremiumCause">금액 결정 사유:</label>
+						${accident.insurancePremiumCause}
+					</div>
+				</div>
+
 
 
 
 				<div class="row form-group">
 					<div class="col-md-12">
 						<form action="main.jsp">
-							<input type="submit" value="메인화면으로"
+							<input type="submit" value="확인"
 								class="btn btn-primary btn-md text-white" style="float: left;">
 						</form>
 
-						<form action=./CalculateAccidentFund?action=showAccidentInformation method="post">
-							<input type="hidden" name="accidentID" value= <%=accident.getAccidentID() %>>
-							 <input type="submit" value="결정보험금산출하기" class="btn btn-primary btn-md text-white" style="float: right;">
+						<form
+							action=./PaymentAccidentFund?action=insertPaymentAccidentFund
+							method="post">
+							<input type="hidden" name="accidentID"
+								value=<%=accident.getAccidentID() %>> <input
+								type="submit" value="결정보험금지급하기"
+								class="btn btn-primary btn-md text-white" style="float: right;">
 						</form>
 					</div>
 				</div>

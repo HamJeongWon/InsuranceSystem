@@ -8,7 +8,46 @@ import java.util.Vector;
 import Accident.Accident;
 
 public class accidentDAO extends DAO{
+	
+	public Vector<Integer> showAllAccidentIDFromCalculateAccidentFund() {
+		 this.sql = "select * from accident where payInsurancePremium = false and insurancePremiumCause is null and insurancePremium =0;";
+		 Vector<Integer> accidentIDVector = new Vector<Integer>();
+		 try {
+			 this.connect = getConnection();
+			 this.statement = this.connect.prepareStatement(sql);
+			 this.resultSet = this.statement.executeQuery();
+			 while (this.resultSet.next()) {
+				 accidentIDVector.add(this.resultSet.getInt("accidentID"));
+			 }
 
+			
+		 } catch (SQLException e) {
+			throw new RuntimeException("InsuranceDAO.showAllInsuranceID :" + e.getMessage());
+		} finally {
+			closeConnection(this.connect);
+		}
+		 return accidentIDVector;
+	}
+
+	public Vector<Integer> showAllAccidentIDFromPaymentAccidentFund() {
+		 this.sql = "select * from accident where payInsurancePremium = false and insurancePremiumCause is not null and insurancePremium !=0;";
+		 Vector<Integer> accidentIDVector = new Vector<Integer>();
+		 try {
+			 this.connect = getConnection();
+			 this.statement = this.connect.prepareStatement(sql);
+			 this.resultSet = this.statement.executeQuery();
+			 while (this.resultSet.next()) {
+				 accidentIDVector.add(this.resultSet.getInt("accidentID"));
+			 }
+
+			
+		 } catch (SQLException e) {
+			throw new RuntimeException("InsuranceDAO.showAllInsuranceID :" + e.getMessage());
+		} finally {
+			closeConnection(this.connect);
+		}
+		 return accidentIDVector;
+	}
 	
 	public int showAllAccidentID() {
 		 int index = 0;

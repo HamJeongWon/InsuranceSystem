@@ -2,7 +2,8 @@
 	pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +13,15 @@
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
+<section class="site-section bg-light" id="contact-section">
+	<div class="container">
+	
+	<div class="row mb-5">
+				<div class="col-12 text-center">
 
-	<!-- 조회눌러야 db에서 id가져오는데 바로 가져오도록 수정이 필요함.... -->
-	<form action=./AccidentReception?action=showID method="post">
-		<input type="submit" value="조회">
-	</form>
-	<!-- 조회눌러야 db에서 id가져오는데 바로 가져오도록 수정이 필요함.... -->
+					<h2 class="text-black h1 site-section-heading">사고 내용 작성하기</h2>
+					<br>
+					<br>
 
 	<table border="1" width="500" height="100" align="center">
 		<tr align="center">
@@ -33,8 +37,8 @@
 				idVector = (Vector<Integer>) request.getAttribute("IDVector");
 				if (idVector != null) {
 					//no = showacceptanceapprove에서 받은 백터의 index
-					int no = 0;
-					for (no = 0; no < idVector.size(); no++) {
+
+					for (int no = 0; no < idVector.size(); no++) {
 						if (no % 2 == 0) {
 			%>
 		
@@ -44,22 +48,28 @@
 				} else {
 			%>
 			<td><%=idVector.get(no)%></td>
-			
+
 			<td>
-			<form action="InsertAccidentReception.jsp" method="post">
-			<input type="hidden" name="num" value=<%=no+1%>>
-			<input type="submit" value="조회"></td>
-			</form>
+				<form action="InsertAccidentReception.jsp" method="post">
+					<input type="hidden" name="num" value=<%=no + 1%>> <input
+						type="submit" value="조회">
+						</form>
+			</td>
+			
 			<%
-		}
-	}
-}
-%>
+				}
+					}
+				}
+			%>
 
 
 		</tr>
 	</table>
-
+	</div>
+	</div>
+	
+</div>
+</section>
 
 
 	<jsp:include page="/incl/Footer.jsp" />

@@ -42,7 +42,7 @@ public class AccidentReception extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -53,55 +53,65 @@ public class AccidentReception extends HttpServlet {
 		String action = request.getParameter("action");
 		String url = null;
 		
-		System.out.println(action);
+		//System.out.println(action);
 		
 		if(action.equals("showID")) {
 			request.setAttribute("IDVector", subscriptionDAO.showSubscriptionCustomer());
 			url = "/AccidentReception.jsp";
 		}
 		else if(action.equals("insertAccidentReception")) {
-			int index = Integer.parseInt(request.getParameter("index"));
+			int num = Integer.parseInt(request.getParameter("num"));
+			int index = num - 2;
 			 
 			int customerID = subscriptionDAO.showSubscriptionCustomer().get(index+1);
 			int insuranceID = subscriptionDAO.showSubscriptionCustomer().get(index);
 			
 			Accident accident = new Accident();
-			accident.setInsuranceID(insuranceID);
-			accident.setCustomerID(customerID);
+			
 			
 			int accidentID = this.insuranceDAO.SelectMaxID("accidentID", "Accident");
 			if(accidentID == 0) {
 				accidentID = 6000;
 			}
 			accidentID = accidentID+1;
-			accident.setAccidentID(accidentID);
+			
 			
 			String accidentDate = request.getParameter("accidentDate");
-			accident.setAccidentDate(accidentDate);
-			
 			String accidentTime = String.valueOf(request.getParameter("accidentTime"));
-			accident.setAccidentTime(accidentTime+":00");
-			
 			String accidentCause = request.getParameter("accidentCause");
-			accident.setAccidentCause(accidentCause);
-			
 			String accidentLocation = request.getParameter("accidentLocation");
-			accident.setAccidentLocation(accidentLocation);
-			
 			String expertOpinion = request.getParameter("expertOpinion");
-			accident.setExpertOpinion(expertOpinion);
 			
-			//만약 request.get파라미터가 하나라도 null값일 경우 에러처리 해야함...에러처리는 좀 나중에
+			System.out.println(accidentDate);
+			System.out.println(accidentTime);
+			System.out.println(accidentCause);
+			System.out.println(accidentLocation);
+			System.out.println(expertOpinion);
 			
-			//일단 db에 dirty data가 쌓이지 않도록 막아놓음
-			//this.accidentDAO.insertAccident(accident);
-			request.setAttribute("accident", accident);
-			url = "/ResultAccidentReception.jsp";
-			
+			if(accidentDate ==null || accidentTime==null || accidentCause==null || accidentLocation == null || expertOpinion == null) {
+				String message = "모든 내용을 입력하여 주세요";
+				System.out.println(message);
+				request.setAttribute("message", message);
+				request.setAttribute("num", num);
+				url = "InsertAccidentReception.jsp";
+			}else {
+				accident.setInsuranceID(insuranceID);
+				accident.setCustomerID(customerID);
+				accident.setAccidentID(accidentID);
+				accident.setAccidentDate(accidentDate);
+				accident.setAccidentTime(accidentTime+":00");
+				accident.setAccidentCause(accidentCause);
+				accident.setAccidentLocation(accidentLocation);
+				accident.setExpertOpinion(expertOpinion);
+				System.out.println("aa");
+			//	this.accidentDAO.insertAccident(accident);
+				request.setAttribute("accident", accident);
+				url = "/ResultAccidentReception.jsp";
+			}		
 		}
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);
-		
+
 
 	}
 
