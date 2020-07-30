@@ -1,17 +1,13 @@
-<<<<<<< HEAD
-/AcceptanceGuide/
-/DAO/
-/InsuranceDesign/
-/InsuranceTreatment/
-/InsuranceSubscription/
-/InsuranceSystem/
-=======
 /Acceptance/
+/AcceptanceGuide/
 /Accident/
 /Contract/
+/ContractManagement/
 /Customer/
-/Insurance/
 /DAO/
+/Insurance/
 /InsuranceDesign/
+/InsuranceSubscription/
+/InsuranceSystem/
 /InsuranceTreatment/
->>>>>>> jeong
+/ShowMenual/

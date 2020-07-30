@@ -14,16 +14,46 @@ import Insurance.Insurance;
 public class insuranceDAO extends DAO {
 	
 	
-	public void searchInsuranceIDandName() {
+	public Vector<Insurance> searchInsuranceIDandName() {
 		this.sql = "select insuranceID, insuranceName from Insurance";
+		Vector<Insurance> VecInsurance = new Vector<Insurance>();
+		
 		try {
 			this.connect = getConnection();
 			this.statement = this.connect.prepareStatement(this.sql);
 			this.resultSet = this.statement.executeQuery();
 			while (this.resultSet.next()) {
-				System.out.println("--" + this.resultSet.getString("insuranceName") + "ÀÇ ID: "
-						+ this.resultSet.getInt("insuranceID"));
+				Insurance insurance = new Insurance();
+				insurance.setInsuranceName(resultSet.getString("insuranceName"));
+				insurance.setInsuranceID(resultSet.getInt("insuranceID"));	
+				VecInsurance.add(insurance);
 			}
+			return VecInsurance;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("InsuranceDAO.searchInsuranceIDandName : " + e.getMessage());
+		} finally {
+			closeConnection(this.connect);
+		}
+	}
+	
+	//ë³´í—˜ íƒ€ì…ì— í•´ë‹¹í•˜ëŠ” ë³´í—˜ëª… ê°€ì ¸ì˜¤ê¸°
+	public Vector<Insurance> InsuranceNameVector(String Insurancetype){
+		this.sql = "select insuranceID, insuranceName from Insurance where insuranceType = ?";
+		Vector<Insurance> VecInsurance = new Vector<Insurance>();
+		
+		try {
+			this.connect = getConnection();
+			this.statement = this.connect.prepareStatement(this.sql);
+			this.statement.setString(1, Insurancetype);
+			this.resultSet = this.statement.executeQuery();
+			while (this.resultSet.next()) {
+				Insurance insurance = new Insurance();
+				insurance.setInsuranceID(resultSet.getInt("insuranceID"));	
+				insurance.setInsuranceName(resultSet.getString("insuranceName"));
+				VecInsurance.add(insurance);
+			}
+			return VecInsurance;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("InsuranceDAO.searchInsuranceIDandName : " + e.getMessage());
@@ -165,16 +195,16 @@ public class insuranceDAO extends DAO {
 					actualCostVector.add(this.resultSet.getInt("insuranceID"));
 				}
 			}
-			System.out.print("(È­Àçº¸Çè:");
+			System.out.print("(È­ï¿½çº¸ï¿½ï¿½:");
 			for (int i = 0; i < fireVector.size(); i++) {
 
 				System.out.print(fireVector.get(i) + " ");
 			}
-			System.out.print(") (½Çºñº¸Çè:");
+			System.out.print(") (ï¿½Çºï¿½ï¿½ï¿½:");
 			for (int i = 0; i < actualCostVector.size(); i++) {
 				System.out.print(actualCostVector.get(i) + " ");
 			}
-			System.out.print(") (ÀÚµ¿Â÷º¸Çè:");
+			System.out.print(") (ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:");
 			for (int i = 0; i < carVector.size(); i++) {
 				System.out.print(carVector.get(i) + " ");
 			}
@@ -206,7 +236,7 @@ public class insuranceDAO extends DAO {
 	      return false;
 	   }
 
-	   public void searchInsuranceSalesManual(int insuranceID) {
+	 public String searchInsuranceSalesManual(int insuranceID) {
 	      this.sql = "select insuranceSalesManual from Insurance where insuranceID = ?";
 
 	      try {
@@ -217,9 +247,10 @@ public class insuranceDAO extends DAO {
 
 	         if (this.resultSet.next()) {
 	            String InsuranceSalesManual = resultSet.getString("insuranceSalesManual");
-	            System.out.println(InsuranceSalesManual);
+	            return InsuranceSalesManual;
 	         } else {
-	            System.out.println("ÇØ´çÇÏ´Â ÆÇ¸Å ¸Ş´º¾ó Á¸Àç ¾ÊÀ½");
+	        	return "";
+	            //System.out.println("í•´ë‹¹í•˜ëŠ” íŒë§¤ ë©”ë‰´ì–¼ ì¡´ì¬ ì•ŠìŒ");
 	         }
 	      } catch (SQLException e) {
 	         throw new RuntimeException("InsuranceDAO.searchInsuranceSalesManual :" + e.getMessage());
@@ -228,7 +259,7 @@ public class insuranceDAO extends DAO {
 	      }
 	   }
 
-	   public void searchInsuranceManual(int insuranceID) {
+	   public String searchInsuranceManual(int insuranceID) {
 	      this.sql = "select insuranceManual from Insurance where InsuranceID = ?";
 
 	      try {
@@ -238,9 +269,10 @@ public class insuranceDAO extends DAO {
 	         this.resultSet = this.statement.executeQuery();
 	         if (this.resultSet.next()) {
 	            String InsuranceManual = resultSet.getString("insuranceManual");
-	            System.out.println(InsuranceManual);
+	            return InsuranceManual;
 	         } else {
-	            System.out.println("ÇØ´çÇÏ´Â »óÇ° ¸Ş´º¾ó Á¸Àç ¾ÊÀ½");
+	            return "";
+	        	 //System.out.println("í•´ë‹¹í•˜ëŠ” ìƒí’ˆ ë©”ë‰´ì–¼ ì¡´ì¬ ì•ŠìŒ");
 	         }
 	      } catch (SQLException e) {
 	         throw new RuntimeException("InsuranceDAO.searchInsuranceManual :" + e.getMessage());

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 import Customer.ActualCost;
 import Customer.Building;
@@ -382,7 +383,8 @@ public class customerDAO extends DAO{
 		        return personalInformation;
 		     }
 		   
-			 public void showAllCustomerIDList() {
+			 public Vector<Integer> showAllCustomerIDList() {
+				 Vector<Integer> VecCustomerID = new Vector<Integer>();
 				 this.sql = "select customerID from Subscription where subscriptionStatus is true";
 				 
 				 try {
@@ -391,9 +393,10 @@ public class customerDAO extends DAO{
 					 ResultSet resultSet = statement.executeQuery();
 					 
 					 while(resultSet.next()) {
-						System.out.println("°í°´id:"+ resultSet.getInt("customerID")); 
+						VecCustomerID.add(resultSet.getInt("customerID"));
 					 }
-					 
+					 	return VecCustomerID;
+		
 				 }catch(SQLException e) {
 			            throw new RuntimeException("InsuranceDAO.insertContratIDtoSubscription :" + e.getMessage());
 			         }finally {

@@ -45,8 +45,8 @@
 
 						<li class="has-children"><a href="" class="nav-link">영업활동</a>
 							<ul class="dropdown">
-								<li><a href="">메뉴얼 확인하기</a></li>
-								<li><a href="">상품 가입 신청하기</a></li>
+								<li><a href="ShowMenual.jsp">메뉴얼 확인하기</a></li>
+								<li><a href="Subscription.jsp">상품 가입 신청하기</a></li>
 							</ul></li>
 
 
