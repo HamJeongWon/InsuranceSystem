@@ -34,9 +34,6 @@
 		          <div class="col-12 text-center">
 		            <h2 class="text-black h1 site-section-heading">인수지침서 보기</h2>
 		            <p class="lead">각 보험의 인수지침서를 확인할 수 있다.</p>
-		            	<form action=./ShowAcceptanceGuide method="post">
-							<input type="submit" value="리스트 불러오기" class="btn btn-primary btn-md text-white">
-						</form>
 		          </div>
 		        </div>
 	        </div>

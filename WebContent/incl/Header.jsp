@@ -39,8 +39,8 @@
 
 						<li class="has-children"><a href="AcceptanceGuide.jsp" class="nav-link">인수정책수립하기</a>
 							<ul class="dropdown">
-								<li><a href="ShowAcceptanceGuide.jsp">인수지침서 보기</a></li>
-								<li><a href="AcceptanceGuideList.jsp">인수지침서 설계</a></li>
+								<li><a href="ShowAcceptanceGuide">인수지침서 보기</a></li>
+								<li><a href="SearchNullAcceptanceGuide">인수지침서 설계</a></li>
 							</ul></li>
 
 						<li class="has-children"><a href="" class="nav-link">영업활동</a>

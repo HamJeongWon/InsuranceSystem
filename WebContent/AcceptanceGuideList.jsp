@@ -32,9 +32,6 @@
 		          <div class="col-12 text-center">
 		            <h2 class="text-black h1 site-section-heading">인수지침서 설계</h2>
 		            <p class="lead">인수 지침서가 존재하지 않는 보험들의 리스트이다. 보험을 선택하여 인수 지침서를 설계할 수 있다.</p>
-		            	<form action=./SearchNullAcceptanceGuide method="post">
-							<input type="submit" value="리스트 불러오기" class="btn btn-primary btn-md text-white">
-						</form>
 		          </div>
 		        </div>
 	        </div>

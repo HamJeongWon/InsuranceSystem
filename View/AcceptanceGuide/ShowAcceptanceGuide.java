@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,40 +15,36 @@ import Acceptance.AcceptanceGuide;
 import DAO.acceptanceDAO;
 import Insurance.Insurance;
 
-
-/**
- * Servlet implementation class InsuranceDesgin
- */
 @WebServlet("/ShowAcceptanceGuide")
 public class ShowAcceptanceGuide extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowAcceptanceGuide() {
-        super();
-    }
+	
+	public ShowAcceptanceGuide() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		doPost(request, response);
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");
-        
-        String url = null;
-        
-        acceptanceDAO acceptanceDAO = new acceptanceDAO();
+		String url = null;
+		
+		acceptanceDAO acceptanceDAO = new acceptanceDAO();
         
         Vector<AcceptanceGuide> fireGuide = acceptanceDAO.searchAcceptanceForInsurance((Insurance.InsuranceType.Fire).toString());    
         Vector<AcceptanceGuide> carGuide = acceptanceDAO.searchAcceptanceForInsurance((Insurance.InsuranceType.Car).toString());
@@ -58,9 +54,9 @@ public class ShowAcceptanceGuide extends HttpServlet {
 		request.setAttribute("carGuide", carGuide);
 		request.setAttribute("actualCostGuide", actualCostGuide);
 		url = "/ShowAcceptanceGuide.jsp";
-
-        ServletContext context = getServletContext();
-		RequestDispatcher disp = context.getRequestDispatcher(url);
+		
+		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);
+
 	}
 }
