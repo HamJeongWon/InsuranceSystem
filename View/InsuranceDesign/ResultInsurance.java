@@ -1,7 +1,6 @@
-package AcceptanceGuide;
+package InsuranceDesign;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,15 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Acceptance.AcceptanceGuide;
-import DAO.acceptanceDAO;
-import Insurance.Insurance;
+import DAO.insuranceDAO;
 
-@WebServlet("/ShowAcceptanceGuide")
-public class ShowAcceptanceGuide extends HttpServlet {
+@WebServlet("/ResultInsurance")
+public class ResultInsurance extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public ShowAcceptanceGuide() {
+	public ResultInsurance() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,23 +37,30 @@ public class ShowAcceptanceGuide extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");
-		String url = null;
-		
-		acceptanceDAO acceptanceDAO = new acceptanceDAO();
+        insuranceDAO insuranceDAO = new insuranceDAO();
+        String url = null;
         
-        Vector<AcceptanceGuide> fireGuide = acceptanceDAO.searchAcceptanceForInsurance((Insurance.InsuranceType.Fire).toString());    
-        Vector<AcceptanceGuide> carGuide = acceptanceDAO.searchAcceptanceForInsurance((Insurance.InsuranceType.Car).toString());
-        Vector<AcceptanceGuide> actualCostGuide = acceptanceDAO.searchAcceptanceForInsurance((Insurance.InsuranceType.ActualCost).toString());
-	
-		request.setAttribute("fireGuide", fireGuide);
-		request.setAttribute("carGuide", carGuide);
-		request.setAttribute("actualCostGuide", actualCostGuide);
-		url = "/AcceptanceGuideList.jsp";
-		
+        switch(request.getParameter("type")) {
+        
+        case "fire" : 
+        	request.setAttribute("FInsurance", insuranceDAO.getFireInsurance(Integer.parseInt(request.getParameter("action"))));
+        	url = "ResultFInsuranceDesign.jsp";
+        	break;
+        case "car" :
+        	request.setAttribute("CInsurance", insuranceDAO.getCarInsurance(Integer.parseInt(request.getParameter("action"))));
+        	url = "ResultCInsuranceDesign.jsp";
+        	break;
+        case "actualCost" :
+        	request.setAttribute("AInsurance", insuranceDAO.getActualCostInsurance(Integer.parseInt(request.getParameter("action"))));
+        	url = "ResultAInsuranceDesign.jsp";
+        	break;
+		}
+
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);
-
 	}
 }
+

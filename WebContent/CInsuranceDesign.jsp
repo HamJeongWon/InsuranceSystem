@@ -1,9 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");
+   String cp = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title> 자동차보험 설계 </title>
+
+<script type="text/javascript" src="<%=cp%>/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/numberOnly.js"></script>
+
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.insuranceName.value){
+	        alert("보험 이름을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.insuranceFee.value){
+	        alert("보험료를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.insuranceManual.value){
+	        alert("보험 설명서를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.insuranceSalesManual.value){
+	        alert("판매메뉴얼을 입력하세요.");
+	        return false;
+	    }
+	    
+	    if(!document.InsInfo.goodsGuaranteeLimit.value){
+	        alert("대물배상 지급한도를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.goodsGuaranteeContent.value){
+	        alert("대물배상 보장내용을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.personalProvisionLimit.value){
+	        alert("대인배상 지급한도를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.personalGuaranteeContent.value){
+	        alert("대인배상 보장내용을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.SubscriptionFeeForInjury.value){
+	        alert("자기 차량 손해 부상 가입금액을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.SubscriptionFeeForAccidentalInjuries.value){
+	        alert("자기 차량 손해 사고 후유장해의 가입금액을 입력하세요.");
+	        return false;
+	    }
+    }
+	
+	$(document).ready(function(){
+		$("input[id^='numberOnly']").on("focus", function() {
+		    var x = $(this).val();
+		    if(x && x.length > 0) {
+		        if(!$.isNumeric(x)) {
+		            x = x.replace(/[^0-9]/g,"");
+		        }
+		        x = addCommas(x);
+		        $(this).val(x);
+		    }
+		}).on("focusout", function() {
+		    var x = $(this).val();
+		    x = removeCommas(x);
+		    $(this).val(x);
+		}).on("keyup", function() {
+			$(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
+		});
+	});
+
+</script>
+
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
@@ -20,7 +93,7 @@
           </div>
         </div>
 
-            <form action= ./InsuranceDesgin?action=car method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./InsuranceDesgin?action=car method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 기본 정보 </h2> 
 
@@ -34,7 +107,7 @@
               <div class="row form-group">          
                 <div class="col-md-12">
                   <label class="text-black" for="insuranceFee">보험료</label> 
-                  <input type="text" name="insuranceFee" class="form-control">
+                  <input type="text" name="insuranceFee" class="form-control" id="numberOnly">
                 </div>
               </div>
               
@@ -79,7 +152,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="goodsGuaranteeLimit"> 대물 배상 지급 한도 </label> 
-                  <input type="text" name="goodsGuaranteeLimit" class="form-control">
+                  <input type="text" name="goodsGuaranteeLimit" class="form-control" id="numberOnly">
                 </div>
               </div>
               
@@ -113,7 +186,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="personalProvisionLimit"> 대인 배상 지급 한도 </label> 
-                  <input type="text" name="personalProvisionLimit" class="form-control">
+                  <input type="text" name="personalProvisionLimit" class="form-control" id="numberOnly">
                 </div>
               </div>
               
@@ -143,14 +216,14 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="SubscriptionFeeForInjury"> 자기 차량 손해 부상 가입금액 </label> 
-                  <input type="text" name="SubscriptionFeeForInjury" class="form-control">
+                  <input type="text" name="SubscriptionFeeForInjury" class="form-control" id="numberOnly">
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="SubscriptionFeeForAccidentalInjuries"> 자기 차량 손해 사고 후유장해의 가입금액 </label> 
-                  <input type="text" name="SubscriptionFeeForAccidentalInjuries" class="form-control">
+                  <input type="text" name="SubscriptionFeeForAccidentalInjuries" class="form-control" id="numberOnly">
                 </div>
               </div>
               

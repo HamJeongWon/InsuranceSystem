@@ -67,7 +67,7 @@ public class AcceptanceGuideDesign extends HttpServlet {
 		acceptanceDAO.InsertAcceptanceGuide(acceptanceGuide);
 		
 		request.setAttribute("AcceptanceGuide", acceptanceGuide);
-		url = "/ResultAcceptanceGuide.jsp";
+		url = "/ShowAcceptanceGuide";
 
         ServletContext context = getServletContext();
 		RequestDispatcher disp = context.getRequestDispatcher(url);

@@ -1,4 +1,4 @@
-package AcceptanceGuide;
+package InsuranceDesign;
 
 import java.io.IOException;
 
@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.insuranceDAO;
 
-@WebServlet("/SearchNullAcceptanceGuide")
-public class SearchNullAcceptanceGuide extends HttpServlet {
+@WebServlet("/InsuranceList")
+public class InsuranceList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public SearchNullAcceptanceGuide() {
+	public InsuranceList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,14 +42,10 @@ public class SearchNullAcceptanceGuide extends HttpServlet {
         response.setContentType("text/html; charset=euc-kr");
         insuranceDAO insuranceDAO = new insuranceDAO();
         
-        String url = null;
-	
-		request.setAttribute("nullAcceptanceInsuranceID", insuranceDAO.SearchNullAcceptanceInsuranceID());
-	
-		url = "/NullAcceptanceGuideList.jsp";
+		request.setAttribute("AllInsurance", insuranceDAO.searchInsuranceIDandName());
 
-		RequestDispatcher disp = request.getRequestDispatcher(url);
+		RequestDispatcher disp = request.getRequestDispatcher("InsuranceList.jsp");
 		disp.forward(request, response);
 	}
 }
-		
+
