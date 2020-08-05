@@ -43,9 +43,9 @@
 								<li><a href="SearchNullAcceptanceGuide">인수지침서 설계</a></li>
 							</ul></li>
 
-						<li class="has-children"><a href="" class="nav-link">영업활동</a>
+						<li class="has-children"><a href="SalesActivityDesign.jsp" class="nav-link">영업활동</a>
 							<ul class="dropdown">
-								<li><a href="ShowMenual.jsp">메뉴얼 확인하기</a></li>
+								<li><a href="./Menual1">메뉴얼 확인하기</a></li>
 								<li><a href="Subscription.jsp">상품 가입 신청하기</a></li>
 							</ul></li>
 

@@ -1,6 +1,7 @@
 package Customer;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -50,13 +51,27 @@ public class InsertPersonalInforToInsurance extends HttpServlet {
             building.setBuildingPrice(Integer.parseInt(request.getParameter("buildingPrice")));
             building.setBuildingScale(request.getParameter("buildingScale"));       
             customerDAO.insertBuilding(building, CustomerID);
-   
+            
 		}else if(InsuranceType.equals("Car")) {
+			Car car = new Car();
+			car.setCarNumber(request.getParameter("carNumber"));
+			car.setCarType(Car.CarType.valueOf(request.getParameter("carType")));
+			car.setDrivingCareer(Integer.parseInt(request.getParameter("carCareer")));
+			car.setLicenseType(Car.LicenseType.valueOf(request.getParameter("licenseType")));
+			customerDAO.insertCar(car, CustomerID);	
 			
 		}else if(InsuranceType.equals("ActualCost")) {
+			ActualCost actualCost = new ActualCost();
+			actualCost.setBloodType(ActualCost.BloodType.valueOf(request.getParameter("bloodType")));
+			actualCost.setDiseaseHistory(ActualCost.DiseaseHistory.valueOf(request.getParameter("diseaseHistory")));			
+			String familyDisease = request.getParameter("familyDisease");
+			String familyrelation = request.getParameter("familyrelation");
+			HashMap<String, String> FamilyHistory = new HashMap<String, String>();
+			FamilyHistory.put(familyrelation, familyDisease);
 			
+			actualCost.setFamilyHistory(FamilyHistory);
+			customerDAO.insertActualCost(actualCost, CustomerID);
 		}
         response.sendRedirect("main.jsp");
-
 	}
 }

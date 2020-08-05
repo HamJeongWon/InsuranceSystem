@@ -56,7 +56,58 @@ public class insuranceDAO extends DAO {
 			return VecInsurance;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("InsuranceDAO.searchInsuranceIDandName : " + e.getMessage());
+			throw new RuntimeException("InsuranceDAO.InsuranceNameVector : " + e.getMessage());
+		} finally {
+			closeConnection(this.connect);
+		}
+	}
+		
+//	//조건에 해당하는 보험명 가져오기
+//	public Vector<Insurance> InsuranceVector(String whereColumn, String whereValue){
+//		this.sql = "select insuranceID, insuranceName, insuranceType from Insurance where ? = ?";
+//		Vector<Insurance> VecInsurance = new Vector<Insurance>();
+//
+//		try {
+//			this.connect = getConnection();
+//			this.statement = this.connect.prepareStatement(this.sql);
+//			this.statement.setString(1, whereColumn);
+//			this.statement.setString(2, whereValue);
+//			this.resultSet = this.statement.executeQuery();
+//			while (this.resultSet.next()) {
+//				Insurance insurance = new Insurance();
+//				insurance.setInsuranceID(resultSet.getInt("insuranceID"));	
+//				insurance.setInsuranceName(resultSet.getString("insuranceName"));
+//				insurance.setInsuranceType(Insurance.InsuranceType.valueOf(resultSet.getString("insuranceType")));
+//				VecInsurance.add(insurance);
+//			}
+//			return VecInsurance;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			throw new RuntimeException("InsuranceDAO.InsuranceNameVector : " + e.getMessage());
+//		} finally {
+//			closeConnection(this.connect);
+//		}
+//	}
+		
+	//보험 id에 해당하는 보험 가져오기
+	public Insurance InsuranceForID(int InsuranceID){
+		this.sql = "select insuranceID, insuranceName, insuranceType from Insurance where InsuranceID = ?";
+		Insurance insurance = new Insurance();
+		
+		try {
+			this.connect = getConnection();
+			this.statement = this.connect.prepareStatement(this.sql);
+			this.statement.setInt(1, InsuranceID);
+			this.resultSet = this.statement.executeQuery();
+			if (this.resultSet.next()) {
+				insurance.setInsuranceID(resultSet.getInt("insuranceID"));
+				insurance.setInsuranceName(resultSet.getString("insuranceName"));
+				insurance.setInsuranceType(Insurance.InsuranceType.valueOf(resultSet.getString("insuranceType")));
+			}
+			return insurance;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("InsuranceDAO.InsuranceForID : " + e.getMessage());
 		} finally {
 			closeConnection(this.connect);
 		}

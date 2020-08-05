@@ -94,17 +94,17 @@ public class InsuranceSubscription {
 	}
 
 	public Customer CreateCustomerContent(Scanner scanner) {
-		System.out.println("1. ±âÁ¸ÀÇ °í°´ Á¤º¸ ÀÔ·Â, 2. »õ·Î¿î °í°´ Á¤º¸ ÀÔ·Â");
+		System.out.println("1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½, 2. ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½");
 		int menuNum = 0;
 
 		while (true) {
 			if (!scanner.hasNextInt()) {
 				scanner.next();
-				System.err.println("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ã¿À 1. ±âÁ¸ÀÇ °í°´ Á¤º¸ ÀÔ·Â, 2. »õ·Î¿î °í°´ Á¤º¸ ÀÔ·Â");
+				System.err.println("ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½ 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½, 2. ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½");
 			} else {
 				menuNum = scanner.nextInt();
 				if (!(menuNum > 0 && menuNum < 3)) {
-					System.err.println("¹üÀ§¸¦ ¹ş¾î³µ½À´Ï´Ù 1. ±âÁ¸ÀÇ °í°´ Á¤º¸ ÀÔ·Â, 2. »õ·Î¿î °í°´ Á¤º¸ ÀÔ·Â");
+					System.err.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ï¿½Ï´ï¿½ 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½, 2. ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½");
 				} else {
 					break;
 				}
@@ -113,10 +113,10 @@ public class InsuranceSubscription {
 
 		while (true) {
 			if (menuNum == 1) {
-				System.out.println("±âÁ¸ÀÇ °í°´ Á¤º¸ ÀÔ·Â ½ÃÀÛÇÕ´Ï´Ù");
-				System.out.println("*******±âÁ¸ °í°´ ¸®½ºÆ®******");
-				customerDAO.showAllCustomerIDList();
-				System.out.println("±âÁ¸ °í°´ÀÇ IDÀ» ÀÔ·ÂÇÏ½Ã¿À");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
+				System.out.println("*******ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®******");
+				//	customerDAO.showAllCustomerIDList();
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 				int OldcustomerID = scanner.nextInt();
 
 				if (insuranceDAO.CheckIntData("customerID", "Customer", OldcustomerID)) {
@@ -127,34 +127,34 @@ public class InsuranceSubscription {
 
 					return Oldcustomer;
 				} else {
-					System.out.println("ÇØ´çÇÏ´Â °í°´ÀÇ ID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+					System.out.println("ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 				}
 			} else if (menuNum == 2) {
-				System.out.println("»õ·Î¿î °í°´ Á¤º¸ ÀÔ·Â ½ÃÀÛÇÕ´Ï´Ù");
+				System.out.println("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
 
 				Customer customer = new Customer();
 
-				System.out.println("******°í°´ ³»¿ëÀ» ÀÛ¼ºÇÏ½Ê½Ã¿À.******");
-				// ¿¹¿Ü_System.out.println("°í°´ Á¤º¸ ÀÔ·Â¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù. ´Ù½Ã ½ÃµµÇÏ¿© ÁÖ½Ê½Ã¿À.");
+				System.out.println("******ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï½Ê½Ã¿ï¿½.******");
+				// ï¿½ï¿½ï¿½ï¿½_System.out.println("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½Ï¿ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.");
 
 				int newCustomerID = insuranceDAO.SelectMaxID("customerID", "Customer") + 1;
-				System.out.println("°í°´ID´Â" + newCustomerID + "ÀÔ´Ï´Ù.");
+				System.out.println("ï¿½ï¿½IDï¿½ï¿½" + newCustomerID + "ï¿½Ô´Ï´ï¿½.");
 				customer.setCustomerID(newCustomerID);
 
-				System.out.println("2. °í°´ÀÌ¸§À» ÀÔ·ÂÇÏ½Ã¿À.");
+				System.out.println("2. ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½.");
 				customer.setCustomerName(scanner.next());
 
-				System.out.println("3. °í°´ ¿¬¶ôÃ³¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+				System.out.println("3. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½.");
 				customer.setPhoneNum(scanner.next());
 
 				// insuranceDAO ///////////////////////////
 				customerDAO.insertCustomer(customer);
 
-				// PersonalInfomation ½ÃÀÛ
-				System.out.println("----°³ÀÎÁ¤º¸¸¦ ÀÛ¼ºÇÏ½Ê½Ã¿À.----");
+				// PersonalInfomation ï¿½ï¿½ï¿½ï¿½
+				System.out.println("----ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï½Ê½Ã¿ï¿½.----");
 				PersonalInformation personalInformation = new PersonalInformation();
 
-				System.out.println("Á÷¾÷À» ¼±ÅÃÇÏ½Ã¿À 1.soldier, 2.driver, 3.officeWorker, "
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½ 1.soldier, 2.driver, 3.officeWorker, "
 						+ "4.constructionLaborer, 5.fireman, 6.policeman, 7.theOther");
 
 				switch (scanner.nextInt()) {
@@ -183,21 +183,21 @@ public class InsuranceSubscription {
 					break;
 				}
 
-				System.out.println("»ç°íÀÌ·ÂÀ» ÀÔ·ÂÇÏ½Ã¿À");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 				personalInformation.setAccidentHistory(scanner.next());
 
-				System.out.println("°èÁÂ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+				System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 				while (true) {
 					if (!scanner.hasNextInt()) {
 						scanner.next();
-						System.err.println("¼ıÀÚ·Î ÀÔ·ÂÇÏ½Ã¿À");
+						System.err.println("ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 					} else {
 						personalInformation.setAccountNumber(scanner.nextInt());
 						break;
 					}
 				}
 
-				System.out.println("¼ºº°À» ÀÔ·ÂÇÏ½Ã¿À M, W");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½ M, W");
 				while (true) {
 					String YorN = scanner.next();
 					if (YorN.equals("M") || YorN.equals("m")) {
@@ -207,27 +207,27 @@ public class InsuranceSubscription {
 						personalInformation.setGender(false);
 						break;
 					} else {
-						System.err.println("¼ºº° M³ª WÀ» ÀÔ·ÂÇÏ½Ã¿À");
+						System.err.println("ï¿½ï¿½ï¿½ï¿½ Mï¿½ï¿½ Wï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 					}
 				}
 
-				System.out.println("ÀÚ»êÀ» ÀÔ·ÂÇÏ½Ã¿À");
+				System.out.println("ï¿½Ú»ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 				while (true) {
 					if (!scanner.hasNextInt()) {
 						scanner.next();
-						System.err.println("¼ıÀÚ·Î ÀÔ·ÂÇÏ½Ã¿À");
+						System.err.println("ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 					} else {
 						personalInformation.setProperty(scanner.nextInt());
 						break;
 					}
 				}
 
-				System.out.println("ÁÖ¹Î¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+				System.out.println("ï¿½Ö¹Î¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 				personalInformation.setResidentRegistrationNumber(scanner.next());
 
-				// Subscription¿¡ µ¥ÀÌÅÍ »ğÀÔ
+				// Subscriptionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				String InsuranceType = CreateSubscription(newCustomerID, 2, scanner);
-				// º¸Çè Á¤º¸ ÀÔ·Â
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 				Customer Fcustomer = CreatePersonalInsuranceInformation(customer, InsuranceType, scanner);
 
 				// insuranceDAO /////////
@@ -242,17 +242,17 @@ public class InsuranceSubscription {
 
 	private String CreateSubscription(int CustomerID, int Num, Scanner scanner) {
 		insuranceDAO.showAllInsuranceID();
-		System.out.println("****¼±ÅÃÇÒ º¸ÇèID¸¦ ÀÔ·ÂÇÏ¼¼¿ä*****");
+		System.out.println("****ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½*****");
 		int InsuranceID = 0;
 		
 		while (true) {
 			if (!scanner.hasNextInt()) {
 				scanner.next();
-				System.err.println("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+				System.err.println("ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 			} else {
 				InsuranceID = scanner.nextInt();
 				if (!insuranceDAO.CheckIntData("InsuranceID", "Insurance", InsuranceID)) {
-					System.err.println("ÇØ´çÇÏ´Â º¸Çè ID Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ÀçÀÔ·ÂÇÏ½Ã¿À");
+					System.err.println("ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ID ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 				} else {
 					break;
 				}
@@ -267,7 +267,7 @@ public class InsuranceSubscription {
 		for(int i=0; i<InsuranceIDs.size(); i++) {
 			int FinsuranceID = InsuranceIDs.get(i);
 			if(customerDAO.getInsuranceType(FinsuranceID).toString().equals(insuranceType)) {
-				System.err.println("ÇØ´ç °í°´Àº °°Àº Å¸ÀÔÀÇ º¸Çè¿¡ ÀÌ¹Ì °¡ÀÔÇÏ¿´½À´Ï´Ù");
+				System.err.println("ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è¿¡ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
 				insuranceType = "not";
 				break;
 			}
@@ -290,16 +290,16 @@ public class InsuranceSubscription {
 
 		switch (insuranceType) {
 		case "Fire":
-			System.out.println("*******È­Àç º¸Çè Á¤º¸¸¦ ÀÔ·ÂÇÕ´Ï´Ù*********");
+			System.out.println("*******È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Õ´Ï´ï¿½*********");
 			Building building = new Building();
 
-			System.out.println("ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+			System.out.println("ï¿½Ö¼Ò¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 			building.setBuildingAddress(scanner.next());
 
-			System.out.println("°Ç¹° ½Ã¼¼¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+			System.out.println("ï¿½Ç¹ï¿½ ï¿½Ã¼ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 			building.setBuildingPrice(scanner.nextInt());
 
-			System.out.println("°Ç¹° ±Ô¸ğ¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+			System.out.println("ï¿½Ç¹ï¿½ ï¿½Ô¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 			building.setBuildingScale(scanner.next());
 
 			customer.setPersonalInformation(building);
@@ -308,13 +308,13 @@ public class InsuranceSubscription {
 			break;
 
 		case "Car":
-			System.out.println("*******ÀÚµ¿Â÷ º¸Çè Á¤º¸¸¦ ÀÔ·ÂÇÕ´Ï´Ù*********");
+			System.out.println("*******ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Õ´Ï´ï¿½*********");
 			Car car = new Car();
 
-			System.out.println("Â÷·® ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 			car.setCarNumber(scanner.next());
 
-			System.out.println("Â÷·® Á¾·ù¸¦ ÀÔ·ÂÇÏ½Ã¿À 1.¼ÒÇü, 2.ÁßÇü, 3.´ëÇü");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½ 1.ï¿½ï¿½ï¿½ï¿½, 2.ï¿½ï¿½ï¿½ï¿½, 3.ï¿½ï¿½ï¿½ï¿½");
 			switch (scanner.nextInt()) {
 			case 1:
 				car.setCarType(CarType.Compact);
@@ -329,10 +329,10 @@ public class InsuranceSubscription {
 				break;
 			}
 
-			System.out.println("¿îÀü °æ·ÂÀ» (ex ¸î ³â) ÀÔ·ÂÇÏ½Ã¿À ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ex ï¿½ï¿½ ï¿½ï¿½) ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½ ");
 			car.setDrivingCareer(scanner.nextInt());
 
-			System.out.println("¿îÀü ¸éÇã Á¾·ù¸¦ ÀÔ·ÂÇÏ½Ã¿À 1. 1Á¾ º¸Åë, 2. 2Á¾ º¸Åë , 3. ´ëÇü");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½ 1. 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 2. 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ , 3. ï¿½ï¿½ï¿½ï¿½");
 			switch (scanner.nextInt()) {
 			case 1:
 				car.setLicenseType(LicenseType.Class1);
@@ -352,11 +352,11 @@ public class InsuranceSubscription {
 			break;
 
 		case "ActualCost":
-			System.out.println("*******½Çºñ º¸Çè Á¤º¸¸¦ ÀÔ·ÂÇÕ´Ï´Ù*********");
+			System.out.println("*******ï¿½Çºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Õ´Ï´ï¿½*********");
 
 			ActualCost actualCost = new ActualCost();
 
-			System.out.println("Ç÷¾×ÇüÀ» ÀÔ·ÂÇÏ½Ã¿À 1. A, 2. B, 3. O, 4. AB, 5. RHMinus");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½ 1. A, 2. B, 3. O, 4. AB, 5. RHMinus");
 			switch (scanner.nextInt()) {
 			case 1:
 				actualCost.setBloodType(BloodType.A);
@@ -377,7 +377,7 @@ public class InsuranceSubscription {
 				break;
 			}
 
-			System.out.println("Áúº´À» ¼±ÅÃÇÏ½Ã¿À 1. ¾Ï, 2. ´ç´¢, 3. °íÇ÷¾Ğ,  4. ½É±Ù°æ»ö, 5. ³úÁ¹Áõ, 6. ³úÃâÇ÷");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½ 1. ï¿½ï¿½, 2. ï¿½ç´¢, 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,  4. ï¿½É±Ù°ï¿½ï¿½, 5. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 6. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			switch (scanner.nextInt()) {
 			case 1:
 				actualCost.setDiseaseHistory(DiseaseHistory.Cancer);
@@ -401,9 +401,9 @@ public class InsuranceSubscription {
 				break;
 			}
 
-			System.out.println("°¡Á· Áúº´À» ÀÔ·ÂÇÕ´Ï´Ù. °¡Á· °ü°è¸¦ ÀÔ·ÂÇÏ½Ã¿À");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Õ´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è¸¦ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½");
 			String Family = scanner.next();
-			System.out.println("°¡Á·ÀÇ Áúº´À» ¼±ÅÃÇÏ½Ã¿À 1. ¾Ï, 2. ´ç´¢, 3. °íÇ÷¾Ğ,  4. ½É±Ù°æ»ö, 5. ³úÁ¹Áõ, 6. ³úÃâÇ÷");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½ 1. ï¿½ï¿½, 2. ï¿½ç´¢, 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,  4. ï¿½É±Ù°ï¿½ï¿½, 5. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 6. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			DiseaseHistory diseaseHistory = null;
 
 			switch (scanner.nextInt()) {
@@ -438,7 +438,7 @@ public class InsuranceSubscription {
 			break;
 
 		case "not":
-			System.err.println("ÀÌ¹Ì ÇØ´ç º¸ÇèÀ» °¡ÀÔÇÑ °í°´ÀÌ¹Ç·Î »ó¼¼ º¸Çè Á¤º¸ ÀÔ·Â ½ÇÆĞ ÀÔ´Ï´Ù");
+			System.err.println("ï¿½Ì¹ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½");
 			break;
 
 		default:
@@ -451,7 +451,7 @@ public class InsuranceSubscription {
 
 	public float CalculatePremiumRateOfFire(float buildingP, float insuranceFee) {
 		float insurancePremiumRate = insuranceFee;
-		// °Ç¹°ÀÇ °¡°İÀº 1¾ï´ÜÀ§·Î °è»ê.
+		// ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.
 		float buildingPrice = buildingP / 100000000;
 		if (buildingPrice > 50) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 6.0);
@@ -639,9 +639,9 @@ public class InsuranceSubscription {
 			break;
 		}
 
-		if (actualCost.getFamilyHistory().containsKey("ºÎ")) {
+		if (actualCost.getFamilyHistory().containsKey("ï¿½ï¿½")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
-		} else if (actualCost.getFamilyHistory().containsKey("¸ğ")) {
+		} else if (actualCost.getFamilyHistory().containsKey("ï¿½ï¿½")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
 		} else {
 			insurancePremiumRate = (float) (insurancePremiumRate * 0.8);
@@ -649,7 +649,7 @@ public class InsuranceSubscription {
 		return insurancePremiumRate;
 	}
 
-	// ÆÄ¶ó¹ÌÅÍ·Î PremiumRate°¡ ÀÖÀ¸³ª À§ÀÇ insurancePremiumRate¸¦ ¸ñÀûÀ¸·Î ³ÖÀº °Í °°¾Æ¼­ »èÁ¦.
+	// ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ PremiumRateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ insurancePremiumRateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	public int CalculatePaymentAmount(int InsuranceID) {
 		int PaymentAmount = 1;
 		return PaymentAmount;
@@ -663,29 +663,29 @@ public class InsuranceSubscription {
 		AcceptanceGuide acceptanceGuide = this.acceptanceDAO.findAcceptance(insuranceID);
 		Customer customer = contractDAO.findCustomer(customerID);
 
-		// º¸Çè Á¾·ù¿¡ µû¶ó °í°´ °¡Àå ¾Æ·¡ µ¥ÀÌÅÍ °¡Á®¿À±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		switch (this.customerDAO.getInsuranceType(insuranceID)) {
-		case Fire: // È­Àçº¸Çè
+		case Fire: // È­ï¿½çº¸ï¿½ï¿½
 			Building building = (Building) FirstAccept(acceptanceGuide, customer, insuranceID);
 			this.customerDAO.findBuildingCustomer(building, customerID);
-			System.out.println("°Ç¹°ÁÖ¼Ò:" + building.getBuildingAddress() + " °Ç¹°°¡°İ:" + building.getBuildingPrice()
-					+ " °Ç¹°±Ô¸ğ:" + building.getBuildingScale());
+			System.out.println("ï¿½Ç¹ï¿½ï¿½Ö¼ï¿½:" + building.getBuildingAddress() + " ï¿½Ç¹ï¿½ï¿½ï¿½ï¿½ï¿½:" + building.getBuildingPrice()
+					+ " ï¿½Ç¹ï¿½ï¿½Ô¸ï¿½:" + building.getBuildingScale());
 			FinalAccept(customer, scanner, insuranceID);
 			return true;
 
-		case Car:// ÀÚµ¿Â÷º¸Çè
+		case Car:// ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Car car = (Car) FirstAccept(acceptanceGuide, customer, insuranceID);
 			this.customerDAO.findCarCustomer(car, customerID);
-			System.out.println("Â÷ ¹øÈ£:" + car.getCarNumber() + " Â÷ Á¾·ù:" + car.getCarType() + " ¿îÀü°æ·Â: "
-					+ car.getDrivingCareer() + " ¸éÇãÁ¾·ù:" + car.getLicenseType());
+			System.out.println("ï¿½ï¿½ ï¿½ï¿½È£:" + car.getCarNumber() + " ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:" + car.getCarType() + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: "
+					+ car.getDrivingCareer() + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + car.getLicenseType());
 			FinalAccept(customer, scanner, insuranceID);
 			return true;
 
-		case ActualCost:// ½Çºñº¸Çè
+		case ActualCost:// ï¿½Çºï¿½ï¿½ï¿½
 			ActualCost actualCost = (ActualCost) FirstAccept(acceptanceGuide, customer, insuranceID);
 			this.customerDAO.findActualCostCustomer(actualCost, customerID);
-			System.out.println("º´·Â:" + actualCost.getDiseaseHistory() + " °¡Á·º´·Â:" + actualCost.getFamilyHistory()
-					+ " Ç÷¾×Çü:" + actualCost.getBloodType());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½:" + actualCost.getDiseaseHistory() + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + actualCost.getFamilyHistory()
+					+ " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + actualCost.getBloodType());
 			FinalAccept(customer, scanner, insuranceID);
 			return true;
 
@@ -694,89 +694,89 @@ public class InsuranceSubscription {
 		}
 	}
 
-	// º¸Çè Á¤º¸, °í°´ ±âº» Á¤º¸ °¡Á®¿À´Â ¸Ş¼Òµå
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 	private PersonalInformation FirstAccept(AcceptanceGuide acceptanceGuide, Customer customer, int insuranceID) {
 		if (acceptanceGuide.getAcceptanceID() == 0) {
 			acceptanceGuide.setAcceptanceID(5001);
 		}
-		System.out.println("ÀÎ¼öID:" + acceptanceGuide.getAcceptanceID());
+		System.out.println("ï¿½Î¼ï¿½ID:" + acceptanceGuide.getAcceptanceID());
 		System.out.println(acceptanceGuide.getScamCase());
-		System.out.println("À§ÇèÆò°¡:" + acceptanceGuide.getRiskEvaluation());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + acceptanceGuide.getRiskEvaluation());
 
-		// °í°´¿¡ ´ëÇÑ ±âº» Á¤º¸ ¸ÕÀú Ãâ·Â
-		System.out.println("°í°´ID:" + customer.getCustomerID() + " °í°´ÀÌ¸§:" + customer.getCustomerName() + " °í°´ÀüÈ­¹øÈ£:"
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		System.out.println("ï¿½ï¿½ID:" + customer.getCustomerID() + " ï¿½ï¿½ï¿½Ì¸ï¿½:" + customer.getCustomerName() + " ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½È£:"
 				+ customer.getPhoneNum());
 		PersonalInformation personalInformation = this.customerDAO.findPersonalInformation(customer, insuranceID);
-		System.out.println("°í°´°ú°Å»ç°íÀÌ·Â:" + personalInformation.getAccidentHistory() + " °í°´°èÁÂ¹øÈ£:"
-				+ personalInformation.getAccountNumber() + " °í°´Á÷¾÷:" + personalInformation.getJob() + " °í°´Àç»ê:"
-				+ personalInformation.getProperty() + " °í°´ÁÖ¹Îµî·Ï¹øÈ£:"
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½Ì·ï¿½:" + personalInformation.getAccidentHistory() + " ï¿½ï¿½ï¿½ï¿½ï¿½Â¹ï¿½È£:"
+				+ personalInformation.getAccountNumber() + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + personalInformation.getJob() + " ï¿½ï¿½ï¿½ï¿½ï¿½:"
+				+ personalInformation.getProperty() + " ï¿½ï¿½ï¿½Ö¹Îµï¿½Ï¹ï¿½È£:"
 				+ personalInformation.getResidentRegistrationNumber());
 
 		return personalInformation;
 	}
 
-	// ÀÎ¼ö ½ÂÀÎ or °ÅºÎ ¸Ş¼Òµå
+	// ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½ or ï¿½Åºï¿½ ï¿½Ş¼Òµï¿½
 	private void FinalAccept(Customer customer, Scanner scanner, int insuranceID) {
-		// À§¿¡ ÀÎ¼öÁ¤Ã¥°ú °í°´ Á¤º¸¸¦ Åä´ë·Î ½ÂÀÎ or °ÅºÎ ¼±ÅÃ
-		System.out.println("1.½ÂÀÎ, 2.°ÅºÎ");
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ or ï¿½Åºï¿½ ï¿½ï¿½ï¿½ï¿½
+		System.out.println("1.ï¿½ï¿½ï¿½ï¿½, 2.ï¿½Åºï¿½");
 		while (!scanner.hasNextInt()) {
 			scanner.next();
-			System.err.println("¼ıÀÚ¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù.");
+			System.err.println("ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½.");
 		}
 		switch (scanner.nextInt()) {
 		case 1:
-			// ÀÎ¼ö ½ÂÀÎ ‰ç´Ù¸é °í°´ÀÇ °¡ÀÔÀ¯¹«´Â true(true, false¸¦ º¸°í °è¾àÀ» ÀÛ¼ºÇÒÁö ¸»¾Æ¾ß ÇÒÁö °áÁ¤ÇØ¾ßÇÔ - alternate)
+			// ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true(true, falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ - alternate)
 			customer.setSubscriptionStatus(true);
 			this.subscriptionDAO.updateSubscriptionStatus(customer, insuranceID);
 			break;
 		case 2:
 
-			System.out.println("½ÂÀÎ ºÒ°¡ ÀÌÀ¯¸¦ ÀÛ¼ºÇÏ¼¼¿ä.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
 			String notAgree = scanner.next();
-			System.out.println("½ÂÀÎ ºÒ°¡ ÀÌÀ¯´Â '" + notAgree + "'ÀÔ´Ï´Ù.");
-			// ¸ŞÀÏ Àü¼Û ¹öÆ°À» ´©¸£¼¼¿ä
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ '" + notAgree + "'ï¿½Ô´Ï´ï¿½.");
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		}
 	}
 
 	public void ShowMenual(Scanner sc) {
-		System.out.println("*******¸Ş´º¾ó È®ÀÎÇÏ±â****");
-		System.out.println("1. ÆÇ¸Å ¸Ş´º¾ó È®ÀÎÇÏ±â, 2. »óÇ° ¼³¸í¼­ È®ÀÎÇÏ±â");
+		System.out.println("*******ï¿½Ş´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½****");
+		System.out.println("1. ï¿½Ç¸ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½, 2. ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½");
 		int menuNum = 0;
 		while (true) {
 			if (!sc.hasNextInt()) {
 				sc.next();
-				System.err.println("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ã¿À.  1. ÆÇ¸Å ¸Ş´º¾ó È®ÀÎÇÏ±â, 2. »óÇ° ¼³¸í¼­ È®ÀÎÇÏ±â");
+				System.err.println("ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½.  1. ï¿½Ç¸ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½, 2. ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½");
 			} else {
 				menuNum = sc.nextInt();
 				if (!(menuNum > 0 && menuNum < 3)) {
-					System.err.println("´ÙÀ½ ¸Ş´º Áß ¼±ÅÃÇÏ½Ã¿À.  1. ÆÇ¸Å ¸Ş´º¾ó È®ÀÎÇÏ±â, 2. »óÇ° ¼³¸í¼­ È®ÀÎÇÏ±â");
+					System.err.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ş´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.  1. ï¿½Ç¸ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½, 2. ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½");
 				} else {
 					break;
 				}
 			}
 		}
-		// saleManual, manual µÑ´Ù ¿©±â¼­ ÆÇ´Ü
+		// saleManual, manual ï¿½Ñ´ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½Ç´ï¿½
 		if (menuNum == 1) {
-			System.out.println("*******ÆÇ¸Å ¸Ş´º¾ó È®ÀÎÇÏ±â********");
+			System.out.println("*******ï¿½Ç¸ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½********");
 		} else {
-			System.out.println("*******»óÇ° ¸Ş´º¾ó È®ÀÎÇÏ±â********");
+			System.out.println("*******ï¿½ï¿½Ç° ï¿½Ş´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½********");
 		}
 		this.InsuranceManual(sc, menuNum);
 	}
 
 	public void InsuranceManual(Scanner sc, int menuNum) {
 		this.insuranceDAO.searchInsuranceIDandName();
-		System.out.println("È®ÀÎÇÒ º¸Çè ID¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+		System.out.println("È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½.");
 		int InsuranceID = 0;
 		while (true) {
 			if (!sc.hasNextInt()) {
 				sc.next();
-				System.err.println("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+				System.err.println("ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ã¿ï¿½.");
 			} else {
 				InsuranceID = sc.nextInt();
 				if (!(insuranceDAO.searchInsuranceIDforManual(InsuranceID))) {
-					System.err.println("ÇØ´çÇÏ´Â º¸ÇèID È¤Àº ¸Ş´º¾óÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+					System.err.println("ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ID È¤ï¿½ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½");
 				} else {
 					break;
 				}

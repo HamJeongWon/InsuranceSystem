@@ -4,9 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
+import Subscription.Subscription;
 import Customer.Customer;
 import Insurance.Insurance;
+import Insurance.Insurance.InsuranceType;
 
 public class subscriptionDAO extends DAO{
 	public Vector<Integer> showAcceptanceAprove() {
@@ -33,8 +34,7 @@ public class subscriptionDAO extends DAO{
      }
 
 	 public Vector<Integer> showSubscriptionCustomer() {
-         this.sql = "select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID !='null'";
-            
+         this.sql = "select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID !='null'";            
             
          Vector<Integer> IDvector = new Vector<Integer>();
            try {
@@ -80,18 +80,18 @@ public class subscriptionDAO extends DAO{
             }
             
             if(fireVector.size() == 0 && actualCostVector.size() == 0 && carVector.size() == 0) {
-           	 System.out.println("ÇöÀç °¡ÀÔµÈ °í°´ÀÌ ¾ø½À´Ï´Ù");
+           	 System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
             }else {
-           	 System.out.print("(È­Àçº¸Çè °í°´:");
+           	 System.out.print("(È­ï¿½çº¸ï¿½ï¿½ ï¿½ï¿½:");
            	 for(int i=0; i<fireVector.size(); i++) {
 
            		 System.out.print(fireVector.get(i) + " ");
            	 }
-           	 System.out.print(") (½Çºñº¸Çè °í°´:");
+           	 System.out.print(") (ï¿½Çºï¿½ï¿½ï¿½ ï¿½ï¿½:");
            	 for(int i=0; i<actualCostVector.size(); i++) {
            		 System.out.print(actualCostVector.get(i) + " ");
            	 }
-           	 System.out.print(") (ÀÚµ¿Â÷º¸Çè °í°´:");
+           	 System.out.print(") (ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½:");
            	 for(int i=0; i<carVector.size(); i++) {
            		 System.out.print(carVector.get(i) + " ");
            	 }
@@ -155,7 +155,7 @@ public class subscriptionDAO extends DAO{
 				return true;
 			} catch (SQLException e) {
 				//throw new RuntimeException("InsuranceDAO.insertSubscription :" + e.getMessage());
-				System.err.println("insertSubscription º¸ÇèID Áßº¹");
+				System.err.println("insertSubscription ï¿½ï¿½ï¿½ï¿½ID ï¿½ßºï¿½");
 			} finally {
 				closeConnection(connect);
 			}
@@ -190,7 +190,7 @@ public class subscriptionDAO extends DAO{
 			while (resultSet.next()) {
 					int insuranceID = resultSet.getInt("insuranceID");
 					int customerID = resultSet.getInt("customerID");
-					System.out.println("º¸ÇèID :" + insuranceID + "  °í°´ID: " + customerID );
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ID :" + insuranceID + "  ï¿½ï¿½ID: " + customerID );
 				}
 
 			} catch (SQLException e) {
@@ -221,5 +221,52 @@ public class subscriptionDAO extends DAO{
 			}
 			return InsuranceIDs;
 		}
+		
+		public Vector<Subscription> SubscriptionVector() {
+	        this.sql = "select insuranceID, customerID, contractID from subscription where subscriptionStatus = true";   
+	        Vector<Subscription> Vecsubscription = new Vector<Subscription>();
+	        
+	          try {
+	                 this.connect = getConnection();
+	                 this.statement = this.connect.prepareStatement(sql);
+	                 this.resultSet= this.statement.executeQuery();
+	   
+	                 while(this.resultSet.next()) {
+	         	        Subscription subscription = new Subscription(); 
+	                	subscription.setInsuranceID(this.resultSet.getInt("insuranceID"));
+	                	subscription.setContractID(this.resultSet.getInt("contractID"));
+	                	subscription.setCustomerID(this.resultSet.getInt("customerID"));
+	                	Vecsubscription.add(subscription);         
+	                 }            
+	              }catch(SQLException e) {
+	                 throw new RuntimeException("InsuranceDAO.SubscriptionVector :" + e.getMessage());
+	              }finally {
+	                 closeConnection(this.connect);
+	              }
+	          return Vecsubscription;          
+	     }
 
+		public Vector<InsuranceType> InsuranceTypeVector(int CustomerID) {
+	        this.sql = "select insuranceType from insurance where insuranceID in"
+	        		+ "(select insuranceID from subscription where subscriptionStatus = true and customerID = ?)";
+	       
+	        Vector<InsuranceType> InsuranceTypeVector = new Vector<InsuranceType>();
+	        
+	          try {
+	                 this.connect = getConnection();
+	                 this.statement = this.connect.prepareStatement(sql);
+	                 statement.setInt(1, CustomerID);
+	                 this.resultSet= this.statement.executeQuery();
+	                 
+	                 while(this.resultSet.next()) {
+	                	InsuranceType InsuranceType = Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType"));
+	                	InsuranceTypeVector.add(InsuranceType);
+	                 }            
+	              }catch(SQLException e) {
+	                 throw new RuntimeException("InsuranceDAO.SubscriptionVector :" + e.getMessage());
+	              }finally {
+	                 closeConnection(this.connect);
+	              }
+	          return InsuranceTypeVector;
+	     }
 }

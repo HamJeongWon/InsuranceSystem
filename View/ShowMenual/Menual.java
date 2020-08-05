@@ -15,11 +15,11 @@ import DAO.insuranceDAO;
 import Insurance.Insurance;
 
 @WebServlet("/Menual1")
-public class SaleMenual extends HttpServlet {
+public class Menual extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	insuranceDAO insuranceDAO;  
 	
-    public SaleMenual() {
+    public Menual() {
         super();
     }  
 
@@ -30,28 +30,35 @@ public class SaleMenual extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//vector·Î °®°í Åë¤Š·Î ³Ñ±â±â
 		Vector<Insurance> VecInsurance = this.insuranceDAO.searchInsuranceIDandName();
 		request.setAttribute("VecInsurance", VecInsurance);
-		RequestDispatcher disp = request.getRequestDispatcher("/ShowSalesMenual.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/ShowMenual.jsp");
 		disp.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");	
-        
+
+		int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
+		String InsuranceName = request.getParameter("InsuranceName");			
+        String MenualValue = request.getParameter("menual");
 		String Content = "";
 		
-		int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
-		if (insuranceDAO.searchInsuranceIDforManual(InsuranceID) == false) {
-			Content = "ÇØ´çÇÏ´Â º¸Çèid°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù";
-		} else {
+		if(MenualValue.equals("íŒë§¤ ë©”ë‰´ì–¼ ì¡°íšŒ")) {
 			Content = insuranceDAO.searchInsuranceSalesManual(InsuranceID);
 			if(Content.isEmpty()) {
-				Content = "ÇØ´çÇÏ´Â º¸ÇèÀÇ ¸Ş´º¾óÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù";
+				Content = "í•´ë‹¹í•˜ëŠ” ìƒí’ˆì˜ íŒë§¤ ë©”ë‰´ì–¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤";
+			}
+		}else {
+			Content = insuranceDAO.searchInsuranceManual(InsuranceID);
+			if(Content.isEmpty()) {
+				Content = "í•´ë‹¹í•˜ëŠ” ìƒí’ˆì˜ ìƒí’ˆ ë©”ë‰´ì–¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤";
 			}
 		}
+		
+		request.setAttribute("InsuranceID", InsuranceID);
+		request.setAttribute("InsuranceName", InsuranceName);
 		request.setAttribute("Content", Content);
 		RequestDispatcher disp = request.getRequestDispatcher("/ShowMenualResult.jsp");
 		disp.forward(request, response);

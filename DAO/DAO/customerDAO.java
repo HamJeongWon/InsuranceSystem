@@ -197,7 +197,7 @@ public class customerDAO extends DAO{
 
 		} catch (SQLException e) {
 //			throw new RuntimeException("InsuranceDAO.insertBuilding :" + e.getMessage());
-			System.err.println("ÇØ´ç °í°´ÀÇ ÇØ´çÇÏ´Â º¸Çè Á¤º¸°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù");
+			System.err.println("ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
 		} finally {
 			closeConnection(connect);
 		}
@@ -229,7 +229,7 @@ public class customerDAO extends DAO{
 
 		} catch (SQLException e) {
 //			throw new RuntimeException("InsuranceDAO.insertActualCost :" + e.getMessage());
-			System.err.println("ÇØ´ç °í°´ÀÇ ÇØ´çÇÏ´Â º¸Çè Á¤º¸°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù");
+			System.err.println("ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
 		} finally {
 			closeConnection(connect);
 		}
@@ -250,7 +250,7 @@ public class customerDAO extends DAO{
 
 		} catch (SQLException e) {
 			//throw new RuntimeException("InsuranceDAO.insertCar :" + e.getMessage());
-			System.err.println("ÇØ´ç °í°´ÀÇ ÇØ´çÇÏ´Â º¸Çè Á¤º¸°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù");
+			System.err.println("ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
 		} finally {
 			closeConnection(connect);
 		}
@@ -383,19 +383,19 @@ public class customerDAO extends DAO{
 		        return personalInformation;
 		     }
 		   
-			 public Vector<Integer> showAllCustomerIDList() {
-				 Vector<Integer> VecCustomerID = new Vector<Integer>();
-				 this.sql = "select customerID from Subscription where subscriptionStatus is true";
+			 public Vector<Integer> CustomerIDorInsuranceIDList(String IDSection) {
+				 Vector<Integer> IDVector = new Vector<Integer>();
+				 this.sql = "select ? from Subscription where subscriptionStatus is true";
 				 
 				 try {
 					 this.connect = this.getConnection();
 					 PreparedStatement statement = connect.prepareStatement(this.sql);
-					 ResultSet resultSet = statement.executeQuery();
-					 
+					 statement.setString(1, IDSection);
+					 ResultSet resultSet = statement.executeQuery();				 
 					 while(resultSet.next()) {
-						VecCustomerID.add(resultSet.getInt("customerID"));
+						 IDVector.add(resultSet.getInt("IDSection"));
 					 }
-					 	return VecCustomerID;
+					 	return IDVector;
 		
 				 }catch(SQLException e) {
 			            throw new RuntimeException("InsuranceDAO.insertContratIDtoSubscription :" + e.getMessage());

@@ -12,8 +12,7 @@
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 
-<% 	Integer CustomerID = (Integer)request.getAttribute("CustomerID"); 
-	Vector<Insurance> VecInsurance = (Vector<Insurance>)request.getAttribute("VecInsurance"); %>
+<% 	 Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID")); %>
 
 <section class="site-section bg-light" id="contact-section">
 
@@ -35,9 +34,7 @@
                <div class="col-md-12">
                   <label class="text-black" for="insuranceName">화재 보험 이름 </label> 
               		<select name="InsuranceID"  class="form-control">
-              		<% for(Insurance insu : VecInsurance) { %>
-              			<option value= <%= insu.getInsuranceID() %>> <%= insu.getInsuranceName()%></option>	
-              		<%}%>
+
    					</select>
                </div>         
               </div>
@@ -66,7 +63,7 @@
                      
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="hidden" name="CustomerID" value= <%=CustomerID%>>
+                  <input type="hidden" name="CustomerID" value= <%= CustomerID %>>
                   <input type="hidden" name="InsuranceTypeForInsert" value="Fire">
                   <input type="submit" value="입력 완료" class="btn btn-primary btn-md text-white" style="float: right;">
                   <input type="reset" value="다시 작성" class="btn btn-primary btn-md text-white">
@@ -76,8 +73,8 @@
             </form>
            </div>   
          </div>
-    </section>
-
+    </section> 
+    
     <a href="main.jsp" class="bg-primary py-5 d-block">
       <div class="container">
         <div class="row justify-content-center">

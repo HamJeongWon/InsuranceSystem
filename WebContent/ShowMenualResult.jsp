@@ -9,15 +9,41 @@
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
-
-	<div align="center">
-			
+	
 	<%
+	Integer InsuranceID = (Integer)request.getAttribute("InsuranceID");
+	String InsuranceName = (String)request.getAttribute("InsuranceName");
 	String Content = (String)request.getAttribute("Content");
 	%>
-	<h3>메뉴얼 </h3> <br>
-	<%= Content %>
+
+<section class="site-section bg-light" id="contact-section">
+	<div class="container">
+	<div class="row mb-5">
+				<div class="col-12 text-center">
+			<form action= ./Menual1 method=POST>
+					<h2 class="text-black h1 site-section-heading">메뉴얼 확인</h2>
+					<br>
+					<br>
+			<table class = "table table-striped">
+				<thead>
+					<tr>
+						<td>보험 id</td>
+						<td>보험 이름</td>
+						<td>메뉴얼</td>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<tr>
+						<td><%= InsuranceID%></td>
+						<td><%= InsuranceName%></td>
+						<td><%= Content%></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
+
 
 	<jsp:include page="/incl/Footer.jsp" />
 </body>
