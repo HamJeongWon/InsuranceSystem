@@ -3,6 +3,7 @@ package InsuranceDesign;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +29,11 @@ import Insurance.SelfVehicleDamage.SSeparation;
 @WebServlet("/InsuranceDesgin")
 public class InsuranceDesgin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init();
+	}
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -127,9 +133,6 @@ public class InsuranceDesgin extends HttpServlet {
     		insuranceDao.InsertInsurance(insurance);
     		insuranceDao.InsertFireInsurance((FireInsurance) insurance);
     		
-			request.setAttribute("FInsurance", insurance);
-			url = "/ResultFInsuranceDesign.jsp";
-    		
         	break;
         	
         case "car" :  // 자동차 보험 상세 정보를 DB에 저장
@@ -187,9 +190,6 @@ public class InsuranceDesgin extends HttpServlet {
       
     		insuranceDao.InsertInsurance(insurance);
     		insuranceDao.InsertCarInsurance((CarInsurance) insurance);
-    		
-			request.setAttribute("CInsurance", insurance);
-			url = "/ResultCInsuranceDesign.jsp";
 			
         	break;
         	
@@ -212,16 +212,11 @@ public class InsuranceDesgin extends HttpServlet {
       
     		insuranceDao.InsertInsurance(insurance);
     		insuranceDao.InsertActualCostInsurance((ActualCostInsurance) insurance);
-    		
-			request.setAttribute("AInsurance", insurance);
-			url = "/ResultAInsuranceDesign.jsp";
         	break;
         	
         default :
     		break;
         }
-        ServletContext context = getServletContext();
-		RequestDispatcher disp = context.getRequestDispatcher(url);
-		disp.forward(request, response);
+        response.sendRedirect("InsuranceList");
 	}
 }

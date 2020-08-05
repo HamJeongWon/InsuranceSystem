@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>ResultCalculateAccidentFund</title>
+<title>사고내용 입력결과</title>
 </head>
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />

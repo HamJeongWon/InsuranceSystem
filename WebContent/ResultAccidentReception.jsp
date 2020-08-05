@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>ResultAccidentReception</title>
+<title>사고내용입력결과</title>
 </head>
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />

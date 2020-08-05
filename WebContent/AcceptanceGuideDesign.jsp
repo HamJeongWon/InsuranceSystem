@@ -4,6 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <title> 인수지침서 설계 </title>
+
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.AcepInfo.ScamCase.value){
+	        alert("위험사례를 입력하세요.");
+	        return false;
+	    }
+    }
+</script>
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
@@ -21,7 +31,7 @@
         </div>
         
          <div>
-            <form action= ./AcceptanceGuideDesign?InsuranceID=<%= request.getParameter("action") %> method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./AcceptanceGuideDesign?InsuranceID=<%= request.getParameter("action") %> method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "AcepInfo" onsubmit="return checkValue()">
               
             <h2 class="h4 text-black mb-5" align = "center"> 인수지침서 정보 </h2> 
               

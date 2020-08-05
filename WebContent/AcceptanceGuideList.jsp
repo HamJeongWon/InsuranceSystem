@@ -1,24 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="Insurance.Insurance"%>
+<%@ page import="Acceptance.AcceptanceGuide"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 인수지침서 설계 </title>
+<title> 인수지침서 목록 </title>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
-		<link rel="stylesheet" type="text/css" href="css/table.css" />
   		<script src="js/modernizr.custom.js"></script>
-  		
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 
-<%Vector<Insurance> insurances = (Vector<Insurance>) request.getAttribute("nullAcceptanceInsuranceID");%>
+<%Vector<AcceptanceGuide> fireGuides, carGuides, actualCostGuides;
+		fireGuides = (Vector<AcceptanceGuide>)request.getAttribute("fireGuide");
+		carGuides = (Vector<AcceptanceGuide>)request.getAttribute("carGuide");
+		actualCostGuides = (Vector<AcceptanceGuide>)request.getAttribute("actualCostGuide");
+	%>
 
 		<svg class="hidden">
 			<defs>
@@ -30,8 +32,8 @@
 			<div class="container">	
 				<div class="row mb-5">
 		          <div class="col-12 text-center">
-		            <h2 class="text-black h1 site-section-heading">인수지침서 설계</h2>
-		            <p class="lead">인수 지침서가 존재하지 않는 보험들의 리스트이다. 보험을 선택하여 인수 지침서를 설계할 수 있다.</p>
+		            <h2 class="text-black h1 site-section-heading">인수지침서 보기</h2>
+		            <p class="lead">각 보험의 인수지침서를 확인할 수 있다.</p>
 		          </div>
 		        </div>
 	        </div>
@@ -42,109 +44,106 @@
 							<li>
 								<a href="#section-shape-1">
 									<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
-									<span>화재보험 리스트</span>
+									<span>화재보험 인수지침서</span>
 								</a>
 							</li>
 							<li>
 								<a href="#section-shape-2">
 									<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
 									<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
-									<span>자동차보험 리스트</span>
+									<span>자동차보험 인수지침서</span>
 								</a>
 							</li>
 							<li>
 								<a href="#section-shape-3">
 									<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
 									<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
-									<span>실비보험 리스트</span>
+									<span>실비보험 인수지침서</span>
 								</a>
 							</li>
 						</ul>
 					</nav>
 					<div class="content-wrap">
-						<section id="section-shape-1">	
-						<div class="container">
-							  <ul class="responsive-table">
-							    <li class="table-header">
-							      <div class="col col-1">보험 ID</div>
-							      <div class="col col-2">보험 이름</div>
-							      <div class="col col-3">설계 버튼</div>
-							    </li>
-				    <%if (insurances !=null) {
-				    	for(Insurance insurnace : insurances){
-				    		if(insurnace.getInsuranceType() == Insurance.InsuranceType.Fire){%>
-							    <li class="table-row">
-							      <div class="col col-1" style="margin-top:9px;">
-							      	<%= insurnace.getInsuranceID() %>
-							      </div>
-							      <div class="col col-2" style="margin-top:9px;">
-							      	<%= insurnace.getInsuranceName() %>
-							      </div>
-							      <div class="col col-3" >
-							      	<form action = "AcceptanceGuideDesign.jsp?action=<%= insurnace.getInsuranceID() %>" method = "post"> 
-							      		<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
-							      	</form>
-							      </div>
-							    </li>
-				     <%}}}%>
-							  </ul>
-							</div>	
+						<section id="section-shape-1">
+							<%if(!fireGuides.isEmpty()){
+								for(AcceptanceGuide fireGuide : fireGuides){ %>
+									<div class="p-5 bg-white" style = "margin:auto; max-width: 800px;">
+						              <div class="row form-group">
+										<div class="col-md-4 mb-3 mb-md-0" >
+						                  <label class="text-black" for="acceptanceGuideID">인수지침서 ID</label>
+						                   <p class="text-primary"><%= fireGuide.getAcceptanceID() %><p>
+						                </div>
+						                <div class="col-md-4">
+						                  <label class="text-black" for="insuranceID">보험 ID</label>
+						                  <p class="text-primary"><%= fireGuide.getInsuranceID() %><p>
+						                </div>
+			         			      	<div class="col-md-4">
+						                  <label class="text-black" for="riskEvaluation">위험 평가</label>
+						                  <p class="text-primary"><%= fireGuide.getRiskEvaluation() %><p>
+						                </div>
+						                <div class="col-md-12">
+						                  <label class="text-black" for="ScamCase"> 위험 사례 </label>
+						                  <p class="text-primary"><%= fireGuide.getScamCase() %><p>
+						                </div>
+						              </div>
+					              </div>
+			              	<%}} else { %>
+								인수지침서가 존재하지 않습니다.
+						    <% } %>						
 						</section>
 						<section id="section-shape-2">
-						   <div class="container">
-							  <ul class="responsive-table">
-							    <li class="table-header">
-							      <div class="col col-1">보험 ID</div>
-							      <div class="col col-2">보험 이름</div>
-							      <div class="col col-3">설계 버튼</div>
-							    </li>
-							    <%if (insurances !=null) {
-							    	for(Insurance insurnace : insurances){
-							    		if(insurnace.getInsuranceType() == Insurance.InsuranceType.Car){%>
-							    <li class="table-row">
-							      <div class="col col-1" style= "margin-top: 9px;">
-							      	<%= insurnace.getInsuranceID() %>
-							      </div>
-							      <div class="col col-2" style= "margin-top: 9px;">
-							      	<%= insurnace.getInsuranceName() %>
-							      </div>
-							      <div class="col col-3" >
-							      	<form action = "AcceptanceGuideDesign.jsp?action=<%= insurnace.getInsuranceID() %>" method = "post"> 
-							      		<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
-							      	</form>
-							      </div>
-							    </li>
-								<%}}}%>
-							  </ul>
-							</div>
+							<%if(!carGuides.isEmpty()){
+							for(AcceptanceGuide carGuide : carGuides){ %>
+							<div class="p-5 bg-white" style = "margin:auto; max-width: 800px;">
+				              <div class="row form-group">
+								<div class="col-md-4 mb-3 mb-md-0" >
+				                  <label class="text-black" for="acceptanceGuideID">인수지침서 ID</label>
+				                  <p class="text-primary"><%= carGuide.getAcceptanceID() %><p>
+				                </div>
+				                <div class="col-md-4">
+				                  <label class="text-black" for="insuranceID">보험 ID</label>
+				                  <p class="text-primary"><%= carGuide.getInsuranceID() %><p>
+				                </div>
+	         			      	<div class="col-md-4">
+				                  <label class="text-black" for="riskEvaluation">위험 평가</label>
+				                  <p class="text-primary"><%= carGuide.getRiskEvaluation() %><p>
+				                </div>
+				                <div class="col-md-12">
+				                  <label class="text-black" for="ScamCase"> 위험 사례 </label>
+				                  <p class="text-primary"><%= carGuide.getScamCase() %><p>
+				                </div>
+				              </div>
+			                </div>
+			              	<%}} else { %>
+								인수지침서가 존재하지 않습니다.
+						    <% } %>	
 						</section>
 						<section id="section-shape-3">
-							<div class="container">
-							  <ul class="responsive-table">
-							    <li class="table-header">
-							      <div class="col col-1">보험 ID</div>
-							      <div class="col col-2">보험 이름</div>
-							      <div class="col col-3">설계 버튼</div>
-							    </li>
-							    <%if (insurances !=null) {
-							    	for(Insurance insurnace : insurances){
-							    		if(insurnace.getInsuranceType() == Insurance.InsuranceType.ActualCost){%>
-							    <li class="table-row">
-							      <div class="col col-1" style= "margin-top: 9px;">
-							      	<%= insurnace.getInsuranceID() %>
-							      </div>
-							      <div class="col col-2" style= "margin-top: 9px;">
-							      	<%= insurnace.getInsuranceName() %>
-							      </div>
-							      <div class="col col-3" >
-							      	<form action = "AcceptanceGuideDesign.jsp?action=<%= insurnace.getInsuranceID() %>" method = "post"> 
-							      		<input type="submit" value="설계하기" class="btn btn-primary btn-md text-white">
-							      	</form>
-							      </div>
-							    </li>
-								<%}}}%>
-							  </ul>
-							</div>			
+							<%if(!actualCostGuides.isEmpty()){
+							for(AcceptanceGuide actualCostGuide : actualCostGuides){ %>
+							<div class="p-5 bg-white" style = "margin:auto; max-width: 800px;">
+				              <div class="row form-group">
+								<div class="col-md-4 mb-3 mb-md-0" >
+				                  <label class="text-black" for="acceptanceGuideID">인수지침서 ID</label>
+				                   <p class="text-primary"><%= actualCostGuide.getAcceptanceID() %><p>
+				                </div>
+				                <div class="col-md-4">
+				                  <label class="text-black" for="insuranceID">보험 ID</label>
+				                  <p class="text-primary"><%= actualCostGuide.getInsuranceID() %><p>
+				                </div>
+	         			      	<div class="col-md-4">
+				                  <label class="text-black" for="riskEvaluation">위험 평가</label>
+				                  <p class="text-primary"><%= actualCostGuide.getRiskEvaluation() %><p>
+				                </div>
+				                <div class="col-md-12">
+				                  <label class="text-black" for="ScamCase"> 위험 사례 </label>
+				                  <p class="text-primary"><%= actualCostGuide.getScamCase() %><p>
+				                </div>
+				              </div>
+			              </div>
+			              	<%}} else { %>
+								인수지침서가 존재하지 않습니다.
+						    <% } %>						
 						</section>
 					</div>
 				</div>
@@ -169,7 +168,6 @@
         </div>
       </div>  
     </a>
-    
 		<jsp:include page="/incl/Footer.jsp" />
 	</body>
 </html>

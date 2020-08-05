@@ -5,17 +5,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import Acceptance.AcceptanceGuide;
 import Insurance.ActualCostInsurance;
 import Insurance.CarInsurance;
+import Insurance.DamageInformation;
 import Insurance.FireInsurance;
+import Insurance.Goods_Personal;
+import Insurance.Injury;
 import Insurance.Insurance;
+import Insurance.SelfVehicleDamage;
+import Insurance.Goods_Personal.GSeparation;
+import Insurance.SelfVehicleDamage.SSeparation;
 
 public class insuranceDAO extends DAO {
 	
 	
 	public Vector<Insurance> searchInsuranceIDandName() {
-		this.sql = "select insuranceID, insuranceName from Insurance";
+		this.sql = "select insuranceID, insuranceName, insuranceType from Insurance";
 		Vector<Insurance> VecInsurance = new Vector<Insurance>();
 		
 		try {
@@ -24,8 +29,9 @@ public class insuranceDAO extends DAO {
 			this.resultSet = this.statement.executeQuery();
 			while (this.resultSet.next()) {
 				Insurance insurance = new Insurance();
-				insurance.setInsuranceName(resultSet.getString("insuranceName"));
 				insurance.setInsuranceID(resultSet.getInt("insuranceID"));	
+				insurance.setInsuranceName(resultSet.getString("insuranceName"));
+				insurance.setInsuranceType(Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType")));	
 				VecInsurance.add(insurance);
 			}
 			return VecInsurance;
@@ -37,7 +43,7 @@ public class insuranceDAO extends DAO {
 		}
 	}
 	
-	//보험 타입에 해당하는 보험명 가져오기
+	//蹂댄뿕 ���엯�뿉 �빐�떦�븯�뒗 蹂댄뿕紐� 媛��졇�삤湲�
 	public Vector<Insurance> InsuranceNameVector(String Insurancetype){
 		this.sql = "select insuranceID, insuranceName from Insurance where insuranceType = ?";
 		Vector<Insurance> VecInsurance = new Vector<Insurance>();
@@ -246,16 +252,16 @@ public class insuranceDAO extends DAO {
 					actualCostVector.add(this.resultSet.getInt("insuranceID"));
 				}
 			}
-			System.out.print("(ȭ�纸��:");
+			System.out.print("(화占썹보占쏙옙:");
 			for (int i = 0; i < fireVector.size(); i++) {
 
 				System.out.print(fireVector.get(i) + " ");
 			}
-			System.out.print(") (�Ǻ���:");
+			System.out.print(") (占실븝옙占쏙옙:");
 			for (int i = 0; i < actualCostVector.size(); i++) {
 				System.out.print(actualCostVector.get(i) + " ");
 			}
-			System.out.print(") (�ڵ�������:");
+			System.out.print(") (占쌘듸옙占쏙옙占쏙옙占쏙옙:");
 			for (int i = 0; i < carVector.size(); i++) {
 				System.out.print(carVector.get(i) + " ");
 			}
@@ -301,7 +307,7 @@ public class insuranceDAO extends DAO {
 	            return InsuranceSalesManual;
 	         } else {
 	        	return "";
-	            //System.out.println("해당하는 판매 메뉴얼 존재 않음");
+	            //System.out.println("�빐�떦�븯�뒗 �뙋留� 硫붾돱�뼹 議댁옱 �븡�쓬");
 	         }
 	      } catch (SQLException e) {
 	         throw new RuntimeException("InsuranceDAO.searchInsuranceSalesManual :" + e.getMessage());
@@ -323,7 +329,7 @@ public class insuranceDAO extends DAO {
 	            return InsuranceManual;
 	         } else {
 	            return "";
-	        	 //System.out.println("해당하는 상품 메뉴얼 존재 않음");
+	        	 //System.out.println("�빐�떦�븯�뒗 �긽�뭹 硫붾돱�뼹 議댁옱 �븡�쓬");
 	         }
 	      } catch (SQLException e) {
 	         throw new RuntimeException("InsuranceDAO.searchInsuranceManual :" + e.getMessage());
@@ -354,6 +360,138 @@ public class insuranceDAO extends DAO {
 		      }
 		      return insuranceFee;
 		   }
+	   
+	   public FireInsurance getFireInsurance(int insurnceID) {
+			this.sql = "select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual,"
+					+ " directGuaranteedAmount, directGuaranteedContent, fireGuaranteedAmount, fireGuaranteedContent, refugeGuaranteedAmount, "
+					+ "refugeGuaranteedContent from Insurance, FireInsurance "
+					+ "where Insurance.insuranceID = FireInsurance.FinsuranceID AND insuranceID = " + insurnceID ;
+			FireInsurance insurance = new FireInsurance();
+			try {
+				this.connect = getConnection();
+				this.statement = this.connect.prepareStatement(sql);
+				this.resultSet = this.statement.executeQuery();
+				while (this.resultSet.next()) {
+					insurance.setInsuranceID(this.resultSet.getInt("insuranceID"));
+					insurance.setInsuranceName(this.resultSet.getString("insuranceName"));
+					insurance.setInsuranceFee(this.resultSet.getInt("insuranceFee"));
+					insurance.setInsuranceType(Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType")));	
+					insurance.setInsuranceManual(this.resultSet.getString("insuranceManual"));
+					insurance.setInsuranceSalesManual(this.resultSet.getString("insuranceSalesManual"));
+					
+					DamageInformation directDamage, fireDamage, refugeDamage;
+					
+					directDamage = new DamageInformation();
+					directDamage.setDamageGuaranteedAmount(this.resultSet.getInt("directGuaranteedAmount"));
+					directDamage.setDamageGuaranteedContent(this.resultSet.getString("directGuaranteedContent"));
+					insurance.setDirectDamage(directDamage);
+					
+					fireDamage = new DamageInformation();
+					fireDamage.setDamageGuaranteedAmount(this.resultSet.getInt("fireGuaranteedAmount"));
+					fireDamage.setDamageGuaranteedContent(this.resultSet.getString("fireGuaranteedContent"));
+					insurance.setFireDamage(fireDamage);
+					
+					refugeDamage = new DamageInformation();
+					refugeDamage.setDamageGuaranteedAmount(this.resultSet.getInt("refugeGuaranteedAmount"));
+					refugeDamage.setDamageGuaranteedContent(this.resultSet.getString("refugeGuaranteedContent"));
+					insurance.setRefugeDamage(refugeDamage);
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException("InsuranceDAO.getFireInsurance :" + e.getMessage());
+			} finally {
+				closeConnection(this.connect);
+			}
+			return insurance;
+	   }
+	   
+	   public CarInsurance getCarInsurance(int insurnceID) {
+			this.sql = "select insuranceID, insuranceName, insuranceFee, "
+					+ "insuranceType, insuranceManual, insuranceSalesManual, "
+					+ "goodsGuaranteeContent,goodsGuaranteeLimit, goodsSeparation, "
+					+ "personalGuaranteeContent, personalProvisionLimit, personalSeparation, "
+					+ "subscriptionFeeForAccidentalInjuries, "
+					+ "subscriptionFeeForInjury, selfVehicleSeparation "
+					+ "from Insurance, CarInsurance where Insurance.insuranceID = CarInsurance.CinsuranceID AND Insurance.insuranceID = " + insurnceID;
+
+			CarInsurance insurance = new CarInsurance();
+			try {
+				this.connect = getConnection();
+				this.statement = this.connect.prepareStatement(sql);
+				this.resultSet = this.statement.executeQuery();
+				while (this.resultSet.next()) {
+					insurance.setInsuranceID(this.resultSet.getInt("insuranceID"));
+					insurance.setInsuranceName(this.resultSet.getString("insuranceName"));
+					insurance.setInsuranceFee(this.resultSet.getInt("insuranceFee"));
+					insurance.setInsuranceType(Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType")));	
+					insurance.setInsuranceManual(this.resultSet.getString("insuranceManual"));
+					insurance.setInsuranceSalesManual(this.resultSet.getString("insuranceSalesManual"));
+					
+		        	
+		            Goods_Personal goods, pesonal;  
+		            goods = new Goods_Personal();
+		            goods.setSeparation(GSeparation.valueOf(this.resultSet.getString("goodsSeparation")));
+		            goods.setProvisionLimit(this.resultSet.getInt("goodsGuaranteeLimit"));
+		            goods.setGuaranteeContent(this.resultSet.getString("goodsGuaranteeContent"));
+		            insurance.setGoodsIndemnification(goods);
+		            
+		            pesonal = new Goods_Personal();
+		            pesonal.setSeparation(GSeparation.valueOf(this.resultSet.getString("personalSeparation")));
+		            pesonal.setProvisionLimit(this.resultSet.getInt("personalProvisionLimit"));
+		            pesonal.setGuaranteeContent(this.resultSet.getString("personalGuaranteeContent"));
+		            insurance.setPersonalIndemnification(pesonal);
+
+		            SelfVehicleDamage selfVehicleDamage = new SelfVehicleDamage();
+		    		selfVehicleDamage.setSeparation(SSeparation.valueOf(this.resultSet.getString("selfVehicleSeparation")));
+		            selfVehicleDamage.setSubscriptionFeeForInjury(this.resultSet.getInt("subscriptionFeeForInjury"));
+		            selfVehicleDamage.setSubscriptionFeeForAccidentalInjuries(this.resultSet.getInt("subscriptionFeeForAccidentalInjuries"));
+		            insurance.setSelfVehicleDamage(selfVehicleDamage);
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException("InsuranceDAO.getCarInsurance :" + e.getMessage());
+			} finally {
+				closeConnection(this.connect);
+			}
+			return insurance;
+	   }
+	   
+	   public ActualCostInsurance getActualCostInsurance(int insurnceID) {
+			this.sql = "select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual, "
+					+ "hospitalizationFee, hospitalizationReason, outpatientFee, outpatientReason "
+					+ "from Insurance, ActualCostInsurance where Insurance.insuranceID = ActualCostInsurance.AinsuranceID "
+					+ "AND insuranceID = " + insurnceID ;
+			ActualCostInsurance insurance = new ActualCostInsurance();
+			try {
+				this.connect = getConnection();
+				this.statement = this.connect.prepareStatement(sql);
+				this.resultSet = this.statement.executeQuery();
+				while (this.resultSet.next()) {
+					insurance.setInsuranceID(this.resultSet.getInt("insuranceID"));
+					insurance.setInsuranceName(this.resultSet.getString("insuranceName"));
+					insurance.setInsuranceFee(this.resultSet.getInt("insuranceFee"));
+					insurance.setInsuranceType(Insurance.InsuranceType.valueOf(this.resultSet.getString("insuranceType")));	
+					insurance.setInsuranceManual(this.resultSet.getString("insuranceManual"));
+					insurance.setInsuranceSalesManual(this.resultSet.getString("insuranceSalesManual"));
+					
+		            Injury hospitalization, outpatient;
+		            
+		            hospitalization = new Injury();        
+		            hospitalization.setProvisionFee(this.resultSet.getInt("insuranceID"));
+		            hospitalization.setProvisionReason(this.resultSet.getString("insuranceName"));
+		            insurance.setInjuryHospitalization(hospitalization);
+		            
+		            outpatient = new Injury();
+		            outpatient.setProvisionFee(this.resultSet.getInt("insuranceID"));
+		            outpatient.setProvisionReason(this.resultSet.getString("insuranceName"));
+		            insurance.setInjuryOutpatient(outpatient);
+					
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException("InsuranceDAO.getActualCostInsurance :" + e.getMessage());
+			} finally {
+				closeConnection(this.connect);
+			}
+			return insurance;
+	   }
 
 
 

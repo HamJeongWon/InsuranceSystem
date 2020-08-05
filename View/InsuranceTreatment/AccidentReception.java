@@ -1,8 +1,7 @@
 package InsuranceTreatment;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -82,18 +81,10 @@ public class AccidentReception extends HttpServlet {
 			String accidentLocation = request.getParameter("accidentLocation");
 			String expertOpinion = request.getParameter("expertOpinion");
 			
-			System.out.println(accidentDate);
-			System.out.println(accidentTime);
-			System.out.println(accidentCause);
-			System.out.println(accidentLocation);
-			System.out.println(expertOpinion);
-			
-			if(accidentDate ==null || accidentTime==null || accidentCause==null || accidentLocation == null || expertOpinion == null) {
-				String message = "모든 내용을 입력하여 주세요";
-				System.out.println(message);
-				request.setAttribute("message", message);
-				request.setAttribute("num", num);
-				url = "InsertAccidentReception.jsp";
+			if(accidentDate =="" || accidentTime=="" || accidentCause=="" || accidentLocation == "" || expertOpinion == "") {
+				response.sendRedirect("incl/alert.jsp");
+				return;
+				
 			}else {
 				accident.setInsuranceID(insuranceID);
 				accident.setCustomerID(customerID);
@@ -103,8 +94,8 @@ public class AccidentReception extends HttpServlet {
 				accident.setAccidentCause(accidentCause);
 				accident.setAccidentLocation(accidentLocation);
 				accident.setExpertOpinion(expertOpinion);
-				System.out.println("aa");
-			//	this.accidentDAO.insertAccident(accident);
+
+				this.accidentDAO.insertAccident(accident);
 				request.setAttribute("accident", accident);
 				url = "/ResultAccidentReception.jsp";
 			}		

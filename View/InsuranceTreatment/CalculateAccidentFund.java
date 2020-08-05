@@ -77,16 +77,22 @@ public class CalculateAccidentFund extends HttpServlet {
 		else if(action.equals("insertCalculateAccidentFund")) {
 			int accidentID = Integer.parseInt(request.getParameter("accidentID"));
 			Accident accident = this.accidentDAO.findAccident(accidentID);
-			
-			int insurancePremium = Integer.parseInt(request.getParameter("insurancePremium"));
-			accident.setInsurancePremium(insurancePremium);
-			
+
+			String insurancePremium =request.getParameter("insurancePremium");
 			String insurancePremiumCause = request.getParameter("insurancePremiumCause");
-			accident.setInsurancePremiumCause(insurancePremiumCause);
 			
-			this.accidentDAO.insertInsurancePayment(accident, accidentID);
-			request.setAttribute("accident", accident);
-			url = "ResultCalculateAccidentFund.jsp";
+			if(insurancePremium=="" || insurancePremiumCause=="") {
+				response.sendRedirect("incl/alert.jsp");
+				return;
+				
+			}else {
+				accident.setInsurancePremium(Integer.parseInt(insurancePremium));
+				accident.setInsurancePremiumCause(insurancePremiumCause);
+
+				this.accidentDAO.insertInsurancePayment(accident, accidentID);
+				request.setAttribute("accident", accident);
+				url = "ResultCalculateAccidentFund.jsp";
+			}
 		}
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);

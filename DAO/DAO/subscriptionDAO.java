@@ -106,13 +106,13 @@ public class subscriptionDAO extends DAO{
          return index;
 	  }
 	 
-	   public void deleteSubscription(Customer customer, int insuranceID) {
+	   public void deleteSubscription(int customerID, int insuranceID) {
            this.sql = "delete from subscription where customerID= ? and insuranceID = ?";
             try {
                  this.connect = getConnection();
                  this.statement = this.connect.prepareStatement(this.sql);
                 
-                 this.statement.setInt(1, customer.getCustomerID());
+                 this.statement.setInt(1, customerID);
                  this.statement.setInt(2, insuranceID);
                  this.statement.executeUpdate();
                  
@@ -133,6 +133,25 @@ public class subscriptionDAO extends DAO{
 	            this.statement.setBoolean(1, customer.isSubscriptionStatus());
 	            this.statement.setInt(2, customer.getCustomerID());
 	            this.statement.setInt(3, insuranceID);
+	            this.statement.executeUpdate();
+	            
+
+	         }catch(SQLException e) {
+	            throw new RuntimeException("InsuranceDAO.updateSubscriptionStatus :" + e.getMessage());
+	         }finally {
+	            closeConnection(this.connect);
+	         }
+	      }
+	   
+	   
+	   public void updateSubscriptionStatusFromWeb(int customerID, int insuranceID) {
+	         this.sql = "update subscription set subscriptionStatus = true where customerID = ? and insuranceID = ?";
+
+	         try {
+	            this.connect = getConnection();
+	            this.statement = this.connect.prepareStatement(this.sql);
+	            this.statement.setInt(1, customerID);
+	            this.statement.setInt(2, insuranceID);
 	            this.statement.executeUpdate();
 	            
 

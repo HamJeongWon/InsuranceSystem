@@ -30,6 +30,7 @@
 					<ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
 						<li class="has-children"><a href="InsuranceDesign.jsp" class="nav-link">상품설계하기</a>
 							<ul class="dropdown">
+								<li><a href = "InsuranceList"> 보험 리스트 </a></li>
 								<li><a href = "FInsuranceDesign.jsp"> 화재보험 </a></li>
 								<li><a href = "CInsuranceDesign.jsp">자동차보험</a></li>
 								<li><a href = "AInsuranceDesign.jsp">실비보험</a></li>
@@ -50,7 +51,7 @@
 							</ul></li>
 
 
-						<li><a href="" class="nav-link">인수심사하기</a></li>
+						<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>
 
 
 						<li class="has-children"><a href="" class="nav-link">계약관리하기</a>

@@ -1,12 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");
+   String cp = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title> 화재보험 설계 </title>
-</head>
-<body> 
 <jsp:include page="/incl/staticHeader.jsp" />
+
+<script type="text/javascript" src="<%=cp%>/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/numberOnly.js"></script>
+
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.insuranceName.value){
+	        alert("보험 이름을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.insuranceFee.value){
+	        alert("보험료를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.insuranceManual.value){
+	        alert("보험 설명서를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.insuranceSalesManual.value){
+	        alert("판매메뉴얼을 입력하세요.");
+	        return false;
+	    }
+	    
+	    if(!document.InsInfo.directGuaranteedAmount.value){
+	        alert("직접손해 보장액을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.directGuaranteedContent.value){
+	        alert("직접손해 보장내용을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.fireGuaranteedAmount.value){
+	        alert("소방손해 보장액을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.fireGuaranteedContent.value){
+	        alert("소방손해 보장내용을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.refugeGuaranteedAmount.value){
+	        alert("피난손해 보장액을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.refugeGuaranteedContent.value){
+	        alert("피난손해 보장내용을 입력하세요.");
+	        return false;
+	    }
+    }
+	
+	$(document).ready(function(){
+		$("input[id^='numberOnly']").on("focus", function() {
+		    var x = $(this).val();
+		    if(x && x.length > 0) {
+		        if(!$.isNumeric(x)) {
+		            x = x.replace(/[^0-9]/g,"");
+		        }
+		        x = addCommas(x);
+		        $(this).val(x);
+		    }
+		}).on("focusout", function() {
+		    var x = $(this).val();
+		    x = removeCommas(x);
+		    $(this).val(x);
+		}).on("keyup", function() {
+			$(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
+		});
+	});
+
+</script>
+
+<body > 
 <jsp:include page="/incl/Header.jsp" />
 
 <section class="site-section bg-light" id="contact-section">
@@ -20,7 +92,7 @@
           </div>
         </div>
 
-            <form action= ./InsuranceDesgin?action=fire method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./InsuranceDesgin?action=fire method="post" class="p-5 bg-white" name = "InsInfo" style = "margin:auto; max-width: 700px;" onsubmit="return checkValue()">
               
               <h2 class="h4 text-black mb-5" align = "center"> 보험 기본 정보 </h2> 
 
@@ -31,10 +103,11 @@
                 </div>
               </div>
 
+
               <div class="row form-group">          
                 <div class="col-md-12">
                   <label class="text-black" for="insuranceFee">보험료</label> 
-                  <input type="text" name="insuranceFee" class="form-control">
+                  <input type="text" name="insuranceFee" class="form-control" id="numberOnly">
                 </div>
               </div>
               
@@ -62,7 +135,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="directGuaranteedAmount">직접 손해 보장액</label> 
-                  <input type="text" name="directGuaranteedAmount" class="form-control">
+                  <input type="text" name="directGuaranteedAmount" class="form-control" id="numberOnly">
                 </div>
               </div>
               
@@ -79,7 +152,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="fireGuaranteedAmount"> 소방 손해 보장액</label> 
-                  <input type="text" name="fireGuaranteedAmount" class="form-control">
+                  <input type="text" name="fireGuaranteedAmount" class="form-control" id="numberOnly">
                 </div>
               </div>
               
@@ -96,7 +169,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="refugeGuaranteedAmount">피난 손해 보장액</label> 
-                  <input type="text" name="refugeGuaranteedAmount" class="form-control">
+                  <input type="text" name="refugeGuaranteedAmount" class="form-control" id="numberOnly">
                 </div>
               </div>
               

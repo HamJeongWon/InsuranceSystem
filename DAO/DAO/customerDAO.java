@@ -33,7 +33,7 @@ public class customerDAO extends DAO{
 			  }
 
 		  } catch (SQLException e) {
-			  throw new RuntimeException("InsuranceDAO.getInsuranceType :" + e.getMessage());
+			  throw new RuntimeException("customerDAO.getInsuranceType :" + e.getMessage());
 		  } finally {
 			  closeConnection(this.connect);
 		  }
@@ -71,7 +71,7 @@ public class customerDAO extends DAO{
            }
            customer.setPersonalInformation(personalInformation);
         }catch(SQLException e) {
-           throw new RuntimeException("InsuranceDAO.findPersonalInformation :" + e.getMessage());
+           throw new RuntimeException("customerDAO.findPersonalInformation :" + e.getMessage());
         }finally {
            closeConnection(connect);
         }
@@ -111,7 +111,7 @@ public class customerDAO extends DAO{
 				car.setLicenseType(Car.LicenseType.valueOf(this.resultSet.getString("licenseType")));
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException("InsuranceDAO.findCarCustomer :" + e.getMessage());
+			throw new RuntimeException("customerDAO.findCarCustomer :" + e.getMessage());
 		} finally {
 			closeConnection(connect);
 		}
