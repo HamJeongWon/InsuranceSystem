@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="Insurance.CarInsurance"%>
+<% request.setCharacterEncoding("UTF-8");
+   String cp = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 화재보험 설계결과 </title>
+<title> 자동차보험 설계결과 </title>
 </head>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
@@ -17,8 +19,8 @@
       
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="text-black h1 site-section-heading">자동차보험 설계완료!</h2>
-            <p class="lead">설계한 자동차보험의 정보입니다.</p>
+            <h2 class="text-black h1 site-section-heading"><%= insurance.getInsuranceName() %>의 상세 정보</h2>
+            <p class="lead">해당 보험의 상세 정보입니다.</p>
           </div>
         </div>
 
