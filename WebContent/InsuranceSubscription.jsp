@@ -3,13 +3,11 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="java.sql.*"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>사고내용 작성하기</title>
-
+<title>인수심사하기</title>
 </head>
 <body>
 	<jsp:include page="/incl/tableCSS.jsp" />
@@ -23,15 +21,16 @@
 		</svg>
 	<section class="site-section bg-light" id="contact-section">
 		<div class="container">
-			<%
-				Vector<Integer> idVector = new Vector<Integer>();
-				idVector = (Vector<Integer>) request.getAttribute("IDVector");
-				if (idVector.size() != 0) {
-			%>
+		<%	
+		Vector<Integer> idVector = new Vector<Integer>();
+		idVector = (Vector<Integer>) request.getAttribute("IDVector");
+		if (idVector.size() != 0) { %>
+
 			<div class="row mb-5">
 				<div class="col-12 text-center">
-					<h2 class="text-black h1 site-section-heading">사고내용 작성하기</h2>
-					<p class="lead">각 고객들이 가입한 보험 리스트이다. 조회를 누르면 사고내용 작성이 가능하다.</p>
+					<h2 class="text-black h1 site-section-heading">인수심사하기</h2>
+					<p class="lead">보험에 가입을 원하는 고객ID와 보험ID가 존재한다. 조회를 눌러 고객에 대한 인수
+						심사를 하십시오.</p>
 				</div>
 			</div>
 		</div>
@@ -41,7 +40,7 @@
 				<ul>
 					<li><a href="#section-shape-1"> <svg viewBox="0 0 80 60"
 								preserveAspectRatio="none">
-								<use xlink:href="#tabshape"></use></svg> <span>가입한 고객 리스트</span>
+								<use xlink:href="#tabshape"></use></svg> <span>인수심사 해야 할 고객 리스트</span>
 					</a></li>
 
 				</ul>
@@ -51,12 +50,12 @@
 					<div class="container">
 						<ul class="responsive-table">
 							<li class="table-header">
-								<div class="col col-1">고객 ID</div>
-								<div class="col col-2">보험 ID</div>
+								<div class="col col-1">보험 ID</div>
+								<div class="col col-2">고객 ID</div>
 								<div class="col col-3">조회</div>
 							</li>
-							<%
-								//no = showacceptanceapprove에서 받은 백터의 index
+						<%
+									//no = showacceptanceapprove에서 받은 백터의 index
 									for (int no = 0; no < idVector.size(); no++) {
 										if (no % 2 == 0) {
 							%>
@@ -71,7 +70,9 @@
 								</div>
 
 								<div class="col col-3">
-									<form action="InsertAccidentReception.jsp" method="post">
+									<form
+										action=./AcceptInsuranceSubscription?action=showCustomerInformation
+										method="post">
 										<input type="hidden" name="num" value=<%=no + 1%>> <input
 											type="submit" value="조회">
 									</form>
@@ -144,7 +145,6 @@
 			</div>
 		</div>
 	</a>
-
 	<jsp:include page="/incl/Footer.jsp" />
 
 </body>

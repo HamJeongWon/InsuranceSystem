@@ -50,7 +50,7 @@
 							</ul></li>
 
 
-						<li><a href="" class="nav-link">인수심사하기</a></li>
+						<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>
 
 
 						<li class="has-children"><a href="" class="nav-link">계약관리하기</a>

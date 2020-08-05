@@ -5,24 +5,19 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>InsertAccidentReception</title>
+<title>사고내용입력</title>
+
 </head>
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
+	
 
 	<%	
-	String message = request.getParameter("message");
 	int num = Integer.parseInt(request.getParameter("num"));
-	if(message != null){
 	%>
-	<script type="text/javascript">
+		
 	
-		alert(<%=message%>)
-	</script>
-	<%
-		}
-	%>
 	<section class="site-section bg-light" id="contact-section">
 		<div class="container">
 			<div class="row mb-5">
@@ -97,6 +92,10 @@
 
 
 </form>
+<script>
+document.getElementById('accidentDate').value = new Date().toISOString().substring(0, 10);
+document.getElementById('accidentTime').value = new Date().toISOString().slice(11, 16);
+</script>
 		</div>
 
 
