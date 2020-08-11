@@ -97,8 +97,17 @@ public class AccidentReception extends HttpServlet {
 
 				this.accidentDAO.insertAccident(accident);
 				request.setAttribute("accident", accident);
-				url = "/ResultAccidentReception.jsp";
+				url = "/ResultMentAccidentReception.jsp";
 			}		
+		}else if(action.equals("showResultAccidentReception")) {
+			int accidentID = Integer.parseInt(request.getParameter("accidentID"));
+			Accident accident = this.accidentDAO.findAccident(accidentID);
+			System.out.println(accident.getAccidentCause());
+			System.out.println(accident.getAccidentID());
+			System.out.println(accident.getCustomerID());
+			request.setAttribute("accident", accident);
+			url = "/ResultAccidentReception.jsp";
+			
 		}
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);

@@ -21,7 +21,6 @@ public class ResultInsurance extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {

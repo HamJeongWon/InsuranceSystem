@@ -1,5 +1,4 @@
 package AcceptanceGuide;
-
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
