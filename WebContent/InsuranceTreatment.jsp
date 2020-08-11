@@ -10,7 +10,7 @@
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
 
-	<section class="site-section" id="work-section">
+	<section class="site-section" id="work-section" style = "padding-top : 200px;">
 		<div class="container">
 			<div class="row mb-5 justify-content-center">
 				<div class="col-md-8 text-center">
@@ -56,5 +56,6 @@
 	</section>
 
 	<jsp:include page="/incl/Footer.jsp" />
+		<jsp:include page="/incl/staticFooter.jsp" />
 </body>
 </html>

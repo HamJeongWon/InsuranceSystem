@@ -17,7 +17,7 @@ tr, td {
 <script>
 </script>
 	
-	<table align="center">
+	<table align="center" >
 		<tr>
 			<td><a href="./InsertExistingCus">기존 고객 정보 입력</a></td>	
 			<td><a href="./InsertNewCus">새로운 고객 정보 입력</a></td>
@@ -26,5 +26,6 @@ tr, td {
 
 
 	<jsp:include page="/incl/Footer.jsp" />
+	<jsp:include page="/incl/staticFooter.jsp" />
 </body>
 </html>

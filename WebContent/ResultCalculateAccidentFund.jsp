@@ -17,7 +17,7 @@
 	<%Accident accident = (Accident)request.getAttribute("accident"); %>
 
 
-	<section class="site-section bg-light" id="contact-section">
+	<section class="site-section bg-light" id="contact-section" style = "padding-top : 200px;">
 		<c>
 		<div class="container">
 			<div class="row mb-5">
@@ -78,5 +78,6 @@
 	</section>
 
 	<jsp:include page="/incl/Footer.jsp" />
+	<jsp:include page="/incl/staticFooter.jsp" />
 </body>
 </html>

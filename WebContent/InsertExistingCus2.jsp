@@ -36,7 +36,7 @@
 		   }
 	   }  	
 	   %>
-<form action = "InsertExistingCus3.jsp" method = post>                          
+<form action = "InsertExistingCus3.jsp" method = post style = "padding-top : 200px;">                          
 	<section class="site-section bg-light" id="contact-section">
       <div class="container">   
 		 <div class="row mb-5">
@@ -76,5 +76,6 @@
             </section>
          </form>
 	<jsp:include page="/incl/Footer.jsp" />
+		<jsp:include page="/incl/staticFooter.jsp" />
 </body>
 </html>

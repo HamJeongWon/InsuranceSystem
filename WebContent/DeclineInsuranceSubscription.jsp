@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
-	<section class="site-section bg-light" id="contact-section">
+	<section class="site-section bg-light" id="contact-section" style = "padding-top : 200px;">
 	<form action=./AcceptInsuranceSubscription?action=declineDone method="post" style = "margin:auto; max-width: 700px;">
 		<div class="container">
 			<div class="row mb-5">
@@ -41,5 +41,6 @@
 			
 			
 <jsp:include page="/incl/Footer.jsp" />
+<jsp:include page="/incl/staticFooter.jsp" />
 </body>
 </html>

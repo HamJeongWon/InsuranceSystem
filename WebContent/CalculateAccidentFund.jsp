@@ -19,7 +19,7 @@
 				<path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z" />
 			</defs>
 		</svg>
-	<section class="site-section bg-light" id="contact-section">
+	<section class="site-section bg-light" id="contact-section" style = "padding-top : 200px;">
 		<div class="container">
 
 			
@@ -143,6 +143,7 @@
       </div>  
     </a>
 	<jsp:include page="/incl/Footer.jsp" />
+	<jsp:include page="/incl/staticFooter.jsp" />
 
 </body>
 </html>
