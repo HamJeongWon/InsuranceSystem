@@ -2,6 +2,8 @@
 <% request.setCharacterEncoding("UTF-8");  %>
 <%@page import="Insurance.Insurance"%>
 <%@page import="java.util.Vector"%>
+<%@page import="Insurance.Insurance"%>
+<%@page import="Customer.Building"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,9 @@
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 
-<% 	 Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID")); %>
+<% 	 Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID")); 
+	 Vector<Insurance> FireVec = (Vector<Insurance>)request.getAttribute("InsuVec");
+	%>
 
 <section class="site-section bg-light" id="contact-section">
 
@@ -34,7 +38,9 @@
                <div class="col-md-12">
                   <label class="text-black" for="insuranceName">화재 보험 이름 </label> 
               		<select name="InsuranceID"  class="form-control">
-
+              			<%for(Insurance insu : FireVec) {%>
+              				<option value = <%= insu.getInsuranceID()%>> <%= insu.getInsuranceName() %></option>
+              			<%}%>						
    					</select>
                </div>         
               </div>

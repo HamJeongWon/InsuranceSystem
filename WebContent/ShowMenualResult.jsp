@@ -20,7 +20,7 @@
 	<div class="container">
 	<div class="row mb-5">
 				<div class="col-12 text-center">
-			<form action= ./Menual1 method=POST>
+			<form action= ./Menual2 method=POST>
 					<h2 class="text-black h1 site-section-heading">메뉴얼 확인</h2>
 					<br>
 					<br>

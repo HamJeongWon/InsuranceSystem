@@ -46,7 +46,7 @@
 
 						<li class="has-children"><a href="SalesActivityDesign.jsp" class="nav-link">영업활동</a>
 							<ul class="dropdown">
-								<li><a href="./Menual1">메뉴얼 확인하기</a></li>
+								<li><a href="Menual1">메뉴얼 확인하기</a></li>
 								<li><a href="Subscription.jsp">상품 가입 신청하기</a></li>
 							</ul></li>
 
@@ -54,11 +54,11 @@
 						<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>
 
 
-						<li class="has-children"><a href="" class="nav-link">계약관리하기</a>
+						<li class="has-children"><a href="ContractContrallDesign.jsp" class="nav-link">계약관리하기</a>
 							<ul class="dropdown">
-								<li><a href="">납부관리하기</a></li>
-								<li><a href="">만기계약관리하기</a></li>
-								<li><a href="">계약서작성하기</a></li>
+								<li><a href="PaymentControll">납부관리하기</a></li>
+								<li><a href="FullContractControll">만기계약관리하기</a></li>
+								<li><a href="MakeContract?action=List">계약서작성하기</a></li>
 							</ul></li>
 
 						<li class="has-children"><a href="InsuranceTreatment.jsp" class="nav-link">보험처리하기</a>
