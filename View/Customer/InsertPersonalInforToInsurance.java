@@ -44,7 +44,7 @@ public class InsertPersonalInforToInsurance extends HttpServlet {
         int CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
         int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
         subscriptionDAO.insertSubscription(InsuranceID, CustomerID);	
-    	
+   
         if(InsuranceType.equals("Fire")) {	
             Building building = new Building();
             building.setBuildingAddress(request.getParameter("buildingAddress"));

@@ -23,9 +23,11 @@
 		String FireRadio = null;
 		String CarRadio = null;
 		String ActualRadio = null;
+		String Full = "visibility";
+		
 		int CustomerID = (Integer)request.getAttribute("CustomerID");
 	  	Vector<InsuranceType> VecInsuranceType = (Vector<InsuranceType>)request.getAttribute("VecInsuranceType");
-
+		
 	  	for(InsuranceType insuranceType : VecInsuranceType){
 		   if(insuranceType.equals(Insurance.InsuranceType.Fire)){
 			   FireRadio = "visibility";
@@ -35,8 +37,13 @@
 			   ActualRadio = "visibility";
 		   }
 	   }  	
+	  
+	  	if(VecInsuranceType.size()==3){
+	  		Full = null;
+	  	}
+	  	
 	   %>
-<form action = "InsertExistingCus3.jsp" method = post style = "padding-top : 200px;">                          
+<form action = "./InsertExistingCus2" method = post style = "padding-top : 200px;">                          
 	<section class="site-section bg-light" id="contact-section">
       <div class="container">   
 		 <div class="row mb-5">
@@ -62,14 +69,17 @@
 				   <label class="<%= ActualRadio%>">
 				    <input type="radio" class="option-input radio"  value = "ActualCost" name="InsuranceType" />
 				   	실비 보험&nbsp; 
-				  </label>			  
+				  </label>		
+				  <label class="<%= Full%>">
+				   	해당 고객은 이미 화재, 자동차, 실비 보험에 가입하여 보험 가입 진행이 불가 합니다.
+				  </label>		  
                 </div>
               </div>
 				
 			  <div class="row form-group">
                 <div class="col-md-12">
                 </div>
-              </div>
+              </div>             
               <input type = "hidden" name= CustomerID value = <%= CustomerID %>>
               <input type="submit" value="가입 시작" class="btn btn-primary btn-md text-white" style="float: right;">
              </div>

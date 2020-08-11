@@ -43,7 +43,6 @@ public class insuranceDAO extends DAO {
 		}
 	}
 	
-	//蹂댄뿕 ���엯�뿉 �빐�떦�븯�뒗 蹂댄뿕紐� 媛��졇�삤湲�
 	public Vector<Insurance> InsuranceNameVector(String Insurancetype){
 		this.sql = "select insuranceID, insuranceName from Insurance where insuranceType = ?";
 		Vector<Insurance> VecInsurance = new Vector<Insurance>();

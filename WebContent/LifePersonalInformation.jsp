@@ -12,7 +12,9 @@
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 
-<% Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID")); %>
+<% Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
+	Vector<Insurance> ActualCostVec = (Vector<Insurance>)request.getAttribute("InsuVec");	  	
+	%>
 
 <section class="site-section bg-light" id="contact-section" style = "padding-top : 200px;">
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@page import="java.util.Vector"%>
+<%@page import="Insurance.Insurance"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,8 @@
 </head>
 
 <body>
-	<% 	String InsuranceType = request.getParameter("InsuranceType");
+	<% 	
+		String InsuranceType = request.getParameter("InsuranceType");
 		String CustomerID = request.getParameter("CustomerID");
 		String url = "";
 		
@@ -20,11 +22,12 @@
 		}else if(InsuranceType.equals("ActualCost")){
 			url = "LifePersonalInformation.jsp";
 		}
+		
 	%> 
-	
-	<jsp:forward page="<%=url %>">
+	asdf
+<%-- 	<jsp:forward page="<%=url %>">
 		<jsp:param name="CustomerID" value= "<%= CustomerID%>"/>
-	</jsp:forward>
+	</jsp:forward> --%>
 
 </body>
 </html>

@@ -162,7 +162,7 @@ public class subscriptionDAO extends DAO{
 	         }
 	      }
 	   
-		public boolean insertSubscription(int insuranceID, int customerID) {
+		public void insertSubscription(int insuranceID, int customerID) {
 			this.sql = "insert into Subscription values(?, ?, null, false)";
 
 			try {
@@ -171,14 +171,12 @@ public class subscriptionDAO extends DAO{
 				this.statement.setInt(1, insuranceID);
 				this.statement.setInt(2, customerID);
 				statement.execute();
-				return true;
+
 			} catch (SQLException e) {
-				//throw new RuntimeException("InsuranceDAO.insertSubscription :" + e.getMessage());
-				System.err.println("insertSubscription ����ID �ߺ�");
+				throw new RuntimeException("InsuranceDAO.insertSubscription :" + e.getMessage());
 			} finally {
 				closeConnection(connect);
-			}
-			return false;
+			}		
 		}
 		
 		 public void insertContratIDtoSubscription(int contractID, int customerID, int InsuracneID) {
@@ -190,8 +188,7 @@ public class subscriptionDAO extends DAO{
 	            this.statement.setInt(1, contractID);
 	            this.statement.setInt(2, customerID);
 	            this.statement.setInt(3, InsuracneID);
-	            this.statement.executeUpdate();
-	            
+	            this.statement.executeUpdate();	            
 
 	         }catch(SQLException e) {
 	            throw new RuntimeException("InsuranceDAO.insertContratIDtoSubscription :" + e.getMessage());

@@ -196,8 +196,7 @@ public class customerDAO extends DAO{
 			statement.execute();
 
 		} catch (SQLException e) {
-//			throw new RuntimeException("InsuranceDAO.insertBuilding :" + e.getMessage());
-			System.err.println("�ش� ���� �ش��ϴ� ���� ������ �̹� �����մϴ�");
+			throw new RuntimeException("InsuranceDAO.insertBuilding :" + e.getMessage());
 		} finally {
 			closeConnection(connect);
 		}
@@ -228,8 +227,7 @@ public class customerDAO extends DAO{
 			statement.execute();
 
 		} catch (SQLException e) {
-//			throw new RuntimeException("InsuranceDAO.insertActualCost :" + e.getMessage());
-			System.err.println("�ش� ���� �ش��ϴ� ���� ������ �̹� �����մϴ�");
+			throw new RuntimeException("InsuranceDAO.insertActualCost :" + e.getMessage());
 		} finally {
 			closeConnection(connect);
 		}
@@ -249,8 +247,7 @@ public class customerDAO extends DAO{
 			statement.execute();
 
 		} catch (SQLException e) {
-			//throw new RuntimeException("InsuranceDAO.insertCar :" + e.getMessage());
-			System.err.println("�ش� ���� �ش��ϴ� ���� ������ �̹� �����մϴ�");
+			throw new RuntimeException("InsuranceDAO.insertCar :" + e.getMessage());
 		} finally {
 			closeConnection(connect);
 		}

@@ -18,14 +18,14 @@ import Insurance.Insurance;
 import Insurance.Insurance.InsuranceType;
 import Subscription.Subscription;
 
-@WebServlet("/InsertExistingCus")
-public class InsertExistingCustomer extends HttpServlet {
+@WebServlet("/InsertExistingCus2")
+public class InsertExistingCustomer2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     customerDAO customerDAO;
     insuranceDAO insuranceDAO;
     subscriptionDAO subscriptionDAO;
     
-    public InsertExistingCustomer() {
+    public InsertExistingCustomer2() {
         super();
     }
 
@@ -55,14 +55,29 @@ public class InsertExistingCustomer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");	
-		
+        String url = "";
+        Vector<Insurance> InsuVec = new  Vector<Insurance>();
+        
         int CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
-		Vector<InsuranceType> VecInsuranceType = this.subscriptionDAO.InsuranceTypeVector(CustomerID);
-
+        String InsuranceType = request.getParameter("InsuranceType");	
+        
+		if(InsuranceType.equals("Fire")){
+			url = "/FirePersonalInformation.jsp";
+			InsuVec = this.insuranceDAO.InsuranceNameVector("Fire");
+			
+		}else if(InsuranceType.equals("Car")){
+			url = "/CarPersonalInformation.jsp";
+			InsuVec = this.insuranceDAO.InsuranceNameVector("Car");
+			
+		}else if(InsuranceType.equals("ActualCost")){
+			url = "/LifePersonalInformation.jsp";
+			InsuVec = this.insuranceDAO.InsuranceNameVector("ActualCost");
+			
+		}
+		request.setAttribute("InsuVec", InsuVec);	
 		request.setAttribute("CustomerID", CustomerID);
-		request.setAttribute("VecInsuranceType", VecInsuranceType);
 		
-		RequestDispatcher disp = request.getRequestDispatcher("/InsertExistingCus2.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);	
 		}	
 }
