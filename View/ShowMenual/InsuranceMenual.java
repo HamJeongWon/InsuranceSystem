@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.insuranceDAO;
 import Insurance.Insurance;
 
-@WebServlet("/Menual2")
+@WebServlet("/Menual3")
 public class InsuranceMenual extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	insuranceDAO insuranceDAO;  
@@ -30,7 +30,7 @@ public class InsuranceMenual extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//vector·Î °®°í Åë¤Š·Î ³Ñ±â±â
+		//vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë¤Šï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½
 		Vector<Insurance> VecInsurance = this.insuranceDAO.searchInsuranceIDandName();
 		request.setAttribute("VecInsurance", VecInsurance);
 		RequestDispatcher disp = request.getRequestDispatcher("/ShowInsuranceMenual.jsp");
@@ -45,11 +45,11 @@ public class InsuranceMenual extends HttpServlet {
 		
 		int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
 		if (insuranceDAO.searchInsuranceIDforManual(InsuranceID) == false) {
-			Content = "ÇØ´çÇÏ´Â º¸Çèid°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù";
+			Content = "ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½";
 		} else {
 			Content = insuranceDAO.searchInsuranceManual(InsuranceID);
 			if(Content.isEmpty()) {
-				Content = "ÇØ´çÇÏ´Â º¸ÇèÀÇ ¸Þ´º¾óÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù";
+				Content = "ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½";
 			}
 		}
 		request.setAttribute("Content", Content);
