@@ -75,7 +75,7 @@ public class PaymentAccidentFund extends HttpServlet {
 
 			accident.setPayInsurancePremium(true);
 			this.accidentDAO.updatePayInsurancePremium(accident);
-			url = "main.jsp";
+			url = "ResultMentPaymentAccidentFund.jsp";
 		}
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);

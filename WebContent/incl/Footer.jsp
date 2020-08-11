@@ -8,17 +8,19 @@
 				<div class="row">
 					<div class="col-md-5">
 						<h2 class="footer-heading mb-4">About Us</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Neque facere laudantium magnam voluptatum autem. Amet aliquid
-							nesciunt veritatis aliquam.</p>
+						<p>2020년 3학년 여름방학 - jsp기반 보험 시스템 
+						made by 김경현, 정석우, 함정원</p>
 					</div>
 					<div class="col-md-3 ml-auto">
 						<h2 class="footer-heading mb-4">Features</h2>
 						<ul class="list-unstyled">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">Testimonials</a></li>
-							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">맨위로</a></li>
+							<li><a href="InsuranceDesign.jsp">상품설계하기</a></li>
+							<li><a href="AcceptanceGuide.jsp">인수정책수립하기</a></li>
+							<li><a href="SalesActivityDesign.jsp">영업활동</a></li>
+							<li><a href="AcceptInsuranceSubscription?action=showID">인수심사하기</a></li>
+							<li><a href="AcceptInsuranceSubscription?action=showID">계약관리하기</a></li>
+							<li><a href="InsuranceTreatment.jsp">보험처리하기</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3">
