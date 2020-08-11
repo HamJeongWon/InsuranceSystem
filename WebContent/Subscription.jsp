@@ -16,14 +16,14 @@ tr, td {
 	<jsp:include page="/incl/Header.jsp" />
 <script>
 </script>
-	
-	<table align="center" >
+	<div style = "padding-top : 100px;">
+	<table align="center">
 		<tr>
 			<td><a href="./InsertExistingCus">기존 고객 정보 입력</a></td>	
 			<td><a href="./InsertNewCus">새로운 고객 정보 입력</a></td>
 		</tr>
 	</table>
-
+	</div>
 
 	<jsp:include page="/incl/Footer.jsp" />
 	<jsp:include page="/incl/staticFooter.jsp" />
