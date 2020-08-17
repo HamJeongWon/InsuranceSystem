@@ -39,8 +39,29 @@ public class subscriptionDAO extends DAO{
          Vector<Integer> IDvector = new Vector<Integer>();
            try {
                   this.connect = getConnection();
-                  this.statement = this.connect.prepareStatement(sql);
-                  
+                  this.statement = this.connect.prepareStatement(sql);                
+                  this.resultSet= this.statement.executeQuery();
+    
+                  while(this.resultSet.next()) {
+                     IDvector.add(this.resultSet.getInt("insuranceID"));
+                     IDvector.add(this.resultSet.getInt("customerID"));         
+                  }            
+               }catch(SQLException e) {
+                  throw new RuntimeException("InsuranceDAO.showSubscriptionCustomer :" + e.getMessage());
+               }finally {
+                  closeConnection(this.connect);
+               }
+           return IDvector;
+              
+      }
+	 
+	 public Vector<Integer> showSubscriptionCustomer2() {
+         this.sql = "select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID is null";            
+            
+         Vector<Integer> IDvector = new Vector<Integer>();
+           try {
+                  this.connect = getConnection();
+                  this.statement = this.connect.prepareStatement(sql);                
                   this.resultSet= this.statement.executeQuery();
     
                   while(this.resultSet.next()) {

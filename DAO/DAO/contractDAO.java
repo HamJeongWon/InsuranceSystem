@@ -103,7 +103,7 @@ public class contractDAO extends DAO{
 		
 		try {
 			this.connect = this.getConnection();
-			PreparedStatement statement = connect.prepareStatement(this.sql);
+			this.statement = connect.prepareStatement(this.sql);
 			
 			statement.setBoolean(1, false);
 			ResultSet resultSet = statement.executeQuery();
@@ -150,7 +150,7 @@ public class contractDAO extends DAO{
 
 			try {
 				this.connect = this.getConnection();
-				PreparedStatement statement = connect.prepareStatement(this.sql);
+				this.statement  = connect.prepareStatement(this.sql);
 
 				statement.setDate(1, nowTime);
 				ResultSet resultSet = statement.executeQuery();
@@ -185,24 +185,24 @@ public class contractDAO extends DAO{
 
 			try {
 				this.connect = this.getConnection();
-				PreparedStatement statement = connect.prepareStatement(this.sql);
+				this.statement  = connect.prepareStatement(this.sql);
 
-				statement.setDate(1, nowTime);
-				ResultSet resultSet = statement.executeQuery();
+				this.statement.setDate(1, nowTime);
+				this.resultSet = statement.executeQuery();
 
-				while (resultSet.next()) {
+				while (this.resultSet.next()) {
 					vecFullContract.add(Integer.toString(resultSet.getInt("contractID")));
 					vecFullContract.add(Integer.toString(resultSet.getInt("customerID")));
 					vecFullContract.add(resultSet.getString("customerName"));
 					vecFullContract.add(resultSet.getDate("contarctExplrationDate").toString());
 					vecFullContract.add(resultSet.getDate("personalInformationRetentionPeriod").toString());				
-				}
-				return vecFullContract;
+				}				
 			} catch (SQLException e) {
 				throw new RuntimeException("InsuranceDAO.searchFullContractCustomer :" + e.getMessage());
 			} finally {
-				closeConnection(connect);
+				closeConnection(this.connect);
 			}
+			return vecFullContract;
 		}
 	   
 

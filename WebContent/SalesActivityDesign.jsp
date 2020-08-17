@@ -22,7 +22,7 @@
                 <li>판매 메뉴얼 확인하기</li>
                 <li>상품 메뉴얼 확인하기</li>
               </ul>
-              <p><a href="./MenualTest">메뉴얼 확인하기</a></p>
+              <p><a href="Menual1">메뉴얼 확인하기</a></p>
             </div>
           </div>
           

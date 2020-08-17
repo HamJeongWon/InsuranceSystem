@@ -91,7 +91,3 @@
 		<jsp:include page="/incl/Footer.jsp" />
 	</body>
 </html>
-	
-	
-</body>
-</html>

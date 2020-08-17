@@ -1,11 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");
+   String cp = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript" src="<%=cp%>/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/numberOnly.js"></script>
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.contractExpirationDate.value){
+	        alert("계약 만료일을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.paymentDate.value){
+	        alert("납입 날짜를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.paymentPeriod.value){
+	        alert("납입 기간을 입력하세요.");
+	        return false;
+	    }
+    }
+</script>
+
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
@@ -19,7 +41,7 @@
 			</div>
 		</div>
       <div>
-         <form action= "MakeContract?action=Finish" method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+         <form action= "MakeContract?action=Finish" method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
               <h2 class="h4 text-black mb-5" align = "center"> 계약서 정보 입력 </h2> 
 			
 			    <% 
@@ -94,9 +116,9 @@
                 </div>
               </div>
               <input type = hidden name = insuranceID value = <%=  insuranceID%>>
-              <input type = hidden name = insuranceID value = <%=  customerID%>>
-              <input type = hidden name = insuranceID value = <%=  contractID%>>
-              <input type = hidden name = insuranceID value = <%=  paymentAmout%>>
+              <input type = hidden name = customerID value = <%=  customerID%>>
+              <input type = hidden name = contractID value = <%=  contractID%>>
+              <input type = hidden name = paymentAmout value = <%=  paymentAmout%>>
               <input type= "submit" value = "작성 완료" class="btn btn-primary">   
               <input type= "reset" value = "다시 작성하기" class="btn btn-primary">              
            </form>   

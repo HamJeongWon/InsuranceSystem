@@ -63,7 +63,7 @@ public class MakeContract extends HttpServlet {
 		if (action.equals("List")) {
 			url = "MakeContract1.jsp";
 
-			Vector<Integer> IDVector = subscriptionDAO.showSubscriptionCustomer();
+			Vector<Integer> IDVector = subscriptionDAO.showSubscriptionCustomer2();
 			request.setAttribute("IDVector", IDVector);
 
 		} else if (action.equals("Make")) {
@@ -165,7 +165,7 @@ public class MakeContract extends HttpServlet {
 			contract.setPersonalInformationRetentionPeriod(JPersonalInformationRetentionPeriod);
 			this.contractDAO.createContract(contract);
 			this.subscriptionDAO.insertContratIDtoSubscription(contractID, customerID, insuranceID);
-
+			
 			request.setAttribute("contract", contract);
 		}
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");
+   String cp = request.getContextPath(); %>
 <%@page import ="java.util.Date"%>
 
 <!DOCTYPE html>
@@ -8,6 +10,17 @@
 <meta charset="UTF-8">
 <title>재계약 하기</title>
 </head>
+<script type="text/javascript" src="<%=cp%>/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/numberOnly.js"></script>
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.contractExpirationDate.value){
+	        alert("계약 만료일을 입력하세요.");
+	        return false;
+	    }
+    }
+</script>
 	<% 
 	   Integer contractID = (Integer)request.getAttribute("contractID"); 
 	   Integer customerID = (Integer)request.getAttribute("customerID");
@@ -16,18 +29,6 @@
 	   Integer accountNumber = (Integer)request.getAttribute("accountNumber");
 	%>
 	
-<!-- <script>
-function check(){
-	frm = document.frm;
-	if(frm.paymentDate.value==""){
-		
-	}else if(frm.accountNumber.value==""){
-		frm.accountNumber.value == accountNumber;
-	}else if(frm.paymentDate.value==""){
-		
-	}
-}
-</script> -->
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
@@ -45,7 +46,7 @@ function check(){
         </div>
         
          <div>
-            <form action= Recontract?action=finish method= POST name = frm class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= Recontract?action=finish method= POST name = frm class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
               
               <h2 class="h4 text-black mb-5" align = "center">계약 정보 수정 </h2> 
 			

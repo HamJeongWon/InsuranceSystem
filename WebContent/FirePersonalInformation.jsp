@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8");  %>
+<% request.setCharacterEncoding("UTF-8");
+   String cp = request.getContextPath(); %>
 <%@page import="Insurance.Insurance"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Insurance.Insurance"%>
@@ -10,6 +11,49 @@
 <meta charset="EUC-KR">
 <title> 기존 고객의 화재보험 가입 </title>
 </head>
+<script type="text/javascript" src="<%=cp%>/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/numberOnly.js"></script>
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.InsuranceID.value){
+	        alert("보험 이름을 선택하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.buildingAddress.value){
+	        alert("주소를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.buildingPrice.value){
+	        alert("건물 시세를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.buildingScale.value){
+	        alert("건물 규모를 입력하세요.");
+	        return false;
+	    }
+    }
+	
+	$(document).ready(function(){
+		$("input[id^='numberOnly']").on("focus", function() {
+		    var x = $(this).val();
+		    if(x && x.length > 0) {
+		        if(!$.isNumeric(x)) {
+		            x = x.replace(/[^0-9]/g,"");
+		        }
+		        x = addCommas(x);
+		        $(this).val(x);
+		    }
+		}).on("focusout", function() {
+		    var x = $(this).val();
+		    x = removeCommas(x);
+		    $(this).val(x);
+		}).on("keyup", function() {
+			$(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
+		});
+	});
+</script>
+
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
@@ -30,8 +74,7 @@
         </div>
         
          <div>
-            <form action= ./PersonalInfInsurance method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
-              
+             <form action= ./PersonalInfInsurance method="post" class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">  
               <h2 class="h4 text-black mb-5" align = "center"> 화재 보험 </h2> 
 				
 			 <div class="row form-group">
@@ -54,15 +97,15 @@
 
               <div class="row form-group">          
                 <div class="col-md-12">
-                  <label class="text-black" for="buildingPrice">건물 시세</label> 
-                   <textarea name="buildingPrice" id="buildingPrice" cols="30" rows="3" class="form-control" placeholder="숫자만 입력하시오."></textarea>
+                  <label class="text-black" for="buildingPrice">건물 시세</label>                   
+               	   <input type="text" name ="buildingPrice" class="form-control" placeholder="원" id = "numberOnly">    
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="buildingScale">건물 규모</label> 
-                  <textarea name="buildingScale" id="buildingScale" cols="30" rows="3" class="form-control" placeholder="몇 평."></textarea>
+                  <input type="text" name ="buildingScale" class="form-control" placeholder="몇 평.">        
                  </div>
               </div>
               <br>    

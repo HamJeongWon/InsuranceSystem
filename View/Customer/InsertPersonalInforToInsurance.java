@@ -3,6 +3,7 @@ package Customer;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +40,8 @@ public class InsertPersonalInforToInsurance extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=euc-kr");	
-           
+        String url = "";
+        
         String InsuranceType = request.getParameter("InsuranceTypeForInsert");
         int CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
         int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
@@ -52,6 +54,11 @@ public class InsertPersonalInforToInsurance extends HttpServlet {
             building.setBuildingScale(request.getParameter("buildingScale"));       
             customerDAO.insertBuilding(building, CustomerID);
             
+            request.setAttribute("CustomerID", CustomerID);
+            request.setAttribute("InsuranceID", InsuranceID);
+            request.setAttribute("building", building);           
+            url = "FirePersonalInformationResult.jsp";
+            
 		}else if(InsuranceType.equals("Car")) {
 			Car car = new Car();
 			car.setCarNumber(request.getParameter("carNumber"));
@@ -59,6 +66,11 @@ public class InsertPersonalInforToInsurance extends HttpServlet {
 			car.setDrivingCareer(Integer.parseInt(request.getParameter("carCareer")));
 			car.setLicenseType(Car.LicenseType.valueOf(request.getParameter("licenseType")));
 			customerDAO.insertCar(car, CustomerID);	
+			
+			request.setAttribute("CustomerID", CustomerID);
+	        request.setAttribute("InsuranceID", InsuranceID);
+	        request.setAttribute("car", car);           
+	        url = "CarPersonalInformationResult.jsp";
 			
 		}else if(InsuranceType.equals("ActualCost")) {
 			ActualCost actualCost = new ActualCost();
@@ -71,7 +83,16 @@ public class InsertPersonalInforToInsurance extends HttpServlet {
 			
 			actualCost.setFamilyHistory(FamilyHistory);
 			customerDAO.insertActualCost(actualCost, CustomerID);
+			
+			request.setAttribute("CustomerID", CustomerID);
+	        request.setAttribute("InsuranceID", InsuranceID);
+	        request.setAttribute("familyrelation", familyrelation);   
+	        request.setAttribute("familyDisease", familyDisease);    
+	        request.setAttribute("actualCost", actualCost);           
+	        url = "LifePersonalInformationResult.jsp";
 		}
-        response.sendRedirect("main.jsp");
+        
+		RequestDispatcher disp = request.getRequestDispatcher(url);
+		disp.forward(request, response);	
 	}
 }

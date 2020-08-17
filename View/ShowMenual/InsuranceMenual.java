@@ -30,7 +30,6 @@ public class InsuranceMenual extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//vector�� ���� �뤊�� �ѱ��
 		Vector<Insurance> VecInsurance = this.insuranceDAO.searchInsuranceIDandName();
 		request.setAttribute("VecInsurance", VecInsurance);
 		RequestDispatcher disp = request.getRequestDispatcher("/ShowInsuranceMenual.jsp");

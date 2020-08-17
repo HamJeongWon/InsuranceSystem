@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Customer.ActualCost.BloodType;
+import Customer.ActualCost.DiseaseHistory;
+import Customer.Car.CarType;
+import Customer.Car.LicenseType;
 import DAO.insuranceDAO;
 import DAO.customerDAO;
 import DAO.subscriptionDAO;
 import Insurance.Insurance;
-import Insurance.Insurance.InsuranceType;
 import Subscription.Subscription;
 
 @WebServlet("/InsertExistingCus2")
@@ -69,10 +72,34 @@ public class InsertExistingCustomer2 extends HttpServlet {
 			url = "/CarPersonalInformation.jsp";
 			InsuVec = this.insuranceDAO.InsuranceNameVector("Car");
 			
+			Vector<CarType> VecCarType = new Vector<CarType>();
+			for(CarType carType : Car.CarType.values()) {
+				VecCarType.add(carType);
+			}
+			
+			Vector<LicenseType> VecLicenseType = new Vector<LicenseType>();
+			for(LicenseType licenseType : Car.LicenseType.values()) {
+				VecLicenseType.add(licenseType);
+			}
+			
+			request.setAttribute("carType", VecCarType);	
+			request.setAttribute("licenseType", VecLicenseType);	
+			
 		}else if(InsuranceType.equals("ActualCost")){
 			url = "/LifePersonalInformation.jsp";
 			InsuVec = this.insuranceDAO.InsuranceNameVector("ActualCost");
 			
+			Vector<BloodType> VecBloodType = new Vector<BloodType>();
+			for(BloodType bloodType : ActualCost.BloodType.values()) {
+				VecBloodType.add(bloodType);
+			}
+			
+			Vector<DiseaseHistory> VecDiseaseHistory = new Vector<DiseaseHistory>();
+			for(DiseaseHistory diseaseHistory : ActualCost.DiseaseHistory.values()) {
+				VecDiseaseHistory.add(diseaseHistory);
+			}			
+			request.setAttribute("VecBloodType", VecBloodType);	
+			request.setAttribute("VecDiseaseHistory", VecDiseaseHistory);			
 		}
 		request.setAttribute("InsuVec", InsuVec);	
 		request.setAttribute("CustomerID", CustomerID);
