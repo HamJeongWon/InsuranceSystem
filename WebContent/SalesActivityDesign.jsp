@@ -9,8 +9,8 @@
 <body>
 <jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
-	
-	   <section class="site-section" style = "padding-top : 200px;">
+
+	<section class="site-section" style = "padding-top : 200px;">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-4">
@@ -22,7 +22,7 @@
                 <li>판매 메뉴얼 확인하기</li>
                 <li>상품 메뉴얼 확인하기</li>
               </ul>
-              <p><a href="./Menual1">메뉴얼 확인하기</a></p>
+              <p><a href="Menual1">메뉴얼 확인하기</a></p>
             </div>
           </div>
           

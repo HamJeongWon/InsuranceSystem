@@ -2,17 +2,31 @@
 <% request.setCharacterEncoding("UTF-8");  %>
 <%@page import="Insurance.Insurance"%>
 <%@page import="java.util.Vector"%>
+<%@page import="Customer.ActualCost.BloodType"%>
+<%@page import="Customer.ActualCost.DiseaseHistory"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title> 기존 고객의 실비보험 가입 </title>
 </head>
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.InsuranceID.value){
+	        alert("보험 이름을 선택하세요.");
+	        return false;
+	    }
+    }
+</script>
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
 
-<% Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID")); %>
+<% Integer CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
+	Vector<Insurance> ActualCostVec = (Vector<Insurance>)request.getAttribute("InsuVec");
+	Vector<BloodType> VecBloodType = (Vector<BloodType>)request.getAttribute("VecBloodType");
+	Vector<DiseaseHistory> VecDiseaseHistory = (Vector<DiseaseHistory>)request.getAttribute("VecDiseaseHistory");%>
 
 <section class="site-section bg-light" id="contact-section" style = "padding-top : 200px;">
 
@@ -26,15 +40,17 @@
         </div>
         
          <div>
-            <form action= ./PersonalInfInsurance method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;">
+            <form action= ./PersonalInfInsurance method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
               
               <h2 class="h4 text-black mb-5" align = "center"> 실비 보험 </h2> 
 				
 			 <div class="row form-group">
                <div class="col-md-12">
-                  <label class="text-black" for="insuranceName">실비 보험 이름 </label> 
+                  <label class="text-black" for="InsuranceID">실비 보험 이름 </label> 
               		<select name="InsuranceID"  class="form-control">
-
+              			<%for(Insurance insu : ActualCostVec) {%>
+              				<option value = <%= insu.getInsuranceID()%>> <%= insu.getInsuranceName() %></option>
+              			<%}%>						
    					</select>
                </div>         
               </div>
@@ -42,23 +58,42 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="bloodType"> 혈액형 타입 </label> 
-                  <input type="text" name ="bloodType" class="form-control">
+                	<select name="bloodType"  class="form-control">
+              			<%for(BloodType Type : VecBloodType) {%>
+              				<option value = <%= Type%>> <%= Type %></option>
+              			<%}%>						
+   					</select>
                 </div>
               </div>
 
               <div class="row form-group">          
                 <div class="col-md-12">
                   <label class="text-black" for="diseaseHistory">질병 이력</label> 
-                   <input type="text" name ="diseaseHistory" class="form-control">
+                 	<select name="diseaseHistory"  class="form-control">
+              			<%for(DiseaseHistory Type : VecDiseaseHistory) {%>
+              				<option value = <%= Type%>> <%= Type %></option>
+              			<%}%>						
+   					</select>
                 </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black">가족 질병 이력</label> 
-                   <input type="text" name ="familyDisease" class="form-control">
-                   <input type="text" name ="familyrelation" class="form-control">
-                   <input type="text" name ="FamilyHistory" class="form-control">
+                  <h2>가족 질병 이력</h2><br>                  
+                   <label class="text-black">가족 관계</label> 
+                  	<select name="familyrelation"  class="form-control">
+              			<option value = "부">부</option>
+              			<option value = "모">모</option>		
+              			<option value = "조부">조부</option>		
+              			<option value = "조모">조모</option>							
+   					</select>
+   					
+   					<label class="text-black">가족 질병</label> 
+   					 <select name="familyDisease"  class="form-control">
+              			<%for(DiseaseHistory Type : VecDiseaseHistory) {%>
+              				<option value = <%= Type%>> <%= Type %></option>
+              			<%}%>						
+   					</select>   					
                  </div>
               </div>
               <br>    

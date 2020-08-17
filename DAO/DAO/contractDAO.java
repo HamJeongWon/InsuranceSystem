@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Vector;
 
 import Contract.Contract;
 import Contract.ContractListImpl;
@@ -85,7 +86,7 @@ public class contractDAO extends DAO{
 				contract.setPaymentAmount(resultSet.getInt("paymentAmount"));
 				contract.setCustomerID(resultSet.getInt("customerID"));
 			} else {
-				System.out.println("ÇØ´çÇÏ´Â °è¾à Á¸Àç ÇÏÁö ¾ÊÀ½");
+				System.out.println("ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException("InsuranceDAO.searchContract :" + e.getMessage());
@@ -96,11 +97,13 @@ public class contractDAO extends DAO{
 	}
 
 
-	public void searchUnpaidCustomer() {
+	public Vector<String> searchUnpaidCustomer() {
 		this.sql = "select customerID, contractID from Contract where paymentStatus = ?";
+		Vector<String> unpaidVec = new Vector<String>();
+		
 		try {
 			this.connect = this.getConnection();
-			PreparedStatement statement = connect.prepareStatement(this.sql);
+			this.statement = connect.prepareStatement(this.sql);
 			
 			statement.setBoolean(1, false);
 			ResultSet resultSet = statement.executeQuery();
@@ -108,23 +111,27 @@ public class contractDAO extends DAO{
 		while (resultSet.next()) {
 				int customerID = resultSet.getInt("customerID");
 				int contractID = resultSet.getInt("contractID");
-				
+
 				Customer customer = findCustomer(customerID);
 				Contract contract = searchContract(contractID);
-				// °è¾àID, °í°´ ÀÌ¸§, ¿¬¶ôÃ³, ³³ÀÔÀÏ, ³³ÀÔ¿©ºÎ, ³³ÀÔ ¹æ½Ä
-				System.out.println("°è¾àID: " + contract.getContractID() + "  °í°´ ÀÌ¸§: " + customer.getCustomerName()
-						+ "  ¿¬¶ôÃ³: " + customer.getPhoneNum() + "  ³³ÀÔÀÏ: " + contract.getPaymentDate() + "  ³³ÀÔ¿©ºÎ: "
-						+ contract.getPaymentStatus() + "  ³³ÀÔ¹æ½Ä: " + contract.getPaymentType());
+				
+				unpaidVec.add(Integer.toString(contract.getContractID()));
+				unpaidVec.add(customer.getCustomerName());
+				unpaidVec.add(customer.getPhoneNum());
+				unpaidVec.add(String.valueOf(contract.getPaymentDate()));
+				unpaidVec.add(String.valueOf(contract.getPaymentStatus()));
+				unpaidVec.add(String.valueOf(contract.getPaymentType()));
+
 			}
-				System.out.println();
+			return unpaidVec;
 		} catch (SQLException e) {
 			throw new RuntimeException("InsuranceDAO.searchUnpaidCustomer :" + e.getMessage());
 		} finally {
 			closeConnection(connect);
 		}
 	}
-
-	   public HashMap<CustomerListImpl, ContractListImpl> searchFullContractCustomer() {
+		
+	 public HashMap<CustomerListImpl, ContractListImpl> searchFullContractCustomer() {
 			this.sql = "select contractID, customerID from Contract where contarctExplrationDate < ?";
 
 			CustomerListImpl customerList = new CustomerListImpl();
@@ -143,7 +150,7 @@ public class contractDAO extends DAO{
 
 			try {
 				this.connect = this.getConnection();
-				PreparedStatement statement = connect.prepareStatement(this.sql);
+				this.statement  = connect.prepareStatement(this.sql);
 
 				statement.setDate(1, nowTime);
 				ResultSet resultSet = statement.executeQuery();
@@ -166,6 +173,36 @@ public class contractDAO extends DAO{
 				closeConnection(connect);
 			}
 			return CustomerAndContractList;
+		}
+	   
+	   public Vector<String> searchFullContractCustomers() {
+			this.sql = "select contractID, customer.customerID, customerName, contarctExplrationDate, personalInformationRetentionPeriod from customer right join contract "
+					+ "on contract.customerID = customer.customerID  where contarctExplrationDate < ?";
+			
+			Vector<String> vecFullContract = new Vector<String>();
+			Calendar cal = new GregorianCalendar();
+			Date nowTime = new Date(cal.getTimeInMillis());
+
+			try {
+				this.connect = this.getConnection();
+				this.statement  = connect.prepareStatement(this.sql);
+
+				this.statement.setDate(1, nowTime);
+				this.resultSet = statement.executeQuery();
+
+				while (this.resultSet.next()) {
+					vecFullContract.add(Integer.toString(resultSet.getInt("contractID")));
+					vecFullContract.add(Integer.toString(resultSet.getInt("customerID")));
+					vecFullContract.add(resultSet.getString("customerName"));
+					vecFullContract.add(resultSet.getDate("contarctExplrationDate").toString());
+					vecFullContract.add(resultSet.getDate("personalInformationRetentionPeriod").toString());				
+				}				
+			} catch (SQLException e) {
+				throw new RuntimeException("InsuranceDAO.searchFullContractCustomer :" + e.getMessage());
+			} finally {
+				closeConnection(this.connect);
+			}
+			return vecFullContract;
 		}
 	   
 

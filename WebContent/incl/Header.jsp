@@ -49,15 +49,13 @@
 							<li><a href="Subscription.jsp">상품 가입 신청하기</a></li>
 						</ul>
 					</li>
-					<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>
-					<li class="has-children">
-						<a href="" class="nav-link">계약관리하기</a>
-						<ul class="dropdown">
-							<li><a href="">납부관리하기</a></li>
-							<li><a href="">만기계약관리하기</a></li>
-							<li><a href="">계약서작성하기</a></li>
-						</ul>
-					</li>
+					<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>					
+					<li class="has-children"><a href="ContractContrallDesign.jsp" class="nav-link">계약관리하기</a>
+							<ul class="dropdown">
+								<li><a href="PaymentControll">납부관리하기</a></li>
+								<li><a href="FullContractControll">만기계약관리하기</a></li>
+								<li><a href="MakeContract?action=List">계약서작성하기</a></li>
+							</ul></li>				
 					<li class="has-children">
 						<a href="InsuranceTreatment.jsp" class="nav-link">보험처리하기</a>
 						<ul class="dropdown">
@@ -69,8 +67,7 @@
 				</ul>
           	</nav>
           </div>
-
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
           	<a href="#" class="site-menu-toggle js-menu-toggle text-black">
           		<span class="icon-menu h3"></span>
        		</a>
@@ -79,4 +76,3 @@
       </div>
       
     </header>
-  

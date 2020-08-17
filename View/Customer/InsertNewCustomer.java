@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.omg.CORBA.Request;
 
+import Customer.PersonalInformation.Job;
 import DAO.insuranceDAO;
 import Insurance.Insurance.InsuranceType;
 import DAO.customerDAO;
@@ -36,13 +37,18 @@ public class InsertNewCustomer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int newCustomerID = insuranceDAO.SelectMaxID("customerID", "Customer") + 1;
 		request.setAttribute("newCustomerID", newCustomerID);
+		Vector<Job> VecJob = new Vector<Job>();
+		
+		for(Job job : PersonalInformation.Job.values()) {
+			VecJob.add(job);
+		}
+		request.setAttribute("VecJob", VecJob);
 		RequestDispatcher disp = request.getRequestDispatcher("/InsertNewCus1.jsp");
 		disp.forward(request, response);	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int customerID = Integer.parseInt(request.getParameter("customerID"));
-		System.out.println(customerID);
 		Customer customer = new Customer();	
 		customer.setCustomerID(customerID);
 		customer.setCustomerName(request.getParameter("customerName"));
@@ -51,8 +57,7 @@ public class InsertNewCustomer extends HttpServlet {
 		customerDAO.insertCustomer(customer);
 		
 		PersonalInformation personalInformation = new PersonalInformation();		
-		//personalInformation.setJob(PersonalInformation.Job.valueOf(request.getParameter("job")));
-		personalInformation.setJob(PersonalInformation.Job.valueOf("soldier"));
+		personalInformation.setJob(PersonalInformation.Job.valueOf(request.getParameter("job")));
 		personalInformation.setAccidentHistory(request.getParameter("accidentHistory"));
 		personalInformation.setAccountNumber(Integer.parseInt(request.getParameter("accountNumber")));	
 		personalInformation.setProperty(Integer.parseInt(request.getParameter("property")));

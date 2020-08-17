@@ -22,8 +22,8 @@ public abstract class DAO {
 
 	public Connection getConnection() {
 		try {
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-			this.connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/insuranceDB_test?serverTimezone=UTC&useSSL=false" ,"root","21058");
+	       // Class.forName("com.mysql.cj.jdbc.Driver");
+			this.connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/insuranceDB_test?serverTimezone=UTC&useSSL=false" ,"root","1234");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

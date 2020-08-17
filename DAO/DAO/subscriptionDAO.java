@@ -39,8 +39,29 @@ public class subscriptionDAO extends DAO{
          Vector<Integer> IDvector = new Vector<Integer>();
            try {
                   this.connect = getConnection();
-                  this.statement = this.connect.prepareStatement(sql);
-                  
+                  this.statement = this.connect.prepareStatement(sql);                
+                  this.resultSet= this.statement.executeQuery();
+    
+                  while(this.resultSet.next()) {
+                     IDvector.add(this.resultSet.getInt("insuranceID"));
+                     IDvector.add(this.resultSet.getInt("customerID"));         
+                  }            
+               }catch(SQLException e) {
+                  throw new RuntimeException("InsuranceDAO.showSubscriptionCustomer :" + e.getMessage());
+               }finally {
+                  closeConnection(this.connect);
+               }
+           return IDvector;
+              
+      }
+	 
+	 public Vector<Integer> showSubscriptionCustomer2() {
+         this.sql = "select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID is null";            
+            
+         Vector<Integer> IDvector = new Vector<Integer>();
+           try {
+                  this.connect = getConnection();
+                  this.statement = this.connect.prepareStatement(sql);                
                   this.resultSet= this.statement.executeQuery();
     
                   while(this.resultSet.next()) {
@@ -162,7 +183,7 @@ public class subscriptionDAO extends DAO{
 	         }
 	      }
 	   
-		public boolean insertSubscription(int insuranceID, int customerID) {
+		public void insertSubscription(int insuranceID, int customerID) {
 			this.sql = "insert into Subscription values(?, ?, null, false)";
 
 			try {
@@ -171,14 +192,12 @@ public class subscriptionDAO extends DAO{
 				this.statement.setInt(1, insuranceID);
 				this.statement.setInt(2, customerID);
 				statement.execute();
-				return true;
+
 			} catch (SQLException e) {
-				//throw new RuntimeException("InsuranceDAO.insertSubscription :" + e.getMessage());
-				System.err.println("insertSubscription ����ID �ߺ�");
+				throw new RuntimeException("InsuranceDAO.insertSubscription :" + e.getMessage());
 			} finally {
 				closeConnection(connect);
-			}
-			return false;
+			}		
 		}
 		
 		 public void insertContratIDtoSubscription(int contractID, int customerID, int InsuracneID) {
@@ -190,8 +209,7 @@ public class subscriptionDAO extends DAO{
 	            this.statement.setInt(1, contractID);
 	            this.statement.setInt(2, customerID);
 	            this.statement.setInt(3, InsuracneID);
-	            this.statement.executeUpdate();
-	            
+	            this.statement.executeUpdate();	            
 
 	         }catch(SQLException e) {
 	            throw new RuntimeException("InsuranceDAO.insertContratIDtoSubscription :" + e.getMessage());

@@ -19,8 +19,8 @@
 <section class="site-section bg-light" id="contact-section" style = "padding-top : 200px;">
 	<div class="container">
 	<div class="row mb-5">
-				<div class="col-12 text-center">
-			<form action= ./Menual1 method=POST>
+		<div class="col-12 text-center">
+			<form action= ./Menual2 method=POST>
 					<h2 class="text-black h1 site-section-heading">메뉴얼 확인</h2>
 					<br>
 					<br>
@@ -41,11 +41,22 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 		</div>
-	</div>
+	</div>	 
+</section>
 
-
-	<jsp:include page="/incl/Footer.jsp" />
-	<jsp:include page="/incl/staticFooter.jsp" />
-</body>
+		<a href="main.jsp" class="bg-primary py-5 d-block">
+     	 <div class="container">
+      	  <div class="row justify-content-center">
+         	<div class="col-md10">
+        	  <h2 class="text-white">메인으로 돌아가기</h2>
+         	 </div>
+        	</div>
+      	 </div>  
+    	</a>
+	
+		<jsp:include page="/incl/Footer.jsp" />
+		<jsp:include page="/incl/staticFooter.jsp" />
+	</body>
 </html>
